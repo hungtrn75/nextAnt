@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "@zeit/next-css": "^0.1.5",
+    "antd": "^3.4.4",
+    "babel-plugin-import": "^1.7.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "next": "^5.1.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "name": "next5ant",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polo13999/next5Ant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polo13999/next5Ant/issues"
+  },
+  "homepage": "https://github.com/polo13999/next5Ant#readme"
+}
