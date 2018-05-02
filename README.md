@@ -1,6 +1,6 @@
 # next5Ant
 # Learning Target use Ant build  Crud 
-# Step 1.add Layout 
+# Step 1.add Layout  ok
 # Step 2.add Redux-form
 # Step 3.add Redux-Observable
 # Step 4.add ApolloGraphql Server
