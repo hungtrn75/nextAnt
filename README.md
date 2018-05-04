@@ -1,7 +1,7 @@
 # next5Ant
 # Learning Target use Ant build  Crud 
-# Step 1.add Layout  ok
-# Step 2.add Redux-form
+# Step 1.add _app Layout  ok
+# Step 2.add Form Test
 # Step 3.add Redux-Observable
 # Step 4.add ApolloGraphql Server
 # Step 5.add sequelize
