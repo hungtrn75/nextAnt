@@ -10,14 +10,19 @@ export default (props) => {
 
     <Menu.Item key="home">
       <Icon type="home" />
-      <span><Link href={"/"}><span>回首頁</span></Link></span>
+      <span><Link href={"/"}><span> Pos系統首頁</span></Link></span>
     </Menu.Item>
 
-
-    <Menu.Item key="1">
-      <Icon type="user" />
-      <span>我的帳號</span>
-    </Menu.Item>
+    <SubMenu key="customer" title={<span><Icon type="team" /><span>我的帳號</span></span>}>
+      <Menu.Item key="aa1">
+        <Icon type="user" />
+        <span><Link href={'/presonal/presonal'}><a><span>我的帳號</span></a></Link></span>
+      </Menu.Item>
+      <Menu.Item key="aa2">
+        <Icon type="user" />
+        <span><Link href={'/presonal/login'}><a><span>登入</span></a></Link></span>
+      </Menu.Item>
+    </SubMenu>
 
 
     <SubMenu key="customer" title={<span><Icon type="team" /><span>客戶資料</span></span>}>
@@ -33,8 +38,8 @@ export default (props) => {
       </Menu.Item>
       <Menu.Item key="a3">
         <Link href="/customer/customerSelf">
-          客戶資料(self)
-      </Link>
+          <a> 客戶資料(self)</a>
+        </Link>
       </Menu.Item>
     </SubMenu>
     <SubMenu key="product" title={<span><Icon type="solution" /><span>產品資料</span></span>}>
@@ -60,13 +65,10 @@ export default (props) => {
       <Menu.Item key="c6">活動貼紙列印</Menu.Item>
     </SubMenu>
 
-    <SubMenu key="sub6" title={<span><Icon type="area-chart" /><span>業績管理</span></span>}>
-      <Menu.Item key="e1">Target總表</Menu.Item>
-      <Menu.Item key="e2">Target總表(admin)</Menu.Item>
-      <Menu.Item key="e3">我的Target</Menu.Item>
-      <Menu.Item key="e4">我的業績(Self)</Menu.Item>
-      <Menu.Item key="e5">我的業績(Limit)</Menu.Item>
-      <Menu.Item key="e6">我的業績(ALL)</Menu.Item>
+    <SubMenu key="sub6" title={<span><Icon type="area-chart" /><span>報表管理</span></span>}>
+      <Menu.Item key="e4">產品銷售日報表</Menu.Item>
+      <Menu.Item key="e5">最佳產品銷售</Menu.Item>
+      <Menu.Item key="e6">最佳人員銷售</Menu.Item>
     </SubMenu>
 
     <SubMenu key="sub7" title={<span><Icon type="profile" /><span>管裡者</span></span>}>
@@ -106,6 +108,6 @@ export default (props) => {
       <Menu.Item key="y1">產品銷售資料 </Menu.Item>
       <Menu.Item key="y1">員工資料 </Menu.Item>
     </SubMenu>
-  </Menu>
+  </Menu >
   )
 }
