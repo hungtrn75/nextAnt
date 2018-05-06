@@ -23,7 +23,7 @@ const RootQuery = ` type Query {   ${[...queries]}  }
 const SchemaDefinition = `schema {  query: Query,  mutation: Mutation} `;
 const result = makeExecutableSchema({
   typeDefs: [SchemaDefinition, RootQuery, ...typeDefs],
-
+  resolvers: AllResolvers
 })
 
 module.exports = result

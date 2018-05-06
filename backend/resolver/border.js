@@ -1,15 +1,16 @@
 let InitData = [
-  { userId: "1", name: "神力女超人", nickName: "Wonder Wonmen", tel: "" },
-  { userId: "2", name: "蝙蝠俠", nickName: "batMan", tel: "" },
+  { Title: "神力女超人", Content: "Wonder Wonmen" },
+  { Title: "蝙蝠俠", Content: "batMan" },
 ]
 const Query = {
   Query: {
-    UserAllQuery: () => {
+    BorderAllQuery: () => {
+      console.log('ooo')
       return InitData
     },
-    UserOneQuery: async (_, { userId = "1" }) => {
+    BorderOneQuery: async (_, { BorderId = "1" }) => {
       const result = InitData.find((item) => {
-        return item.userId === userId
+        return item.BorderId === BorderId
       })
 
       return result
@@ -18,10 +19,10 @@ const Query = {
 }
 const Mutation = {
   Mutation: {
-    UserUpdate: (_, { userId, name, nickName, tel }) => {
+    BorderUpdate: (_, { BorderId, name, nickName, tel }) => {
 
       InitData.map((item) => {
-        if (item.userId === userId) {
+        if (item.BorderId === BorderId) {
           item.name = name;
           item.nickName = nickName;
           item.tel = tel;
@@ -29,17 +30,17 @@ const Mutation = {
         return item
       })
 
-      return { userId, name, nickName, tel }
+      return { BorderId, name, nickName, tel }
     },
-    UserAdd: (_, { name, nickName, tel }) => {
-      const userId = shortid.generate()
-      const NewOne = { userId, name, nickName, tel }
+    BorderAdd: (_, { name, nickName, tel }) => {
+      const BorderId = shortid.generate()
+      const NewOne = { BorderId, name, nickName, tel }
       InitData = [...InitData, NewOne]
       return NewOne
     },
-    UserDelete: (_, { userId }) => {
+    BorderDelete: (_, { BorderId }) => {
       const result = InitData.findIndex((item) => {
-        return item.userId === userId
+        return item.BorderId === BorderId
       })
       if (result) {
         return InitData.splice(result, 1)
