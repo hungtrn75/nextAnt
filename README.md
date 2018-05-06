@@ -9,7 +9,7 @@ Next6 _app.js container let component can be wrap  by container.
 
 ```
 
-### Step 2.add Form Test submit & call api & datainit
+### Step 2.add Form Test submit  & datainit
 
 ```
 --------- learn note ---------
@@ -21,7 +21,13 @@ send request and callback use  apollographql be model layer
 ```
 
 
-### Step 3.add Redux-Observable
+### Step 3.add ApolloData Client & Server
+
+```
+add ApolloServer 
+
+```
+
 ### Step 4.add firebase 
 ### Step 5.add Create User Table
 ### Step 6.add Login Form with customer Login
