@@ -1,7 +1,7 @@
 var express = require("express")
 var next = require("next")
-//var { ApolloMiddleInterFace, ApolloMiddle } = require('./serverMiddle/apolloMiddle';)
-//var schema = require("./backend")
+var { ApolloMiddleInterFace, ApolloMiddle } = require('./serverMiddle/apolloMiddle')
+var schema = require("./backend")
 //var { IntlMiddle } =require("./serverMiddle/IntlMiddle")
 //多國語系
 var accepts = require('accepts')
@@ -23,8 +23,8 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
   const server = express();
 
-  // ApolloMiddle(server, schema)
-  // ApolloMiddleInterFace(server)
+  ApolloMiddle(server, schema)
+  ApolloMiddleInterFace(server)
 
   // const getMessages = (locale) => {
   //   return require(`./lang/${locale}.json`)
