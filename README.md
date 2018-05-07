@@ -4,29 +4,32 @@
 ###  Step 1.add _app Layout   
 ```
 --------- learn note ---------
-
-- [x] Next6 _app.js container let component can be wrap  by container.
+Next6 _app.js container let component can be wrap  by container.
 
 ```
+- [x] add Next6 _app.js container 
+
 
 ###  Step 2.add Form Test submit  & datainit
 
 ```
 --------- learn note ---------
+target form submit  button use  htmlType="submit" not type
+form init use  getFieldDecorator's initialValue: ''
 
 ```
 
-- [x] target form submit  button use  htmlType="submit" not type
-- [x] form init use  getFieldDecorator's initialValue: ''
-- [x] send request and callback use  apollographql be model layer
+- [x] add ant Form 
+- [x] add Form validation
 
 
 ###  Step 3.add ApolloData Client & Server
 
 ```
-
+--------- learn note ---------
+Sever Part Setup 
+Client Use RenderProps Way To Pass Data
 ```
-
 
 - [x] add ApolloServer 
 - [x] add Client sql and Hoc component 
@@ -35,13 +38,16 @@
 ###  Step 4.add ApolloData CRUD with Ant Design
 
 ```
+--------- learn note ---------
+Get Data and use map change DataObject format that table can use
+
 ```
 
-- [x] add react-media
-- [x] add Board Table
-- [] add Board Create   
-- [] add Board Del
-- [] add Board Update
+
+- [x] add Table
+-     add Board Create   
+-     add Board Del
+-     add Board Update
 
 
 ### Step add Create User Table
@@ -61,3 +67,10 @@
 ### Step add firebase 
 ### Step add Crud Table & form
 
+### antd design RWD
+
+```
+
+```
+
+-  add react-media

@@ -27,7 +27,9 @@
   "description": "use ApolloGraphql With antDesign build by next.js",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
   "scripts": {
     "dev": "node server",
     "build": "next build",
@@ -42,5 +44,10 @@
   "bugs": {
     "url": "https://github.com/polo13999/next5Ant/issues"
   },
-  "homepage": "https://github.com/polo13999/next5Ant#readme"
+  "homepage": "https://github.com/polo13999/next5Ant#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
