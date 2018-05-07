@@ -23,7 +23,7 @@
     "react-dom": "^16.3.2"
   },
   "name": "next5ant",
-  "description": "",
+  "description": "use ApolloGraphql With antDesign build by next.js",
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {},
@@ -36,7 +36,7 @@
     "type": "git",
     "url": "git+https://github.com/polo13999/next5Ant.git"
   },
-  "author": "",
+  "author": "polo <polo13999@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/polo13999/next5Ant/issues"
