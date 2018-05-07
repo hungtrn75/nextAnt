@@ -10,7 +10,7 @@ export default (props) => {
 
     <Menu.Item key="home">
       <Icon type="home" />
-      <span><Link href={"/"}><span> Pos系統首頁</span></Link></span>
+      <span><Link href={"/"}><a><span> Pos系統首頁</span></a></Link></span>
     </Menu.Item>
 
     <SubMenu key="customer" title={<span><Icon type="team" /><span>我的帳號</span></span>}>

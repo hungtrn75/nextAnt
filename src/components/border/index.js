@@ -7,6 +7,9 @@ class Board extends Component {
         <GetData>
           {
             (result) => {
+              if (result.data.loading == true) {
+                return <div>Loding</div>
+              }
               return <div>BoardAllQuery</div>
             }
           }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo';
-import { BoardAllQuery } from '../graphql/border'
+import { UserAllQuery } from '../../graphql/user'
+import { BorderAllQuery } from '../../graphql/border'
 
 
 
@@ -9,4 +10,4 @@ class GetData extends Component {
     return this.props.children(this.props);
   }
 }
-export default graphql(BoardAllQuery)(GetData)
+export default graphql(BorderAllQuery)(GetData)

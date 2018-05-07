@@ -1,7 +1,7 @@
 ## next5Ant
 ### Learning Target use Ant build  Crud 
 
-### Step 1.add _app Layout  ok
+### [x] Step 1.add _app Layout   
 ```
 --------- learn note ---------
 
@@ -9,7 +9,7 @@ Next6 _app.js container let component can be wrap  by container.
 
 ```
 
-### Step 2.add Form Test submit  & datainit
+### [x] Step 2.add Form Test submit  & datainit
 
 ```
 --------- learn note ---------
@@ -21,10 +21,11 @@ send request and callback use  apollographql be model layer
 ```
 
 
-### Step 3.add ApolloData Client & Server
+### [x] Step 3.add ApolloData Client & Server
 
 ```
 add ApolloServer 
+add Client sql and Hoc component 
 
 ```
 

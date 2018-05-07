@@ -9,7 +9,7 @@ var { parse } = require('url')
 var glob = require('glob')
 var { basename } = require('path')
 var { readFileSync } = require('fs')
-
+var cors =require('cors')
 
 var port = process.env.NODE_ENV !== "production" ? 3000 : 80;
 const dev = process.env.NODE_ENV !== "production";
@@ -22,6 +22,7 @@ const handle = app.getRequestHandler()
 //console.log(AllSchema)
 app.prepare().then(() => {
   const server = express();
+  server.use(cors())
 
   ApolloMiddle(server, schema)
   ApolloMiddleInterFace(server)
