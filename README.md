@@ -5,7 +5,7 @@
 ```
 --------- learn note ---------
 
-[x] Next6 _app.js container let component can be wrap  by container.
+- [x] Next6 _app.js container let component can be wrap  by container.
 
 ```
 
@@ -14,9 +14,9 @@
 ```
 --------- learn note ---------
 
-[x] target form submit  button use  htmlType="submit" not type
-[x] form init use  getFieldDecorator's initialValue: ''
-[x] send request and callback use  apollographql be model layer
+- [x] target form submit  button use  htmlType="submit" not type
+- [x] form init use  getFieldDecorator's initialValue: ''
+- [x] send request and callback use  apollographql be model layer
 
 ```
 
@@ -25,20 +25,20 @@
 
 ```
 
-[x] add ApolloServer 
-[x] add Client sql and Hoc component 
-[x] add Board GetData
+- [x] add ApolloServer 
+- [x] add Client sql and Hoc component 
+- [x] add Board GetData
 
 ```
 
 ###  Step 4.add ApolloData CRUD with Ant Design
 
 ```
-[x] add react-media
-[x] add Board Table
-[] add Board Create   
-[] add Board Del
-[] add Board Update
+- [x] add react-media
+- [x] add Board Table
+- [] add Board Create   
+- [] add Board Del
+- [] add Board Update
 
 
 ```
