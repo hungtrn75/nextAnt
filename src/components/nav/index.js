@@ -13,7 +13,7 @@ export default (props) => {
       <span><Link href={"/"}><a><span> Pos系統首頁</span></a></Link></span>
     </Menu.Item>
 
-    <SubMenu key="customer" title={<span><Icon type="team" /><span>我的帳號</span></span>}>
+    <SubMenu key="personal" title={<span><Icon type="team" /><span>我的帳號</span></span>}>
       <Menu.Item key="aa1">
         <Icon type="user" />
         <span><Link href={'/presonal/presonal'}><a><span>我的帳號</span></a></Link></span>
@@ -44,23 +44,23 @@ export default (props) => {
     </SubMenu>
     <SubMenu key="product" title={<span><Icon type="solution" /><span>產品資料</span></span>}>
       <Menu.Item key="b1">
-        <Link href="/product/productAll">產品資料(全)</Link>
+        <Link href="/product/productAll"><a>產品資料(全)</a></Link>
       </Menu.Item>
       <Menu.Item key="b2">
-        <Link href="/product/productLimit">產品資料(特定範圍)</Link></Menu.Item>
+        <Link href="/product/productLimit"><a>產品資料(特定範圍)</a></Link></Menu.Item>
       <Menu.Item key="b3">
-        <Link href="/product/productSelf">產品資料(self)</Link></Menu.Item>
+        <Link href="/product/productSelf"><a>產品資料(self)</a></Link></Menu.Item>
     </SubMenu>
 
     <SubMenu key="event" title={<span><Icon type="gift" /><span>活動</span></span>}>
       <Menu.Item key="c1">
-        <Link href="/event/eventInfo"> 活動資訊</Link>
+        <Link href="/event/eventInfo"> <a>活動資訊</a></Link>
       </Menu.Item>
       <Menu.Item key="c2">
-        <Link href="/event/eventTransfer"> 活動優惠</Link></Menu.Item>
+        <Link href="/event/eventTransfer"> <a>活動優惠</a></Link></Menu.Item>
       <Menu.Item key="c5">
         <Link href="/event/eventTransferRecord">
-          活動紀錄</Link>
+          <a> 活動紀錄</a></Link>
       </Menu.Item>
       <Menu.Item key="c6">活動貼紙列印</Menu.Item>
     </SubMenu>
@@ -73,17 +73,17 @@ export default (props) => {
 
     <SubMenu key="sub7" title={<span><Icon type="profile" /><span>管裡者</span></span>}>
       <Menu.Item key="f1">
-        <Link href="/admin/employee">員工管理</Link>
+        <Link href="/admin/employee"><a>員工管理</a></Link>
       </Menu.Item>
       <Menu.Item key="f2">
-        <Link href="/admin/premissonTemplate">權限設定-模板</Link>
+        <Link href="/admin/premissonTemplate"><a>權限設定-模板</a></Link>
       </Menu.Item>
       <Menu.Item key="f3">
-        <Link href="/admin/premisson">權限設定-帳號</Link>
+        <Link href="/admin/premisson"><a>權限設定-帳號</a></Link>
 
       </Menu.Item>
       <Menu.Item key="f4">公告管理</Menu.Item>
-      <Menu.Item key="f5">      <Link href="/admin/log">異動紀錄</Link>      </Menu.Item>
+      <Menu.Item key="f5">      <Link href="/admin/log"><a>異動紀錄</a></Link>      </Menu.Item>
     </SubMenu>
     <SubMenu key="sub8" title={<span><Icon type="setting" /><span>環境設定</span></span>}>
       <Menu.Item key="z3">權屬別</Menu.Item>

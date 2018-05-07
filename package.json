@@ -20,7 +20,8 @@
     "next": "^6.0.0",
     "react": "^16.3.2",
     "react-apollo": "^2.1.4",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-media": "^1.8.0"
   },
   "name": "next5ant",
   "description": "use ApolloGraphql With antDesign build by next.js",
