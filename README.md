@@ -14,26 +14,29 @@
 ```
 --------- learn note ---------
 
+```
+
 - [x] target form submit  button use  htmlType="submit" not type
 - [x] form init use  getFieldDecorator's initialValue: ''
 - [x] send request and callback use  apollographql be model layer
-
-```
 
 
 ###  Step 3.add ApolloData Client & Server
 
 ```
 
+```
+
+
 - [x] add ApolloServer 
 - [x] add Client sql and Hoc component 
 - [x] add Board GetData
 
-```
-
 ###  Step 4.add ApolloData CRUD with Ant Design
 
 ```
+```
+
 - [x] add react-media
 - [x] add Board Table
 - [] add Board Create   
@@ -41,7 +44,6 @@
 - [] add Board Update
 
 
-```
 ### Step add Create User Table
 
 ``
