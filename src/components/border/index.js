@@ -31,28 +31,28 @@ class Board extends Component {
     }
 
     const columns = [{
-      title: '公告事項',
+      title: 'TiTle',
       dataIndex: 'title',
       key: 'title',
       render: text => <Button onClick={() => handleDetailToggle()}>{text}</Button>,
     }, {
-      title: '公告內容',
+      title: 'Content',
       dataIndex: 'content',
       key: 'content',
     }, {
-      title: '起始日期',
+      title: 'StateDate',
       dataIndex: 'stateDate',
       key: 'stateData',
     }, {
-      title: '功能',
+      title: 'Function',
       dataIndex: 'endDate',
       key: 'endDate',
       render: (text, record) => {
 
         return (<span>
-          <Button onClick={() => handleChange()}>修改</Button>
+          <Button onClick={() => handleChange()}>Update</Button>
           <Divider type="vertical" />
-          <Button onClick={() => handleDelete({ data: record })}>刪除</Button>
+          <Button onClick={() => handleDelete({ data: record })}>Delete</Button>
         </span>)
       },
 
@@ -64,7 +64,7 @@ class Board extends Component {
           {
             ({ loading, error, data }) => {
               if (loading == true) { return <div>Loding</div> }
-              if (error) return <div>有錯誤歐</div>
+              if (error) return <div>Something Wrong</div>
 
               const dataX = data.BoardAllQuery.map((v, i) => {
                 return {
@@ -78,7 +78,7 @@ class Board extends Component {
                 <CreateModal showBlock={this.state.showBlock} handleCreateToggle={this.handleCreateToggle} />
                 <DetailModal showBlock={this.state.showDetail} handleDetailToggle={handleDetailToggle} />
                 <Table columns={columns} data={dataX}></Table>
-                <Button type="primary" onClick={() => this.handleCreateToggle()}>新增</Button>
+                <Button type="primary" onClick={() => this.handleCreateToggle()}>Create</Button>
               </div>
             }
           }
@@ -91,7 +91,7 @@ class Board extends Component {
 export default graphql(BoardDelete, {
   props: ({ mutate }) => ({
     _delete: async (BoardId) => {
-      console.log(`刪除資料嚕${BoardId}`)
+      console.log(`DeleteData${BoardId}`)
       return await mutate({
         variables: { BoardId },
         refetchQueries: [{ query: BoardAllQuery }]
