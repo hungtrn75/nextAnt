@@ -2,6 +2,7 @@ import gql from 'graphql-tag'
 export const BoardAllQuery = gql` 
              query  BoardAllQuery{
               BoardAllQuery{
+                BoardId
                 Title
                 Content
               }
@@ -9,37 +10,34 @@ export const BoardAllQuery = gql`
  
 `
 export const BoardOneQuery = gql`
-      query BoardOneQuery($boradId:String){
-            BoardOneQuery(boradId:$boradId) {
-                        boradId
-                        name
-                        tel 
-                        nickName
+      query BoardOneQuery($BoardId:String){
+            BoardOneQuery(BoardId:$BoardId) {
+                  BoardId
+                Title
+                Content
                         }
       }
 `
 
 
 export const BoardUpdate = gql`
-      mutation BoardUpdate($name:String,$tel:String,$nickName:String,$boradId:String) {
-            BoardUpdate(name:$name,tel:$tel,nickName:$nickName,boradId:$boradId) 
+      mutation BoardUpdate($name:String,$tel:String,$nickName:String,$BoardId:String) {
+            BoardUpdate(name:$name,tel:$tel,nickName:$nickName,BoardId:$BoardId) 
                      {
-                        boradId
-                        name
-                        tel 
-                        nickName
+                        BoardId
+                Title
+                Content
                         }
       }      
 `
 
 export const BoardDelete = gql`
-      mutation BoardDelete($boradId:String) {
-            BoardDelete(boradId:$boradId) 
+      mutation BoardDelete($BoardId:String) {
+            BoardDelete(BoardId:$BoardId) 
                      {
-                        boradId
-                        name
-                        tel 
-                        nickName
+                        BoardId
+                        Title
+                        Content
                         }
       }      
 `
@@ -50,7 +48,7 @@ export const BoardAdd = gql`
                      {
                         Title
                         Content
-                        
+                        BoardId
                         }
       }      
 `

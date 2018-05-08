@@ -11,7 +11,6 @@ const Query = {
       const result = InitData.find((item) => {
         return item.userId === userId
       })
-
       return result
     }
   }
@@ -19,7 +18,6 @@ const Query = {
 const Mutation = {
   Mutation: {
     UserUpdate: (_, { userId, name, nickName, tel }) => {
-
       InitData.map((item) => {
         if (item.userId === userId) {
           item.name = name;

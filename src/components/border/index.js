@@ -21,6 +21,7 @@ class Board extends Component {
       //console.log('handleChange')
     }
     const handleDelete = (e) => {
+      this.props._delete(e.data.BoardId)
       //console.log(e)
 
     }
@@ -64,8 +65,14 @@ class Board extends Component {
             ({ loading, error, data }) => {
               if (loading == true) { return <div>Loding</div> }
               if (error) return <div>有錯誤歐</div>
+
               const dataX = data.BoardAllQuery.map((v, i) => {
-                return { key: i, title: v.Title, content: v.Content, stateDate: 'test', endDate: 'test' }
+                return {
+                  key: i, title: v.Title,
+                  content: v.Content,
+                  stateDate: 'test', endDate: 'test',
+                  BoardId: v.BoardId
+                }
               })
               return <div>
                 <CreateModal showBlock={this.state.showBlock} handleCreateToggle={this.handleCreateToggle} />
@@ -87,9 +94,8 @@ export default graphql(BoardDelete, {
       console.log(`刪除資料嚕${BoardId}`)
       return await mutate({
         variables: { BoardId },
-        refetchQueries: [{ query: BorderAllQuery }]
+        refetchQueries: [{ query: BoardAllQuery }]
       })
     },
-
   })
 })(Board)

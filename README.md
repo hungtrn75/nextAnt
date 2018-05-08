@@ -26,19 +26,24 @@ form init use  getFieldDecorator's initialValue: ''
 ###  Step 3.add ApolloData Client & Server
 
 ```
+
 --------- learn note ---------
+
 Sever Part Setup 
 Client Use RenderProps Way To Pass Data
+new version support Query & Mutation it's use renderProps
+
 ```
 
 - [x] add ApolloServer 
 - [x] add Client sql and Hoc component 
-- [x] add Board GetData
+- [x] add Board GetData & replace by Query 
 
 ###  Step 4.add ApolloData CRUD with Ant Design
 
 ```
 --------- learn note ---------
+
 Get Data and use map change DataObject format that table can use
 Must use Form.create that can be use 
 
@@ -52,8 +57,8 @@ Must use Form.create that can be use
 
 
 - [x] add Table
-- [x]    add Board Create   
--     add Board Del
+- [x] add Board Create   
+- [x] add Board Del
 -     add Board Update
 
 

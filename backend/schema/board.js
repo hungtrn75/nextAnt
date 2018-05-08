@@ -3,6 +3,7 @@ const queries = `
      BoardOneQuery(BoardId:String):Board
 `
 const typeDefs = ` type Board{
+  BoardId:String,
   Title:String,
   Content:String,
   StartDate:String,

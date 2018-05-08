@@ -1,6 +1,7 @@
+var shortid = require('shortid')
 let InitData = [
-  { Title: "神力女超人", Content: "Wonder Wonmen" },
-  { Title: "蝙蝠俠", Content: "batMan" },
+  { BoardId: "1", Title: "神力女超人", Content: "Wonder Wonmen" },
+  { BoardId: "2", Title: "蝙蝠俠", Content: "batMan" },
 ]
 const Query = {
   Query: {
@@ -33,16 +34,23 @@ const Mutation = {
       return { BoardId, name, nickName, tel }
     },
     BoardAdd: (_, { Title, Content }) => {
-      //const BoardId = shortid.generate()
-      const NewOne = { Title, Content }
+      const BoardId = shortid.generate()
+      const NewOne = { BoardId, Title, Content }
       InitData = [...InitData, NewOne]
+      console.log('GoGoBackend')
+      console.log(InitData)
       return NewOne
     },
     BoardDelete: (_, { BoardId }) => {
+      console.log('GoGBackendDelete')
       const result = InitData.findIndex((item) => {
         return item.BoardId === BoardId
       })
-      if (result) {
+      console.log('----')
+      console.log(result)
+      if (result !== undefined) {
+        console.log('有找到')
+        console.log(result)
         return InitData.splice(result, 1)
       } else {
         return {}
