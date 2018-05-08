@@ -40,12 +40,19 @@ Client Use RenderProps Way To Pass Data
 ```
 --------- learn note ---------
 Get Data and use map change DataObject format that table can use
+Must use Form.create that can be use 
+
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
 
 ```
 
 
 - [x] add Table
--     add Board Create   
+- [x]    add Board Create   
 -     add Board Del
 -     add Board Update
 

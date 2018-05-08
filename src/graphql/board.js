@@ -45,13 +45,12 @@ export const BoardDelete = gql`
 `
 
 export const BoardAdd = gql`
-      mutation BoardAdd($name:String,$tel:String,$nickName:String) {
-            BoardAdd(name:$name,tel:$tel,nickName:$nickName) 
+      mutation BoardAdd($Title:String,$Content:String) {
+            BoardAdd(Title:$Title,Content:$Content) 
                      {
-                        boradId
-                        name
-                        tel 
-                        nickName
+                        Title
+                        Content
+                        
                         }
       }      
 `

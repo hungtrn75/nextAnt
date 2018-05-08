@@ -42,7 +42,7 @@ export default class SiderDemo extends React.Component {
               /></Col>
               <Col span={20}>
                 <div style={{ position: 'absolute', top: '-5px', right: '20px' }}>
-                  <span style={{ marginRight: '20px;' }} >首頁</span>
+                  <span style={{ marginRight: '20px;' }} >Main</span>
                   <Icon type="bell" style={{ marginRight: '20px' }} />
                   <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
                 </div>

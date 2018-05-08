@@ -18,14 +18,14 @@ class Board extends Component {
 
   render() {
     const handleChange = () => {
-      console.log('handleChange')
+      //console.log('handleChange')
     }
     const handleDelete = (e) => {
-      console.log(e)
+      //console.log(e)
 
     }
     const handleDetailToggle = () => {
-      console.log('test')
+      //console.log('test')
       this.setState({ showDetail: !this.state.showDetail })
     }
 

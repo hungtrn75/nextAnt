@@ -32,9 +32,9 @@ const Mutation = {
 
       return { BoardId, name, nickName, tel }
     },
-    BoardAdd: (_, { name, nickName, tel }) => {
-      const BoardId = shortid.generate()
-      const NewOne = { BoardId, name, nickName, tel }
+    BoardAdd: (_, { Title, Content }) => {
+      //const BoardId = shortid.generate()
+      const NewOne = { Title, Content }
       InitData = [...InitData, NewOne]
       return NewOne
     },
