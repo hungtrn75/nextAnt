@@ -1,6 +1,6 @@
 var UserSchema = require('./user')
-var Border = require('./border')
+var Board = require('./board')
 //..import FileSchema from './file'
-let result = [UserSchema, Border]
+let result = [UserSchema, Board]
 //console.log(result)
 module.exports = result

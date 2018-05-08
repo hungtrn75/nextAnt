@@ -1,9 +1,9 @@
 var User = require('./user')
-var Border = require('./border')
+var Board = require('./board')
 //var UploadRes require( './FileResolver')
 var { merge } = require("lodash")
 
-let OutIndex = merge(User, Border);
+let OutIndex = merge(User, Board);
 let AllResolve = [OutIndex.Query, OutIndex.Mutation];
 
 //let AllResolve = [OutIndex.Query];

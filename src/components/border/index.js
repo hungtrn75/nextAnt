@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 //import GetData from './getData'
 import Table from '../table'
 import { Divider, Icon, Button, Modal } from 'antd'
-import { BorderDelete, BorderAllQuery } from '../../graphql/border'
+import { BoardDelete, BoardAllQuery } from '../../graphql/board'
 import { graphql, Query } from 'react-apollo';
 import CreateModal from './create'
 import DetailModal from './detail'
@@ -43,27 +43,28 @@ class Board extends Component {
       dataIndex: 'stateDate',
       key: 'stateData',
     }, {
-      title: '結束日期',
+      title: '功能',
       dataIndex: 'endDate',
       key: 'endDate',
-      render: (text, record) => (
-        <span>
+      render: (text, record) => {
+
+        return (<span>
           <Button onClick={() => handleChange()}>修改</Button>
           <Divider type="vertical" />
-          <Button onClick={(record) => handleDelete(record)}>刪除</Button>
-        </span>
-      ),
+          <Button onClick={() => handleDelete({ data: record })}>刪除</Button>
+        </span>)
+      },
 
     }];
 
     return (
       <div>
-        <Query query={BorderAllQuery}>
+        <Query query={BoardAllQuery}>
           {
             ({ loading, error, data }) => {
               if (loading == true) { return <div>Loding</div> }
               if (error) return <div>有錯誤歐</div>
-              const dataX = data.BorderAllQuery.map((v, i) => {
+              const dataX = data.BoardAllQuery.map((v, i) => {
                 return { key: i, title: v.Title, content: v.Content, stateDate: 'test', endDate: 'test' }
               })
               return <div>
@@ -72,7 +73,6 @@ class Board extends Component {
                 <Table columns={columns} data={dataX}></Table>
                 <Button type="primary" onClick={() => this.handleCreateToggle()}>新增</Button>
               </div>
-
             }
           }
         </Query>
@@ -81,12 +81,12 @@ class Board extends Component {
   }
 }
 
-export default graphql(BorderDelete, {
+export default graphql(BoardDelete, {
   props: ({ mutate }) => ({
-    _delete: async (borderId) => {
-      console.log(`刪除資料嚕${borderId}`)
+    _delete: async (BoardId) => {
+      console.log(`刪除資料嚕${BoardId}`)
       return await mutate({
-        variables: { borderId },
+        variables: { BoardId },
         refetchQueries: [{ query: BorderAllQuery }]
       })
     },

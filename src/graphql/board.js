@@ -1,19 +1,16 @@
 import gql from 'graphql-tag'
-export const BorderAllQuery = gql` 
-             query  BorderAllQuery{
-              BorderAllQuery{
+export const BoardAllQuery = gql` 
+             query  BoardAllQuery{
+              BoardAllQuery{
                 Title
                 Content
               }
   }
  
 `
-
-
-
-export const BorderOneQuery = gql`
-      query BorderOneQuery($boradId:String){
-            BorderOneQuery(boradId:$boradId) {
+export const BoardOneQuery = gql`
+      query BoardOneQuery($boradId:String){
+            BoardOneQuery(boradId:$boradId) {
                         boradId
                         name
                         tel 
@@ -23,9 +20,9 @@ export const BorderOneQuery = gql`
 `
 
 
-export const BorderUpdate = gql`
-      mutation BorderUpdate($name:String,$tel:String,$nickName:String,$boradId:String) {
-            BorderUpdate(name:$name,tel:$tel,nickName:$nickName,boradId:$boradId) 
+export const BoardUpdate = gql`
+      mutation BoardUpdate($name:String,$tel:String,$nickName:String,$boradId:String) {
+            BoardUpdate(name:$name,tel:$tel,nickName:$nickName,boradId:$boradId) 
                      {
                         boradId
                         name
@@ -35,9 +32,9 @@ export const BorderUpdate = gql`
       }      
 `
 
-export const BorderDelete = gql`
-      mutation BorderDelete($boradId:String) {
-            BorderDelete(boradId:$boradId) 
+export const BoardDelete = gql`
+      mutation BoardDelete($boradId:String) {
+            BoardDelete(boradId:$boradId) 
                      {
                         boradId
                         name
@@ -47,9 +44,9 @@ export const BorderDelete = gql`
       }      
 `
 
-export const BorderAdd = gql`
-      mutation BorderAdd($name:String,$tel:String,$nickName:String) {
-            BorderAdd(name:$name,tel:$tel,nickName:$nickName) 
+export const BoardAdd = gql`
+      mutation BoardAdd($name:String,$tel:String,$nickName:String) {
+            BoardAdd(name:$name,tel:$tel,nickName:$nickName) 
                      {
                         boradId
                         name

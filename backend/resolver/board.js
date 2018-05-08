@@ -4,13 +4,13 @@ let InitData = [
 ]
 const Query = {
   Query: {
-    BorderAllQuery: () => {
+    BoardAllQuery: () => {
       console.log('ooo')
       return InitData
     },
-    BorderOneQuery: async (_, { BorderId = "1" }) => {
+    BoardOneQuery: async (_, { BoardId = "1" }) => {
       const result = InitData.find((item) => {
-        return item.BorderId === BorderId
+        return item.BoardId === BoardId
       })
 
       return result
@@ -19,10 +19,10 @@ const Query = {
 }
 const Mutation = {
   Mutation: {
-    BorderUpdate: (_, { BorderId, name, nickName, tel }) => {
+    BoardUpdate: (_, { BoardId, name, nickName, tel }) => {
 
       InitData.map((item) => {
-        if (item.BorderId === BorderId) {
+        if (item.BoardId === BoardId) {
           item.name = name;
           item.nickName = nickName;
           item.tel = tel;
@@ -30,17 +30,17 @@ const Mutation = {
         return item
       })
 
-      return { BorderId, name, nickName, tel }
+      return { BoardId, name, nickName, tel }
     },
-    BorderAdd: (_, { name, nickName, tel }) => {
-      const BorderId = shortid.generate()
-      const NewOne = { BorderId, name, nickName, tel }
+    BoardAdd: (_, { name, nickName, tel }) => {
+      const BoardId = shortid.generate()
+      const NewOne = { BoardId, name, nickName, tel }
       InitData = [...InitData, NewOne]
       return NewOne
     },
-    BorderDelete: (_, { BorderId }) => {
+    BoardDelete: (_, { BoardId }) => {
       const result = InitData.findIndex((item) => {
-        return item.BorderId === BorderId
+        return item.BoardId === BoardId
       })
       if (result) {
         return InitData.splice(result, 1)
