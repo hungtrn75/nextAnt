@@ -26,18 +26,18 @@ export default class CreateModal extends Component {
     return (
 
       <Modal
-        title="新增公告"
+        title="Create Board"
         visible={this.props.showBlock}
         // onOk={() => this.handleCreate()}
         // onCancel={() => this.props.handleCreateToggle()}
         footer={[
-          <Button key="back" onClick={() => this.props.handleCreateToggle()}>取消</Button>,
+          <Button key="back" onClick={() => this.props.handleCreateToggle()}>Cancel</Button>,
           //          <Button key="submit" type="primary" onClick={() => this.handleCreate(BoardAdd, data)}>新增</Button>,
         ]}
       >
         <p>
           <Mutation mutation={BoardAdd}>
-            {(BoardAdd, { data }) => (
+            {(BoardAdd, { data }, loading) => (
               <Form BoardAdd={BoardAdd}></Form>
             )}
           </Mutation>

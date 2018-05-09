@@ -1,7 +1,7 @@
 var shortid = require('shortid')
 let InitData = [
-  { BoardId: "1", Title: "神力女超人", Content: "Wonder Wonmen" },
-  { BoardId: "2", Title: "蝙蝠俠", Content: "batMan" },
+  { BoardId: "1", Title: "Wonder Wonmen", Content: "Wonder Wonmen is Beauty" },
+  { BoardId: "2", Title: "batMan", Content: "batMan is Cool" },
 ]
 const Query = {
   Query: {

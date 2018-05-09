@@ -6,19 +6,29 @@ import { BoardDelete, BoardAllQuery } from '../../graphql/board'
 import { graphql, Query } from 'react-apollo';
 import CreateModal from './create'
 import DetailModal from './detail'
+import UpdateModal from './update'
 
 class Board extends Component {
   constructor(props) {
     super(props)
-    this.state = { showBlock: false, showDetail: false }
+    this.state = {
+      showBlock: false, showDetail: false,
+      showUpdate: false, chooseId: "",
+      UpdateData: ""
+    }
   }
   handleCreateToggle = () => {
     this.setState({ showBlock: !this.state.showBlock })
   }
 
   render() {
-    const handleChange = () => {
-      //console.log('handleChange')
+    console.log('t------------')
+    console.log(this.props)
+    const handleUpdate = (record) => {
+
+      this.setState({ showUpdate: !this.state.showUpdate, UpdateData: record })
+
+      //console.log('handleUpdate')
     }
     const handleDelete = (e) => {
       this.props._delete(e.data.BoardId)
@@ -30,11 +40,16 @@ class Board extends Component {
       this.setState({ showDetail: !this.state.showDetail })
     }
 
+    const handleUpdateToggle = () => {
+      this.setState({ showUpdate: !this.state.showUpdate })
+    }
+
+
     const columns = [{
       title: 'TiTle',
       dataIndex: 'title',
       key: 'title',
-      render: text => <Button onClick={() => handleDetailToggle()}>{text}</Button>,
+      render: text => <a href="#" onClick={() => handleDetailToggle()}>{text}</a>,
     }, {
       title: 'Content',
       dataIndex: 'content',
@@ -50,7 +65,7 @@ class Board extends Component {
       render: (text, record) => {
 
         return (<span>
-          <Button onClick={() => handleChange()}>Update</Button>
+          <Button onClick={() => handleUpdate({ data: record })}>Update</Button>
           <Divider type="vertical" />
           <Button onClick={() => handleDelete({ data: record })}>Delete</Button>
         </span>)
@@ -77,6 +92,7 @@ class Board extends Component {
               return <div>
                 <CreateModal showBlock={this.state.showBlock} handleCreateToggle={this.handleCreateToggle} />
                 <DetailModal showBlock={this.state.showDetail} handleDetailToggle={handleDetailToggle} />
+                <UpdateModal showBlock={this.state.showUpdate} updateData={this.state.UpdateData} handleUpdateToggle={handleUpdateToggle} />
                 <Table columns={columns} data={dataX}></Table>
                 <Button type="primary" onClick={() => this.handleCreateToggle()}>Create</Button>
               </div>

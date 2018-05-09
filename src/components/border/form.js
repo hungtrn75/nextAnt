@@ -1,26 +1,37 @@
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import { BoardAllQuery } from '../../graphql/board'
+import { BoardAllQuery, BoardUpdate } from '../../graphql/board'
 
 const FormItem = Form.Item;
 
-class NormalLoginForm extends React.Component {
+class NormalForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        this.props.BoardAdd({ variables: values, refetchQueries: [{ query: BoardAllQuery }] })
+
+        if (this.props.forAction === "update") {
+
+          //this.props.BoardUpdate({ variables: [values, { BoardId: this.props.initData.BoardId }], refetchQueries: [{ query: BoardAllQuery }] })
+        } else {
+          this.props.BoardAdd({ variables: values, refetchQueries: [{ query: BoardAllQuery }] })
+        }
+
       }
     });
   }
   render() {
     const { getFieldDecorator } = this.props.form;
+    console.log('------------form')
+    console.log(this.props)
+
     return (
 
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
           {getFieldDecorator('Title', {
             rules: [{ required: true, message: 'Please input Title!' }],
+            initialValue: (this.props.initData) ? this.props.initData.title : ""
           })(
             <Input placeholder="Title" />
           )}
@@ -28,13 +39,15 @@ class NormalLoginForm extends React.Component {
         <FormItem>
           {getFieldDecorator('Content', {
             rules: [{ required: true, message: 'Please input Content!' }],
+            initialValue: (this.props.initData) ? this.props.initData.content : ""
           })(
             <Input type="textArea" placeholder="Content" />
           )}
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            create
+            {(this.props.forAction === "update") ? "update" : "create"}
+
           </Button>
         </FormItem>
 
@@ -43,4 +56,4 @@ class NormalLoginForm extends React.Component {
     );
   }
 }
-export default Form.create()(NormalLoginForm);
+export default Form.create()(NormalForm);

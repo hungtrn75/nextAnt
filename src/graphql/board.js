@@ -21,12 +21,12 @@ export const BoardOneQuery = gql`
 
 
 export const BoardUpdate = gql`
-      mutation BoardUpdate($name:String,$tel:String,$nickName:String,$BoardId:String) {
-            BoardUpdate(name:$name,tel:$tel,nickName:$nickName,BoardId:$BoardId) 
+      mutation BoardUpdate($Title:String,$Content:String,$BoardId:String) {
+            BoardUpdate(Title:$Title,Content:$Content,BoardId:$BoardId) 
                      {
                         BoardId
-                Title
-                Content
+                        Title
+                        Content
                         }
       }      
 `
