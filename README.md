@@ -59,9 +59,11 @@ Must use Form.create that can be use
 - [x] add Table
 - [x] add Board Create   
 - [x] add Board Del
--     add Board Update
--     add Board Detail
--     add Create animation 
+- [x] add Board Update
+- [x] add Board Detail
+-     add submit animation 
+-     Reconstruction
+
 
 ### Step add Create User Table
 

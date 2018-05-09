@@ -11,7 +11,7 @@ const typeDefs = ` type Board{
 }`
 
 const mutations = `
-  BoardUpdate(BoardId:String,name:String,nickName:String,tel:String):Board,
+  BoardUpdate(BoardId:String,Title:String,Content:String):Board,
   BoardAdd(Title:String,Content:String):Board,
   BoardDelete(BoardId:String):Board
 `

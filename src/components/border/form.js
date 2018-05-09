@@ -11,8 +11,8 @@ class NormalForm extends React.Component {
         console.log('Received values of form: ', values);
 
         if (this.props.forAction === "update") {
-
-          //this.props.BoardUpdate({ variables: [values, { BoardId: this.props.initData.BoardId }], refetchQueries: [{ query: BoardAllQuery }] })
+          values.BoardId = this.props.initData.BoardId;
+          this.props.BoardUpdate({ variables: values, refetchQueries: [{ query: BoardAllQuery }] })
         } else {
           this.props.BoardAdd({ variables: values, refetchQueries: [{ query: BoardAllQuery }] })
         }

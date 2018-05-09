@@ -14,7 +14,7 @@ class Board extends Component {
     this.state = {
       showBlock: false, showDetail: false,
       showUpdate: false, chooseId: "",
-      UpdateData: ""
+      UpdateData: "", detailData: ""
     }
   }
   handleCreateToggle = () => {
@@ -35,9 +35,10 @@ class Board extends Component {
       //console.log(e)
 
     }
-    const handleDetailToggle = () => {
+    const handleDetailToggle = (record) => {
       //console.log('test')
-      this.setState({ showDetail: !this.state.showDetail })
+
+      this.setState({ showDetail: !this.state.showDetail, detailData: record })
     }
 
     const handleUpdateToggle = () => {
@@ -49,7 +50,7 @@ class Board extends Component {
       title: 'TiTle',
       dataIndex: 'title',
       key: 'title',
-      render: text => <a href="#" onClick={() => handleDetailToggle()}>{text}</a>,
+      render: (text, record) => <a href="#" onClick={() => handleDetailToggle({ data: record })}>{text}</a>,
     }, {
       title: 'Content',
       dataIndex: 'content',
@@ -91,7 +92,7 @@ class Board extends Component {
               })
               return <div>
                 <CreateModal showBlock={this.state.showBlock} handleCreateToggle={this.handleCreateToggle} />
-                <DetailModal showBlock={this.state.showDetail} handleDetailToggle={handleDetailToggle} />
+                <DetailModal showBlock={this.state.showDetail} detailData={this.state.detailData} handleDetailToggle={handleDetailToggle} />
                 <UpdateModal showBlock={this.state.showUpdate} updateData={this.state.UpdateData} handleUpdateToggle={handleUpdateToggle} />
                 <Table columns={columns} data={dataX}></Table>
                 <Button type="primary" onClick={() => this.handleCreateToggle()}>Create</Button>

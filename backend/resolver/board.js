@@ -20,18 +20,17 @@ const Query = {
 }
 const Mutation = {
   Mutation: {
-    BoardUpdate: (_, { BoardId, name, nickName, tel }) => {
-
+    BoardUpdate: (_, { BoardId, Title, Content }) => {
+      console.log("Updating")
       InitData.map((item) => {
         if (item.BoardId === BoardId) {
-          item.name = name;
-          item.nickName = nickName;
-          item.tel = tel;
+          item.Title = Title;
+          item.Content = Content;
         }
         return item
       })
 
-      return { BoardId, name, nickName, tel }
+      return { Title, Content, BoardId }
     },
     BoardAdd: (_, { Title, Content }) => {
       const BoardId = shortid.generate()
