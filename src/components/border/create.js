@@ -29,7 +29,7 @@ export default class CreateModal extends Component {
         title="Create Board"
         visible={this.props.showBlock}
         // onOk={() => this.handleCreate()}
-        // onCancel={() => this.props.handleCreateToggle()}
+        onCancel={() => this.props.handleCreateToggle()}
         footer={[
           <Button key="back" onClick={() => this.props.handleCreateToggle()}>Cancel</Button>,
           //          <Button key="submit" type="primary" onClick={() => this.handleCreate(BoardAdd, data)}>新增</Button>,
@@ -38,7 +38,7 @@ export default class CreateModal extends Component {
         <p>
           <Mutation mutation={BoardAdd}>
             {(BoardAdd, { data }, loading) => (
-              <Form BoardAdd={BoardAdd}></Form>
+              <Form forAction={"create"} loading={loading} BoardAdd={BoardAdd}></Form>
             )}
           </Mutation>
         </p>

@@ -40,7 +40,7 @@ export default class UpdateModal extends Component {
             {(BoardUpdate, { data }, loading) => {
               if (loading) { return <div>Loading</div> }
               if (!this.props.updateData) { return <div>Loading</div> }
-              return <Form forAction={"update"} initData={this.props.updateData.data} BoardUpdate={BoardUpdate}></Form>
+              return <Form forAction={"update"} loading={loading} initData={this.props.updateData.data} BoardUpdate={BoardUpdate}></Form>
             }}
           </Mutation>
         </p>

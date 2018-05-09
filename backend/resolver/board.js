@@ -20,8 +20,10 @@ const Query = {
 }
 const Mutation = {
   Mutation: {
-    BoardUpdate: (_, { BoardId, Title, Content }) => {
+    BoardUpdate: async (_, { BoardId, Title, Content }) => {
       console.log("Updating")
+      const sleep = (waitTime) => { setTimeout(() => { }, waitTime) }
+      await sleep(3000)
       InitData.map((item) => {
         if (item.BoardId === BoardId) {
           item.Title = Title;

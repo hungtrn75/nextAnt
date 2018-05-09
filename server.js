@@ -9,13 +9,12 @@ var { parse } = require('url')
 var glob = require('glob')
 var { basename } = require('path')
 var { readFileSync } = require('fs')
-var cors =require('cors')
+var cors = require('cors')
 
-var port = process.env.NODE_ENV !== "production" ? 3000 : 80;
+var port = process.env.NODE_ENV !== "production" ? 3000 : 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler()
-
 
 
 

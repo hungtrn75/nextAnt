@@ -45,7 +45,7 @@ class NormalForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" loading={this.props.loading} className="login-form-button">
             {(this.props.forAction === "update") ? "update" : "create"}
 
           </Button>
