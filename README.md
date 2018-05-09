@@ -63,6 +63,7 @@ Must use Form.create that can be use
 - [x] add Board Detail
 -     add submit animation 
 -     Reconstruction
+-
 
 
 ### Step add Create User Table
