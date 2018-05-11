@@ -1,92 +1,76 @@
-## next5Ant
-### Learning Target use Ant build  Crud 
+# Next with AntDesign
 
-###  Step 1.add _app Layout   
-```
---------- learn note ---------
-Next6 _app.js container let component can be wrap  by container.
+AntDesign CRUD implementation built on Next.
 
-```
-- [x] add Next6 _app.js container 
+## Getting Started
 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
-###  Step 2.add Form Test submit  & datainit
+### Prerequisites
 
-```
---------- learn note ---------
-target form submit  button use  htmlType="submit" not type
-form init use  getFieldDecorator's initialValue: ''
+This project runs on [Next](https://github.com/zeit/next.js/), and [Ant Design](https://ant.design/docs/react/introduce)and [node](https://nodejs.org/en/)
+
+After installation, run `node -v` to make sure node installed correctly. Example
 
 ```
-
-- [x] add ant Form 
-- [x] add Form validation
-
-
-###  Step 3.add ApolloData Client & Server
+$ node -v 
+v8.9.1
 
 ```
+ 
+### Installing
 
---------- learn note ---------
+Run `npm install` to install all project dependencies.
 
-Sever Part Setup 
-Client Use RenderProps Way To Pass Data
-new version support Query & Mutation it's use renderProps
+### Serve Project
 
-```
-
-- [x] add ApolloServer 
-- [x] add Client sql and Hoc component 
-- [x] add Board GetData & replace by Query 
-
-###  Step 4.add ApolloData CRUD with Ant Design
+Run the next with the following command:
 
 ```
---------- learn note ---------
-
-Get Data and use map change DataObject format that table can use
-Must use Form.create that can be use 
-
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
-
+yarn dev or npm run dev 
 ```
 
-
-- [x] add Table
-- [x] add Board Create   
-- [x] add Board Del
-- [x] add Board Update
-- [x] add Board Detail
--     add submit animation 
--     Reconstruction
--
+Once its running, head over to your browser to [see Project](http://localhost:3000/).
 
 
-### Step add Create User Table
+### Running Tests
 
-``
-
-
-
+To run the project tests, run the following command:
+```
+yarn test or yarn run test
 ```
 
+### Deploy on Heroku
+
+You can deploy the project on [Heroku](https://www.heroku.com/) using the following steps:
+
+1. Create a Heroku Account
+2. On the terminal, run `heroku create` to create a new app
+3. Run `heroku push` to start a deployment on Heroku.
+4. Run `heroku migrate` to run migrations on your production database.
+5. Visit your project URL as assigned by Heroku to see a live deployment of Next with AntDesign.
+
+### Docker
+
+Build the project
+
+`$ docker-compose build`
+
+Create the database:
+`$ docker-compose run --rm web bin/rails db:create`
+
+Run the migrations:
+`$ docker-compose run --rm web bin/rails db:migrate`
+
+Run the app:
+`$ docker-compose up -d`
 
 
-### Step add Login Form with customer Login
-### Step add Express Session&cookies recoed login
-### Step add Logout Form 
-### Step use Reselect 
-### Step add firebase 
-### Step add Crud Table & form
+## Authors
 
-### antd design RWD
+* **Polo** - [polo13999](https://github.com/polo13999)
+* **Max** - [LIYINGZHEN](https://github.com/LIYINGZHEN)
 
-```
+## License
 
-```
-
--  add react-media
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
