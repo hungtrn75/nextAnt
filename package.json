@@ -1,4 +1,17 @@
 {
+  "name": "next5ant",
+  "description": "use ApolloGraphql With antDesign build by next.js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server",
+    "build": "next build",
+    "start": "next start",
+    "precommit": "npm run pretty-quick && npm run lint && npm run test",
+    "pretty-quick": "pretty-quick --staged",
+    "lint": "echo 'Linting...' && eslint . && echo 'Lint finished.'",
+    "test": "echo 'Test finished'"
+  },
   "dependencies": {
     "@zeit/next-css": "^0.1.5",
     "antd": "^3.4.4",
@@ -24,28 +37,22 @@
     "react-media": "^1.8.0",
     "shortid": "^2.2.8"
   },
-  "name": "next5ant",
-  "description": "use ApolloGraphql With antDesign build by next.js",
-  "version": "1.0.0",
-  "main": "index.js",
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
     "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1"
-  },
-  "scripts": {
-    "dev": "node server",
-    "build": "next build",
-    "start": "next start",
-    "precommit": "pretty-quick --staged"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/polo13999/next5Ant.git"
   },
-  "author": "polo <polo13999@gmail.com>",
-  "license": "ISC",
+  "author": "polo <polo13999@gmail.com>, Max Li <ml@maxlivinci.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/polo13999/next5Ant/issues"
   },
