@@ -7,12 +7,13 @@ const typeDefs = `type Customer {
 }`
 
 const queries = `
-  CustomerAllQuery: [Customer]
+  customerAllQuery: [Customer]
 `
 
 const mutations = `
+  customerAdd(name: String, tel: String, cellphone: String, memo: String): Customer
 `
 
-const CustomerSchema = { typeDefs, queries }
+const CustomerSchema = { typeDefs, queries, mutations }
 
 module.exports = CustomerSchema

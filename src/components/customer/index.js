@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { graphql, Query } from 'react-apollo'
+import { Modal, Button } from 'antd'
 
 import Table from '../table'
-import { CustomerAllQuery } from '../../graphql/customer'
+import { customerAllQuery } from '../../graphql/customer'
+import CreateCustomer from './create-customer'
 
 const columns = [
   {
@@ -27,30 +29,50 @@ const columns = [
   }
 ]
 
-const Customer = () => (
-  <Query query={CustomerAllQuery}>
-    {({ loading, error, data }) => {
-      if (loading === true) return <div>Loding</div>
+class Customer extends Component {
+  state = {
+    showCreate: false
+  }
 
-      if (error) return <div>Something Wrong</div>
+  toggleCreate = () =>
+    this.setState(({ showCreate }) => ({ showCreate: !showCreate }))
 
-      const dataX = data.CustomerAllQuery.map(
-        ({ _id, name, tel, cellphone, memo }) => ({
-          key: _id,
-          name,
-          tel,
-          cellphone,
-          memo
-        })
-      )
+  render() {
+    const { showCreate } = this.state
 
-      return (
-        <div>
-          <Table columns={columns} data={dataX} />
-        </div>
-      )
-    }}
-  </Query>
-)
+    return (
+      <Query query={customerAllQuery}>
+        {({ loading, error, data }) => {
+          if (loading === true) return <div>Loding</div>
+
+          if (error) return <div>Something Wrong</div>
+
+          const dataX = data.customerAllQuery.map(
+            ({ _id, name, tel, cellphone, memo }) => ({
+              key: _id,
+              name,
+              tel,
+              cellphone,
+              memo
+            })
+          )
+
+          return (
+            <div>
+              <CreateCustomer
+                showCreate={showCreate}
+                toggleCreate={this.toggleCreate}
+              />
+              <Table columns={columns} data={dataX} />
+              <Button type="primary" onClick={this.toggleCreate}>
+                Create
+              </Button>
+            </div>
+          )
+        }}
+      </Query>
+    )
+  }
+}
 
 export default Customer

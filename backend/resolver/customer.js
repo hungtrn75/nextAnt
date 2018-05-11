@@ -1,6 +1,6 @@
 const shortid = require('shortid')
 
-const InitData = [
+let initData = [
   {
     _id: '1',
     name: 'name1',
@@ -26,8 +26,19 @@ const InitData = [
 
 const Query = {
   Query: {
-    CustomerAllQuery: () => InitData
+    customerAllQuery: () => initData
   }
 }
 
-module.exports = { Query }
+const Mutation = {
+  Mutation: {
+    customerAdd: (_, { name, tel, cellphone, memo }) => {
+      const _id = shortid.generate()
+      const newRecord = { _id, name, tel, cellphone, memo }
+      initData = [...initData, newRecord]
+      return newRecord
+    }
+  }
+}
+
+module.exports = { Query, Mutation }
