@@ -1,11 +1,10 @@
-var User = require('./user')
-var Board = require('./board')
-//var UploadRes require( './FileResolver')
-var { merge } = require("lodash")
+const { merge } = require('lodash')
 
-let OutIndex = merge(User, Board);
-let AllResolve = [OutIndex.Query, OutIndex.Mutation];
+const User = require('./user')
+const Board = require('./board')
+const Customer = require('./customer')
 
-//let AllResolve = [OutIndex.Query];
-//console.log(AllResolve)
+const OutIndex = merge(User, Board, Customer)
+const AllResolve = [OutIndex.Query, OutIndex.Mutation]
+
 module.exports = AllResolve
