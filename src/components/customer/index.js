@@ -1,44 +1,64 @@
 import React, { Component } from 'react'
 import { graphql, Query } from 'react-apollo'
-import { Modal, Button } from 'antd'
+import { Modal, Button, Divider } from 'antd'
 
 import Table from '../table'
 import { customerAllQuery } from '../../graphql/customer'
-import CreateCustomer from './create-customer'
-
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name'
-  },
-  {
-    title: 'TEL',
-    dataIndex: 'tel',
-    key: 'tel'
-  },
-  {
-    title: 'Cellphone',
-    dataIndex: 'cellphone',
-    key: 'cellphone'
-  },
-  {
-    title: 'Memo',
-    dataIndex: 'memo',
-    key: 'memo'
-  }
-]
+import CreateCustomer from './create'
+import UpdateCustomer from './update'
 
 class Customer extends Component {
   state = {
-    showCreate: false
+    showCreate: false,
+    showUpdate: false,
+    updateData: {}
   }
 
   toggleCreate = () =>
     this.setState(({ showCreate }) => ({ showCreate: !showCreate }))
 
+  toggleUpdate = () =>
+    this.setState(({ showUpdate }) => ({ showUpdate: !showUpdate }))
+
+  handleUpdate = data => () => {
+    this.setState(() => ({ updateData: data }), () => this.toggleUpdate())
+  }
+
   render() {
-    const { showCreate } = this.state
+    const { showCreate, showUpdate, updateData } = this.state
+
+    const columns = [
+      {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name'
+      },
+      {
+        title: 'TEL',
+        dataIndex: 'tel',
+        key: 'tel'
+      },
+      {
+        title: 'Cellphone',
+        dataIndex: 'cellphone',
+        key: 'cellphone'
+      },
+      {
+        title: 'Memo',
+        dataIndex: 'memo',
+        key: 'memo'
+      },
+      {
+        title: 'Function',
+        dataIndex: 'function',
+        key: 'function',
+        render: (text, data) => (
+          <span>
+            <Button onClick={this.handleUpdate(data)}>Update</Button>
+          </span>
+        )
+      }
+    ]
 
     return (
       <Query query={customerAllQuery}>
@@ -50,6 +70,7 @@ class Customer extends Component {
           const dataX = data.customerAllQuery.map(
             ({ _id, name, tel, cellphone, memo }) => ({
               key: _id,
+              _id,
               name,
               tel,
               cellphone,
@@ -62,6 +83,11 @@ class Customer extends Component {
               <CreateCustomer
                 showCreate={showCreate}
                 toggleCreate={this.toggleCreate}
+              />
+              <UpdateCustomer
+                showUpdate={showUpdate}
+                toggleUpdate={this.toggleUpdate}
+                updateData={updateData}
               />
               <Table columns={columns} data={dataX} />
               <Button type="primary" onClick={this.toggleCreate}>

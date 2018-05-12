@@ -12,19 +12,39 @@ export const customerAllQuery = gql`
   }
 `
 
-export const customerAdd = gql`
-  mutation customerAdd(
+export const customerCreate = gql`
+  mutation customerCreate(
     $name: String
     $tel: String
     $cellphone: String
     $memo: String
   ) {
-    customerAdd(name: $name, tel: $tel, cellphone: $cellphone, memo: $memo) {
+    customerCreate(name: $name, tel: $tel, cellphone: $cellphone, memo: $memo) {
       _id
       name
       tel
       cellphone
       memo
+    }
+  }
+`
+
+export const customerUpdate = gql`
+  mutation customerUpdate(
+    $_id: String
+    $name: String
+    $tel: String
+    $cellphone: String
+    $memo: String
+  ) {
+    customerUpdate(
+      _id: $_id
+      name: $name
+      tel: $tel
+      cellphone: $cellphone
+      memo: $memo
+    ) {
+      _id
     }
   }
 `

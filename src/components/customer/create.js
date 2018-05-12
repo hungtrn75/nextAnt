@@ -3,7 +3,7 @@ import { Mutation } from 'react-apollo'
 import { Modal, Button } from 'antd'
 
 import Form from './form'
-import { customerAdd } from '../../graphql/customer'
+import { customerCreate } from '../../graphql/customer'
 
 const CreateCustomer = ({ showCreate, toggleCreate }) => (
   <Modal
@@ -16,9 +16,13 @@ const CreateCustomer = ({ showCreate, toggleCreate }) => (
       </Button>
     ]}
   >
-    <Mutation mutation={customerAdd} onCompleted={toggleCreate}>
-      {(customerAdd, { data }, loading) => (
-        <Form forAction="create" loading={loading} customerAdd={customerAdd} />
+    <Mutation mutation={customerCreate} onCompleted={toggleCreate}>
+      {(customerCreate, { data }, loading) => (
+        <Form
+          forAction="create"
+          loading={loading}
+          customerCreate={customerCreate}
+        />
       )}
     </Mutation>
   </Modal>
