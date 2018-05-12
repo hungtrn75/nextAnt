@@ -32,11 +32,30 @@ const Query = {
 
 const Mutation = {
   Mutation: {
-    customerAdd: (_, { name, tel, cellphone, memo }) => {
+    customerCreate: (_, { name, tel, cellphone, memo }) => {
       const _id = shortid.generate()
       const newRecord = { _id, name, tel, cellphone, memo }
       initData = [...initData, newRecord]
       return newRecord
+    },
+    customerUpdate: (_, { _id, name, tel, cellphone, memo }) => {
+      const item = initData.find(e => e._id === _id)
+      item.name = name
+      item.tel = tel
+      item.cellphone = cellphone
+      item.memo = memo
+      return _id
+    },
+    customerDelete: (_, { _id }) => {
+      const result = initData.findIndex(item => item._id === _id)
+      if (result !== undefined) {
+        initData.splice(result, 1)
+        return {
+          _id
+        }
+      } else {
+        return {}
+      }
     }
   }
 }

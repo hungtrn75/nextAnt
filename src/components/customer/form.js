@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 
@@ -10,16 +11,26 @@ class AntForm extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    const { form, forAction, customerAdd, loading, toggleModle } = this.props
+    const {
+      form,
+      forAction,
+      customerCreate,
+      loading,
+      updateData,
+      customerUpdate
+    } = this.props
 
     form.validateFields((err, values) => {
       console.log(values)
-
       if (!err) {
         if (forAction === 'update') {
-          values._id = initData._id
+          values._id = updateData._id
+          customerUpdate({
+            variables: values,
+            refetchQueries: [{ query: customerAllQuery }]
+          })
         } else {
-          customerAdd({
+          customerCreate({
             variables: values,
             refetchQueries: [{ query: customerAllQuery }]
           })
@@ -29,7 +40,7 @@ class AntForm extends Component {
   }
 
   render() {
-    const { form, initData, loading, forAction } = this.props
+    const { form, updateData, loading, forAction } = this.props
     const { getFieldDecorator } = form
 
     return (
@@ -37,25 +48,25 @@ class AntForm extends Component {
         <FormItem>
           {getFieldDecorator('name', {
             rules: [{ required: true, message: 'This field is required!' }],
-            initialValue: initData ? initData.name : ''
+            initialValue: updateData ? updateData.name : ''
           })(<Input placeholder="Name" />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('tel', {
             rules: [{ required: true, message: 'This field is required!' }],
-            initialValue: initData ? initData.tel : ''
+            initialValue: updateData ? updateData.tel : ''
           })(<Input placeholder="Tel" />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('cellphone', {
             rules: [{ required: true, message: 'This field is required!' }],
-            initialValue: initData ? initData.cellphone : ''
+            initialValue: updateData ? updateData.cellphone : ''
           })(<Input placeholder="Cellphone" />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('memo', {
             rules: [{ required: true, message: 'This field is required!' }],
-            initialValue: initData ? initData.meme : ''
+            initialValue: updateData ? updateData.memo : ''
           })(<Input type="textArea" placeholder="Memo" />)}
         </FormItem>
         <FormItem>
@@ -66,6 +77,15 @@ class AntForm extends Component {
       </Form>
     )
   }
+}
+
+AntForm.propTypes = {
+  form: PropTypes.object.isRequired,
+  forAction: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  customerCreate: PropTypes.func,
+  updateData: PropTypes.object,
+  customerUpdate: PropTypes.func
 }
 
 export default Form.create()(AntForm)
