@@ -48,3 +48,11 @@ export const customerUpdate = gql`
     }
   }
 `
+
+export const customerDelete = gql`
+  mutation customerDelete($_id: String) {
+    customerDelete(_id: $_id) {
+      _id
+    }
+  }
+`

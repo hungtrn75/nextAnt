@@ -45,6 +45,17 @@ const Mutation = {
       item.cellphone = cellphone
       item.memo = memo
       return _id
+    },
+    customerDelete: (_, { _id }) => {
+      const result = initData.findIndex(item => item._id === _id)
+      if (result !== undefined) {
+        initData.splice(result, 1)
+        return {
+          _id
+        }
+      } else {
+        return {}
+      }
     }
   }
 }

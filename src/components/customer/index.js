@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { graphql, Query } from 'react-apollo'
+import { graphql, Query, Mutation } from 'react-apollo'
 import { Modal, Button, Divider } from 'antd'
 
 import Table from '../table'
-import { customerAllQuery } from '../../graphql/customer'
+import { customerAllQuery, customerDelete } from '../../graphql/customer'
 import CreateCustomer from './create'
 import UpdateCustomer from './update'
 
@@ -52,10 +52,25 @@ class Customer extends Component {
         title: 'Function',
         dataIndex: 'function',
         key: 'function',
-        render: (text, data) => (
-          <span>
-            <Button onClick={this.handleUpdate(data)}>Update</Button>
-          </span>
+        render: (text, record) => (
+          <Mutation mutation={customerDelete}>
+            {(customerDelete, { data }, loading) => (
+              <span>
+                <Button onClick={this.handleUpdate(record)}>Update</Button>
+                <Divider type="vertical" />
+                <Button
+                  onClick={() =>
+                    customerDelete({
+                      variables: { _id: record._id },
+                      refetchQueries: [{ query: customerAllQuery }]
+                    })
+                  }
+                >
+                  Delete
+                </Button>
+              </span>
+            )}
+          </Mutation>
         )
       }
     ]
