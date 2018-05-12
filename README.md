@@ -4,7 +4,7 @@ AntDesign CRUD implementation built on Next.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -13,11 +13,10 @@ This project runs on [Next](https://github.com/zeit/next.js/), and [Ant Design](
 After installation, run `node -v` to make sure node installed correctly. Example
 
 ```
-$ node -v 
+$ node -v
 v8.9.1
-
 ```
- 
+
 ### Installing
 
 Run `npm install` to install all project dependencies.
@@ -27,15 +26,15 @@ Run `npm install` to install all project dependencies.
 Run the next with the following command:
 
 ```
-yarn dev or npm run dev 
+yarn dev or npm run dev
 ```
 
 Once its running, head over to your browser to [see Project](http://localhost:3000/).
 
-
 ### Running Tests
 
 To run the project tests, run the following command:
+
 ```
 yarn test or yarn run test
 ```
@@ -44,11 +43,11 @@ yarn test or yarn run test
 
 You can deploy the project on [Heroku](https://www.heroku.com/) using the following steps:
 
-1. Create a Heroku Account
-2. On the terminal, run `heroku create` to create a new app
-3. Run `heroku push` to start a deployment on Heroku.
-4. Run `heroku migrate` to run migrations on your production database.
-5. Visit your project URL as assigned by Heroku to see a live deployment of Next with AntDesign.
+1.  Create a Heroku Account
+2.  On the terminal, run `heroku create` to create a new app
+3.  Run `heroku push` to start a deployment on Heroku.
+4.  Run `heroku migrate` to run migrations on your production database.
+5.  Visit your project URL as assigned by Heroku to see a live deployment of Next with AntDesign.
 
 ### Docker
 
@@ -65,6 +64,9 @@ Run the migrations:
 Run the app:
 `$ docker-compose up -d`
 
+# Learn Guide
+
+[Step](./Learn.md)
 
 ## Authors
 
