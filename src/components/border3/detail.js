@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Modal, Button } from 'antd';
+import { Modal, Button } from 'antd'
 
 export default class DetailModal extends Component {
   render() {
-    const content = (this.props.detailData) ? this.props.detailData.data.content : ""
+    const content = this.props.detailData
+      ? this.props.detailData.data.content
+      : ''
     return (
       <Modal
         title="Detail"
@@ -13,7 +15,6 @@ export default class DetailModal extends Component {
       >
         <p>{content}</p>
       </Modal>
-
     )
   }
 }

@@ -1,0 +1,45 @@
+import React, { Component } from 'react'
+import { Table, Icon, Divider, Button, Modal } from 'antd'
+import { CrudContext } from './index'
+import NormalForm from './form'
+
+export default class ModalSetup extends Component {
+  render() {
+    return (
+      <CrudContext.Consumer>
+        {({ modal }) => {
+          let title = ''
+          switch (modal.action) {
+            case 'detail':
+              title = 'Detail'
+              break
+            case 'update':
+              title = 'Update'
+              break
+            case 'create':
+              title = 'Create'
+              break
+          }
+          return (
+            <Modal
+              title={title}
+              visible={modal.showModal}
+              // onOk={() => this.handleUpdate()}
+              // onCancel={() => this.props.handleUpdateToggle()}
+              footer={[
+                <Button key="back" onClick={modal.handleToggleModal}>
+                  Cancel
+                </Button>
+                //          <Button key="submit" type="primary" onClick={() => this.handleUpdate(BoardAdd, data)}>新增</Button>,
+              ]}
+            >
+              <p>
+                <NormalForm />
+              </p>
+            </Modal>
+          )
+        }}
+      </CrudContext.Consumer>
+    )
+  }
+}
