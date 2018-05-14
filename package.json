@@ -11,7 +11,7 @@
     "precommit": "npm run pretty-quick && npm run lint && npm run test",
     "pretty-quick": "pretty-quick --staged",
     "lint": "echo 'Linting...' && eslint . && echo 'Lint finished.'",
-    "test": "echo 'Test finished'"
+    "test": "echo 'Test...' && jest && echo 'Test finished.'"
   },
   "dependencies": {
     "@zeit/next-css": "^0.1.5",
@@ -47,6 +47,7 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
+    "jest": "^22.4.3",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1"
   },
