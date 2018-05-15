@@ -33,8 +33,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 This project runs on [Next](https://github.com/zeit/next.js/), and [Ant Design](https://ant.design/docs/react/introduce)and [node](https://nodejs.org/en/)
 
-> > > > > > > master
-> > > > > > > After installation, run `node -v` to make sure node installed correctly. Example
+After installation, run `node -v` to make sure node installed correctly. Example
 
 ```
 $ node -v
@@ -88,11 +87,17 @@ Run the migrations:
 Run the app:
 `$ docker-compose up -d`
 
+## Roadmap
+
+[Roadmap](./Learn.md)
+
 ## Authors
 
-* **Polo** - [polo13999](https://github.com/polo13999)
-* **Max** - [LIYINGZHEN](https://github.com/LIYINGZHEN)
+* Polo Chi - [polo13999](https://github.com/polo13999)
+* Max Li - [LIYINGZHEN](https://github.com/LIYINGZHEN)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Licensed under the MIT License, Copyright © 2018-present Polo Chi and Max Li.
+
+See [LICENSE](LICENSE.md) for more information.

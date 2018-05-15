@@ -1,119 +1,94 @@
 import React, { Component } from 'react'
-import { graphql, Query, Mutation } from 'react-apollo'
-import { Modal, Button, Divider } from 'antd'
+import {
+  Form,
+  Select,
+  InputNumber,
+  DatePicker,
+  Switch,
+  Slider,
+  Button
+} from 'antd'
 
-import Table from '../table'
-import { customerAllQuery, customerDelete } from '../../graphql/customer'
-import CreateCustomer from './create'
-import UpdateCustomer from './update'
+const FormItem = Form.Item
+const Option = Select.Option
 
-class Customer extends Component {
-  state = {
-    showCreate: false,
-    showUpdate: false,
-    updateData: {}
-  }
-
-  toggleCreate = () =>
-    this.setState(({ showCreate }) => ({ showCreate: !showCreate }))
-
-  toggleUpdate = () =>
-    this.setState(({ showUpdate }) => ({ showUpdate: !showUpdate }))
-
-  handleUpdate = data => () => {
-    this.setState(() => ({ updateData: data }), () => this.toggleUpdate())
-  }
-
+export default class componentName extends Component {
   render() {
-    const { showCreate, showUpdate, updateData } = this.state
-
-    const columns = [
-      {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name'
-      },
-      {
-        title: 'TEL',
-        dataIndex: 'tel',
-        key: 'tel'
-      },
-      {
-        title: 'Cellphone',
-        dataIndex: 'cellphone',
-        key: 'cellphone'
-      },
-      {
-        title: 'Memo',
-        dataIndex: 'memo',
-        key: 'memo'
-      },
-      {
-        title: 'Function',
-        dataIndex: 'function',
-        key: 'function',
-        render: (text, record) => (
-          <Mutation mutation={customerDelete}>
-            {(customerDelete, { data }, loading) => (
-              <span>
-                <Button onClick={this.handleUpdate(record)}>Update</Button>
-                <Divider type="vertical" />
-                <Button
-                  onClick={() =>
-                    customerDelete({
-                      variables: { _id: record._id },
-                      refetchQueries: [{ query: customerAllQuery }]
-                    })
-                  }
-                >
-                  Delete
-                </Button>
-              </span>
-            )}
-          </Mutation>
-        )
-      }
-    ]
-
     return (
-      <Query query={customerAllQuery}>
-        {({ loading, error, data }) => {
-          if (loading === true) return <div>Loding</div>
+      <div>
+        <Form layout="horizontal">
+          <FormItem
+            label="Input Number"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 8 }}
+          >
+            <InputNumber
+              size="large"
+              min={1}
+              max={10}
+              style={{ width: 100 }}
+              defaultValue={3}
+              name="inputNumber"
+            />
+            <a href="#">Link</a>
+          </FormItem>
 
-          if (error) return <div>Something Wrong</div>
+          <FormItem
+            label="Switch"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 8 }}
+          >
+            <Switch defaultChecked name="switch" />
+          </FormItem>
 
-          const dataX = data.customerAllQuery.map(
-            ({ _id, name, tel, cellphone, memo }) => ({
-              key: _id,
-              _id,
-              name,
-              tel,
-              cellphone,
-              memo
-            })
-          )
+          <FormItem
+            label="Slider"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 8 }}
+          >
+            <Slider defaultValue={70} />
+          </FormItem>
 
-          return (
-            <div>
-              <CreateCustomer
-                showCreate={showCreate}
-                toggleCreate={this.toggleCreate}
-              />
-              <UpdateCustomer
-                showUpdate={showUpdate}
-                toggleUpdate={this.toggleUpdate}
-                updateData={updateData}
-              />
-              <Table columns={columns} data={dataX} />
-              <Button type="primary" onClick={this.toggleCreate}>
-                Create
-              </Button>
-            </div>
-          )
-        }}
-      </Query>
+          <FormItem
+            label="Select"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 8 }}
+          >
+            <Select
+              size="large"
+              defaultValue="lucy"
+              style={{ width: 192 }}
+              name="select"
+            >
+              <Option value="jack">jack</Option>
+              <Option value="lucy">lucy</Option>
+              <Option value="disabled" disabled>
+                disabled
+              </Option>
+              <Option value="yiminghe">yiminghe</Option>
+            </Select>
+          </FormItem>
+
+          <FormItem
+            label="DatePicker"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 8 }}
+          >
+            <DatePicker name="startDate" />
+          </FormItem>
+          <FormItem
+            style={{ marginTop: 48 }}
+            wrapperCol={{ span: 8, offset: 8 }}
+          >
+            <Button size="large" type="primary" htmlType="submit">
+              OK
+            </Button>
+            <Button size="large" style={{ marginLeft: 8 }}>
+              Cancel
+            </Button>
+          </FormItem>
+        </Form>
+      </div>
     )
   }
 }
-
-export default Customer

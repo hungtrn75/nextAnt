@@ -1,4 +1,3 @@
-import * as R from 'ramda'
 import React from 'react'
 import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
