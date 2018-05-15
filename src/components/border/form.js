@@ -1,59 +1,48 @@
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import { BoardAllQuery, BoardUpdate } from '../../graphql/board'
+import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { CrudContext } from './index'
+import { BoardAllQuery } from '../../graphql/board'
 
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 class NormalForm extends React.Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-
-        if (this.props.forAction === "update") {
-          values.BoardId = this.props.initData.BoardId;
-          this.props.BoardUpdate({ variables: values, refetchQueries: [{ query: BoardAllQuery }] })
-        } else {
-          this.props.BoardAdd({ variables: values, refetchQueries: [{ query: BoardAllQuery }] })
-        }
-
-      }
-    });
-  }
   render() {
-    const { getFieldDecorator } = this.props.form;
-    console.log('------------form')
-    console.log(this.props)
-
+    const { getFieldDecorator } = this.props.form
     return (
-
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <FormItem>
-          {getFieldDecorator('Title', {
-            rules: [{ required: true, message: 'Please input Title!' }],
-            initialValue: (this.props.initData) ? this.props.initData.title : ""
-          })(
-            <Input placeholder="Title" />
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('Content', {
-            rules: [{ required: true, message: 'Please input Content!' }],
-            initialValue: (this.props.initData) ? this.props.initData.content : ""
-          })(
-            <Input type="textArea" placeholder="Content" />
-          )}
-        </FormItem>
-        <FormItem>
-          <Button type="primary" htmlType="submit" loading={this.props.loading} className="login-form-button">
-            {(this.props.forAction === "update") ? "update" : "create"}
-
-          </Button>
-        </FormItem>
-
-      </Form>
-
-    );
+      <CrudContext.Consumer>
+        {result => {
+          const { action, record, handleSubmit } = result.modal
+          return (
+            <Form
+              onSubmit={e => handleSubmit({ e, form: this.props.form })}
+              className="login-form"
+              resetFields={true}
+            >
+              <FormItem>
+                {getFieldDecorator('Title', {
+                  rules: [{ required: true, message: 'Please input Title!' }],
+                  initialValue: record.record ? record.record.title : ''
+                })(<Input placeholder="Title" />)}
+              </FormItem>
+              <FormItem>
+                {getFieldDecorator('Content', {
+                  rules: [{ required: true, message: 'Please input Content!' }],
+                  initialValue: record.record ? record.record.content : ''
+                })(<Input type="textArea" placeholder="Content" />)}
+              </FormItem>
+              <FormItem>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button"
+                >
+                  {action}
+                </Button>
+              </FormItem>
+            </Form>
+          )
+        }}
+      </CrudContext.Consumer>
+    )
   }
 }
-export default Form.create()(NormalForm);
+export default Form.create()(NormalForm)
