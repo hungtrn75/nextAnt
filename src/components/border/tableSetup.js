@@ -8,8 +8,6 @@ class TableSetup extends Component {
     return (
       <CrudContext.Consumer>
         {({ query, modal }) => {
-          console.log(query)
-          //  return <div>111</div>
           const dataX = query.data.BoardAllQuery.map((v, i) => {
             return {
               key: i,
@@ -20,7 +18,6 @@ class TableSetup extends Component {
               BoardId: v.BoardId
             }
           })
-
           const columns = [
             {
               title: 'TiTle',
@@ -33,7 +30,8 @@ class TableSetup extends Component {
                     modal.handleToggleModal('detail', { data: record })
                   }
                 >
-                  {text}
+                  {' '}
+                  {text}{' '}
                 </a>
               )
             },
@@ -56,15 +54,13 @@ class TableSetup extends Component {
                   <span>
                     <Button
                       onClick={() =>
-                        modal.handleToggleModal('update', { data: record })
+                        modal.handleToggleModal('update', { record })
                       }
                     >
                       Update
                     </Button>
                     <Divider type="vertical" />
-                    <Button
-                      onClick={() => modal.handleDelete({ data: record })}
-                    >
+                    <Button onClick={() => modal.handleDelete({ record })}>
                       Delete
                     </Button>
                   </span>
@@ -77,6 +73,9 @@ class TableSetup extends Component {
             <div>
               <ModalSetup />
               <Table columns={columns} dataSource={dataX} />
+              <Button onClick={() => modal.handleToggleModal('create')}>
+                Create
+              </Button>
             </div>
           )
         }}

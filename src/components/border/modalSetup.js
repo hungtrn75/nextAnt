@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Table, Icon, Divider, Button, Modal } from 'antd'
 import { CrudContext } from './index'
 import NormalForm from './form'
-
+import DetailForm from './detail'
 export default class ModalSetup extends Component {
   render() {
     return (
@@ -33,9 +33,7 @@ export default class ModalSetup extends Component {
                 //          <Button key="submit" type="primary" onClick={() => this.handleUpdate(BoardAdd, data)}>新增</Button>,
               ]}
             >
-              <p>
-                <NormalForm />
-              </p>
+              {modal.action === 'detail' ? <DetailForm /> : <NormalForm />}
             </Modal>
           )
         }}

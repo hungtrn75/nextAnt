@@ -1,5 +1,6 @@
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 import { CrudContext } from './index'
+import { BoardAllQuery } from '../../graphql/board'
 
 const FormItem = Form.Item
 
@@ -8,34 +9,33 @@ class NormalForm extends React.Component {
     const { getFieldDecorator } = this.props.form
     return (
       <CrudContext.Consumer>
-        {({ modal }) => {
-          console.log(modal)
+        {result => {
+          const { action, record, handleSubmit } = result.modal
           return (
             <Form
-              onSubmit={modal.handleSubmit}
+              onSubmit={e => handleSubmit({ e, form: this.props.form })}
               className="login-form"
               resetFields={true}
             >
               <FormItem>
                 {getFieldDecorator('Title', {
                   rules: [{ required: true, message: 'Please input Title!' }],
-                  initialValue: modal.data ? modal.data.title : ''
+                  initialValue: record.record ? record.record.title : ''
                 })(<Input placeholder="Title" />)}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('Content', {
                   rules: [{ required: true, message: 'Please input Content!' }],
-                  initialValue: modal.data ? modal.data.content : ''
+                  initialValue: record.record ? record.record.content : ''
                 })(<Input type="textArea" placeholder="Content" />)}
               </FormItem>
               <FormItem>
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={this.props.loading}
                   className="login-form-button"
                 >
-                  {modal.action}
+                  {action}
                 </Button>
               </FormItem>
             </Form>
