@@ -11,7 +11,9 @@ const queries = `
 `
 
 const mutations = `
-  customerAdd(name: String, tel: String, cellphone: String, memo: String): Customer
+  customerCreate(name: String, tel: String, cellphone: String, memo: String): Customer
+  customerUpdate(_id: String, name: String, tel: String, cellphone: String, memo: String): Customer
+  customerDelete(_id: String): Customer
 `
 
 const CustomerSchema = { typeDefs, queries, mutations }

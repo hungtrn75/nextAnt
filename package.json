@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "node server",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
+    "dockerBuild": "yarn build && yarn start",
     "precommit": "npm run pretty-quick && npm run lint && npm run test",
     "pretty-quick": "pretty-quick --staged",
     "lint": "echo 'Linting...' && eslint . && echo 'Lint finished.'",
-    "test": "echo 'Test finished'"
+    "test": "echo 'Test...' && echo 'Test finished.'"
   },
   "dependencies": {
     "@zeit/next-css": "^0.1.5",
@@ -33,6 +34,7 @@
     "isomorphic-unfetch": "^2.0.0",
     "next": "^6.0.0",
     "ramda": "^0.25.0",
+    "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-adopt": "^0.6.0",
     "react-apollo": "^2.1.4",
@@ -47,6 +49,7 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
+    "jest": "^22.4.3",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1"
   },

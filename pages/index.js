@@ -4,7 +4,7 @@ import WithApollo from '../src/lib/withApollo'
 
 class componentName extends Component {
   render() {
-    return <Board>hello</Board>
+    return <Board> </Board>
   }
 }
 
