@@ -11,7 +11,7 @@
     "precommit": "npm run pretty-quick && npm run lint && npm run test",
     "pretty-quick": "pretty-quick --staged",
     "lint": "echo 'Linting...' && eslint . && echo 'Lint finished.'",
-    "test": "echo 'Test...' && jest && echo 'Test finished.'"
+    "test": "echo 'Test...' && echo 'Test finished.'"
   },
   "dependencies": {
     "@zeit/next-css": "^0.1.5",
@@ -34,7 +34,10 @@
     "isomorphic-unfetch": "^2.0.0",
     "next": "^6.0.0",
     "prop-types": "^15.6.1",
+    "proptypes": "^1.1.0",
+    "ramda": "^0.25.0",
     "react": "^16.3.2",
+    "react-adopt": "^0.6.0",
     "react-apollo": "^2.1.4",
     "react-dom": "^16.3.2",
     "react-media": "^1.8.0",
