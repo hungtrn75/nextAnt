@@ -25,7 +25,7 @@ export default class ModalSetup extends Component {
               title={title}
               visible={modal.showModal}
               // onOk={() => this.handleUpdate()}
-              // onCancel={() => this.props.handleUpdateToggle()}
+              onCancel={modal.handleToggleModal}
               footer={[
                 <Button key="back" onClick={modal.handleToggleModal}>
                   Cancel
