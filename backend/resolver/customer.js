@@ -1,61 +1,30 @@
-const shortid = require('shortid')
+const mongoose = require('mongoose')
 
-let initData = [
-  {
-    _id: '1',
-    name: 'name1',
-    tel: 'tel1',
-    cellphone: 'cellphone1',
-    memo: 'memo1'
-  },
-  {
-    _id: '2',
-    name: 'name2',
-    tel: 'tel1',
-    cellphone: 'cellphone2',
-    memo: 'memo2'
-  },
-  {
-    _id: '3',
-    name: 'name3',
-    tel: 'tel1',
-    cellphone: 'cellphone3',
-    memo: 'memo3'
-  }
-]
+const Customer = mongoose.model('Customer')
 
 const Query = {
   Query: {
-    customerAllQuery: () => initData
+    customerAllQuery: async () => {
+      const customers = await Customer.find()
+      return customers
+    }
   }
 }
 
 const Mutation = {
   Mutation: {
-    customerCreate: (_, { name, tel, cellphone, memo }) => {
-      const _id = shortid.generate()
-      const newRecord = { _id, name, tel, cellphone, memo }
-      initData = [...initData, newRecord]
-      return newRecord
+    customerCreate: async (_, { name, tel, cellphone, memo }) => {
+      const customer = new Customer({ name, tel, cellphone, memo })
+      await customer.save()
+      return customer
     },
-    customerUpdate: (_, { _id, name, tel, cellphone, memo }) => {
-      const item = initData.find(e => e._id === _id)
-      item.name = name
-      item.tel = tel
-      item.cellphone = cellphone
-      item.memo = memo
+    customerUpdate: async (_, { _id, name, tel, cellphone, memo }) => {
+      await Customer.findOneAndUpdate({ _id }, { name, tel, cellphone, memo })
       return _id
     },
-    customerDelete: (_, { _id }) => {
-      const result = initData.findIndex(item => item._id === _id)
-      if (result !== undefined) {
-        initData.splice(result, 1)
-        return {
-          _id
-        }
-      } else {
-        return {}
-      }
+    customerDelete: async (_, { _id }) => {
+      await Customer.findOneAndRemove({ _id })
+      return { _id }
     }
   }
 }
