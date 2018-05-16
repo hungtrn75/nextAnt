@@ -9,7 +9,14 @@
     "precommit": "npm run pretty-quick && npm run lint && npm run test",
     "pretty-quick": "pretty-quick --staged",
     "lint": "echo 'Linting...' && eslint . && echo 'Lint finished.'",
-    "test": "echo 'Test...' && echo 'Test finished.'"
+    "test": "echo 'Test...' && echo 'Test finished.'",
+    "deploy":
+      "concurrently \"npm run deploy-client\" \"npm run deploy-server\"",
+    "deploy-client": "cd client && heroku container:push web --app next-ant",
+    "deploy-server":
+      "cd server && heroku container:push web --app next-ant-server",
+    "log-client": "heroku logs --app next-ant",
+    "log-server": "heroku logs --app next-ant-server"
   },
   "dependencies": {
     "babel-eslint": "^8.2.3",
