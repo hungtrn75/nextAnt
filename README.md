@@ -17,6 +17,7 @@ AntDesign CRUD implementation built on Next.
 * [x] [ant design](https://ant.design/docs/react/introduce) for components.
 * [x] [mongodb](https://www.mongodb.com/) for database.
 * [x] [docker](https://www.docker.com/) for containerization.
+* [x] [pm2](http://pm2.keymetrics.io/) fro clustering.
 
 ## Getting Started
 
