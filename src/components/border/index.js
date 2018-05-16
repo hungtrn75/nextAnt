@@ -12,6 +12,7 @@ class Board extends Component {
     record: {}
   }
   render() {
+    console.log(CrudContainer)
     return (
       <CrudContainer>
         {result => {
