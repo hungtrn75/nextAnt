@@ -6,7 +6,6 @@ export default () => {
     <LogicBlock.Consumer>
       {({
         result: {
-          form,
           modal: { value },
           toggleModal
         }

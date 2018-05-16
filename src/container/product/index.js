@@ -9,7 +9,7 @@ import CrudTemplate, {
 } from '../../components/crudTemplate'
 import { CrudContainer } from './graphql'
 import { Button, Divider } from 'antd'
-import Form from './form'
+import Form from './form2'
 
 //this place is logic and state place
 
@@ -30,7 +30,7 @@ const AdoptContainer = adopt({
   ),
   modal: <Value initial={{ title: ' test' }} />,
   crudInfo: <Value initial={{ queryName: 'BoardAllQuery' }} />,
-  form: <Value initial={{ value: { Title: 'polo', Content: 'study' } }} />
+  form: <Value initial={{ value: Form }} />
 })
 
 //
@@ -44,7 +44,7 @@ export default () => {
           form,
           toggleModal,
           container: {
-            query: { data }
+            query: { data, loading }
           },
           crudInfo: {
             value: { queryName }
@@ -61,7 +61,7 @@ export default () => {
             toggleModal.toggle()
             switch (action) {
               case DETAIL:
-                form.setValue('DETAIL')
+                form.setValue(Form)
                 //form.setValue(<Form />)
                 break
               case UPDATE:
@@ -132,7 +132,9 @@ export default () => {
             }
           }
         ]
-
+        if (loading) {
+          return <div>Logining</div>
+        }
         const dataSet = data[queryName].map((v, i) => {
           return {
             key: i,

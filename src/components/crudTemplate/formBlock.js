@@ -5,16 +5,12 @@ import { BoardAllQuery } from '../../graphql/board'
 
 const FormItem = Form.Item
 
-class FormBlock extends Component {
-  render() {
-    return (
-      <LogicBlock.Consumer>
-        {result => {
-          console.log(result)
-          return <div> 123</div>
-        }}
-      </LogicBlock.Consumer>
-    )
-  }
-}
+const FormBlock = ({ form: antForm }) => (
+  <LogicBlock.Consumer>
+    {({ result: { form } }) => {
+      return <form.value antForm={antForm} />
+    }}
+  </LogicBlock.Consumer>
+)
+
 export default Form.create()(FormBlock)
