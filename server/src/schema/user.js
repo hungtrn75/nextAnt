@@ -17,5 +17,4 @@ const mutations = `
 
 const UserSchema = { typeDefs, queries, mutations }
 
-
 module.exports = UserSchema

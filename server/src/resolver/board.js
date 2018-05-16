@@ -1,16 +1,15 @@
 var shortid = require('shortid')
 let InitData = [
-  { BoardId: "1", Title: "Wonder Wonmen", Content: "Wonder Wonmen is Beauty" },
-  { BoardId: "2", Title: "batMan", Content: "batMan is Cool" },
+  { BoardId: '1', Title: 'Wonder Wonmen', Content: 'Wonder Wonmen is Beauty' },
+  { BoardId: '2', Title: 'batMan', Content: 'batMan is Cool' }
 ]
 const Query = {
   Query: {
     BoardAllQuery: () => {
-      console.log('ooo')
       return InitData
     },
-    BoardOneQuery: async (_, { BoardId = "1" }) => {
-      const result = InitData.find((item) => {
+    BoardOneQuery: async (_, { BoardId = '1' }) => {
+      const result = InitData.find(item => {
         return item.BoardId === BoardId
       })
 
@@ -21,13 +20,15 @@ const Query = {
 const Mutation = {
   Mutation: {
     BoardUpdate: async (_, { BoardId, Title, Content }) => {
-      console.log("Updating")
-      const sleep = (waitTime) => { setTimeout(() => { }, waitTime) }
+      console.log('Updating')
+      const sleep = waitTime => {
+        setTimeout(() => {}, waitTime)
+      }
       await sleep(3000)
-      InitData.map((item) => {
+      InitData.map(item => {
         if (item.BoardId === BoardId) {
-          item.Title = Title;
-          item.Content = Content;
+          item.Title = Title
+          item.Content = Content
         }
         return item
       })
@@ -44,7 +45,7 @@ const Mutation = {
     },
     BoardDelete: (_, { BoardId }) => {
       console.log('GoGBackendDelete')
-      const result = InitData.findIndex((item) => {
+      const result = InitData.findIndex(item => {
         return item.BoardId === BoardId
       })
       console.log('----')
@@ -59,7 +60,5 @@ const Mutation = {
     }
   }
 }
-
-
 
 module.exports = { Query, Mutation }

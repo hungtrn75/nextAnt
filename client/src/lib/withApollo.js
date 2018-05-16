@@ -1,17 +1,17 @@
 import * as React from 'react'
-import initApollo from './initApollo';
+import initApollo from './initApollo'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import Head from 'next/head'
-//import configureStore from '../../store';
-
 
 function getComponentDisplayName(Component) {
   return Component.displayName || Component.name || 'Unknown'
 }
 
-export default (ComposedComponet) => {
+export default ComposedComponet => {
   return class WithData extends React.Component {
-    static displayName = `WithData(${getComponentDisplayName(ComposedComponet)})`
+    static displayName = `WithData(${getComponentDisplayName(
+      ComposedComponet
+    )})`
 
     static async getInitialProps(ctx) {
       let serverState = { apollo: { data: {} } }
@@ -22,8 +22,8 @@ export default (ComposedComponet) => {
       //      console.log('===apolloA===')
       if (!process.browser) {
         //ServerSide
-        const apollo = initApollo();
-        const url = { query: ctx.query, pathname: ctx.pathname };
+        const apollo = initApollo()
+        const url = { query: ctx.query, pathname: ctx.pathname }
         try {
           await getDataFromTree(
             <ApolloProvider client={apollo}>
@@ -33,12 +33,12 @@ export default (ComposedComponet) => {
         } catch (err) {
           console.log(err)
         }
-        Head.rewind();
+        Head.rewind()
         serverState = {
           apollo: {
             data: apollo.cache.extract()
           }
-        };
+        }
       }
       //把ServerSide的資料變成 Props
       return {

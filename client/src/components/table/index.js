@@ -1,8 +1,7 @@
-import { Table, Icon, Divider } from 'antd';
+import { Table, Icon, Divider } from 'antd'
 
 import React, { Component } from 'react'
 
-
-export default (props) => {
+export default props => {
   return <Table columns={props.columns} dataSource={props.data} />
 }

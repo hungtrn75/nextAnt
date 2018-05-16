@@ -18,5 +18,4 @@ const mutations = `
 
 const BoardSchema = { typeDefs, queries, mutations }
 
-
 module.exports = BoardSchema
