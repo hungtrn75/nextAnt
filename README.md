@@ -61,10 +61,29 @@ You can deploy the project on [Heroku](https://www.heroku.com/) using the follow
 
 Make sure you have a working Docker installation (eg. `docker ps`) and that you’re logged in to Heroku (`heroku login`).
 
-1.  On the terminal, run `heroku container:login` to log in to container registry.
-2.  Run `heroku create` to create a Heroku app.
-3.  Run `heroku container:push web` to build the image and push to container registry.
-4.  Run `heroku open` open the app in your browser.
+Log in to Container Registry:
+
+```
+heroku container:login
+```
+
+Navigate to the app’s directory and create a Heroku app:
+
+```
+heroku create
+```
+
+Build the image and push to Container Registry:
+
+```
+heroku container:push web --app {app_name}
+```
+
+Now open the app in your browser:
+
+```
+heroku open --app {app_name}
+```
 
 ## Roadmap
 
