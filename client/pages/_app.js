@@ -15,11 +15,6 @@ export default class MyApp extends App {
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-
-        <style jsx global>{`
-          body {
-          }
-        `}</style>
         <Layout>
           <Component {...pageProps} />
         </Layout>

@@ -1,10 +1,9 @@
-import Head from 'next/head'
-import { Avatar } from 'antd'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd'
+import React from 'react'
+import { Avatar, Layout, Icon, Row, Col } from 'antd'
 
 import Nav from '../nav'
-const { Header, Content, Sider, Footer } = Layout
-import { Row, Col } from 'antd'
+
+const { Header, Content, Sider } = Layout
 
 export default class SiderDemo extends React.Component {
   state = {
