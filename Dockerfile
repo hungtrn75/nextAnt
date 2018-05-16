@@ -1,22 +1,23 @@
+# Grab the node image
 FROM node:8.9.1
 
+RUN npm install -g pm2
+
 # Create app directory
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied 
-# where available (npm@5+) 
-
-COPY package*.json ./
+COPY package.json /usr/src/app/
 RUN npm install
 
-# If you are building your code for production
-# RUN npm install --only=production
 # Bundle app source
-COPY . .
+COPY . /usr/src/app
+RUN npm run build
 
-RUN npm run dockerBuild
+# Open app port and start
+EXPOSE 3000
+CMD [ "npm", "run", "start" ]
 
-EXPOSE 3000 80
-
-CMD [ "npm", "start" ]
+# need more memory
+# CMD [ "npm", "run", "start-pm2" ] 

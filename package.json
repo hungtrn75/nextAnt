@@ -7,7 +7,7 @@
     "dev": "node server",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "dockerBuild": "yarn build && yarn start",
+    "start-pm2": "NODE_ENV=production pm2-runtime server.js -i 0",
     "precommit": "npm run pretty-quick && npm run lint && npm run test",
     "pretty-quick": "pretty-quick --staged",
     "lint": "echo 'Linting...' && eslint . && echo 'Lint finished.'",

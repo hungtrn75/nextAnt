@@ -16,6 +16,7 @@ AntDesign CRUD implementation built on Next.
 * [x] [styled-components](https://github.com/styled-components/styled-components) for styling.
 * [x] [ant design](https://ant.design/docs/react/introduce) for components.
 * [x] [mongodb](https://www.mongodb.com/) for database.
+* [x] [docker](https://www.docker.com/) for containerization.
 
 ## Getting Started
 
@@ -41,7 +42,7 @@ Run `npm install` to install all project dependencies.
 Run the next with the following command:
 
 ```
-yarn dev or npm run dev
+npm run dev
 ```
 
 Once its running, head over to your browser to [see Project](http://localhost:3000/).
@@ -51,33 +52,19 @@ Once its running, head over to your browser to [see Project](http://localhost:30
 To run the project tests, run the following command:
 
 ```
-yarn test or yarn run test
+npm run test
 ```
 
-### Deploy on Heroku
+### Deploy dockerized apps on Heroku
 
 You can deploy the project on [Heroku](https://www.heroku.com/) using the following steps:
 
-1.  Create a Heroku Account
-2.  On the terminal, run `heroku create` to create a new app
-3.  Run `heroku push` to start a deployment on Heroku.
-4.  Run `heroku migrate` to run migrations on your production database.
-5.  Visit your project URL as assigned by Heroku to see a live deployment of Next with AntDesign.
+Make sure you have a working Docker installation (eg. `docker ps`) and that you’re logged in to Heroku (`heroku login`).
 
-### Docker
-
-Build the project
-
-`$ docker-compose build`
-
-Create the database:
-`$ docker-compose run --rm web bin/rails db:create`
-
-Run the migrations:
-`$ docker-compose run --rm web bin/rails db:migrate`
-
-Run the app:
-`$ docker-compose up -d`
+1.  On the terminal, run `heroku container:login` to log in to container registry.
+2.  Run `heroku create` to create a Heroku app.
+3.  Run `heroku container:push web` to build the image and push to container registry.
+4.  Run `heroku open` open the app in your browser.
 
 ## Roadmap
 

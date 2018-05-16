@@ -1,3 +1,3 @@
 module.exports = {
-  mongoURI: 'mongodb://127.0.0.1:27017/next5Ant'
+  mongoURI: 'mongodb://admin:password@ds133657.mlab.com:33657/next-ant'
 }
