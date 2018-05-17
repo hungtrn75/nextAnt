@@ -24,7 +24,6 @@ const deleteCrud = ({ render }) => (
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
-
 export const CrudContainer = adopt({
   query: <Query query={BoardAllQuery} />,
   createCrud,

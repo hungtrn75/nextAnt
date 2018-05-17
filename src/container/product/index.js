@@ -9,31 +9,17 @@ import CrudTemplate, {
 } from '../../components/crudTemplate'
 import { CrudContainer } from './graphql'
 import { Button, Divider } from 'antd'
-import Form from './form2'
+import Form from './form'
 
 //this place is logic and state place
 
 const AdoptContainer = adopt({
   container: <CrudContainer />,
   toggleModal: <Toggle initial={false} />,
-  state: (
-    <State initial={{ isLoading: false, data: null }}>
-      {({ state, setState }) => (
-        <DataReceiver
-          data={state.data}
-          onSetRecord={record => setState({ record })}
-          onStart={() => setState({ isLoading: true })}
-          onFinish={data => setState({ data, isLoading: false })}
-        />
-      )}
-    </State>
-  ),
   modal: <Value initial={{ title: ' test' }} />,
   crudInfo: <Value initial={{ queryName: 'BoardAllQuery' }} />,
-  form: <Value initial={{ value: Form }} />
+  record: <Value initial={{ record: {} }} />
 })
-
-//
 
 export default () => {
   return (
@@ -41,7 +27,7 @@ export default () => {
       {//({ container, toggleModel, state }) => {
       result => {
         const {
-          form,
+          FormAssign,
           toggleModal,
           container: {
             query: { data, loading }
@@ -50,30 +36,17 @@ export default () => {
             value: { queryName }
           }
         } = result
-
-        //console.log(result)
-        //const dataSet = data
-        // console.log('dataSet')
-
         const handleEvent = {
           handleToggleModal: (action, record) => {
-            //open Modal
             toggleModal.toggle()
             switch (action) {
               case DETAIL:
-                form.setValue(Form)
-                //form.setValue(<Form />)
                 break
               case UPDATE:
-                form.setValue('UPDATE')
-                //form.setValue(<Form />)
                 break
               case CREATE:
-                form.setValue('CREATE')
-                //form.setValue(<Form />)
                 break
             }
-            console.log('test')
           },
           handleDelete: record => {
             console.log('delete')
@@ -151,6 +124,7 @@ export default () => {
             columns={columns}
             dataSet={dataSet}
             result={result}
+            FormX={Form}
           />
         )
       }}
