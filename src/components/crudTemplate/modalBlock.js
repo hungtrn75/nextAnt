@@ -1,7 +1,6 @@
 import { LogicBlock } from './index'
 import { Button, Modal } from 'antd'
-import FormBlock from './formBlock'
-import Form2 from '../../container/product/form'
+//import FormBlock from './formBlock'
 
 export default () => {
   return (
@@ -9,9 +8,13 @@ export default () => {
       {({
         result: {
           modal: { value },
-          toggleModal
+          toggleModal,
+          assignForm
         },
-        handleEvent
+        handleEvent,
+        CreateForm,
+        UpdateForm,
+        DetailForm
       }) => {
         return (
           <Modal
@@ -26,9 +29,21 @@ export default () => {
               //          <Button key="submit" type="primary" onClick={() => this.handleUpdate(BoardAdd, data)}>新增</Button>,
             ]}
           >
-            <div>
-              <Form2 handleEvent={handleEvent} />
-            </div>
+            {assignForm.value === 'create' ? (
+              <CreateForm handleEvent={handleEvent} />
+            ) : (
+              ''
+            )}
+            {assignForm.value === 'update' ? (
+              <UpdateForm handleEvent={handleEvent} />
+            ) : (
+              ''
+            )}
+            {assignForm.value === 'detail' ? (
+              <DetailForm handleEvent={handleEvent} />
+            ) : (
+              ''
+            )}
           </Modal>
         )
       }}
