@@ -8,10 +8,10 @@ const {
   apolloMiddleInterFace,
   apolloMiddle
 } = require('./serverMiddle/apolloMiddle')
-const keys = require('../config/keys')
+const envs = require('./config/envs')
 
 mongoose.Promise = global.Promise
-mongoose.connect(keys.mongoURI)
+mongoose.connect(envs.mongoURI)
 
 const port = process.env.PORT || 8080
 

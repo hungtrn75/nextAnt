@@ -3,6 +3,8 @@ import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import * as fetch from 'isomorphic-unfetch'
 
+import envs from '../../config/envs'
+
 let apolloClient = null
 
 if (!process.browser) {
@@ -12,10 +14,7 @@ if (!process.browser) {
 const create = initialState => {
   const credentials = 'readbook'
 
-  const uri =
-    process.env.NODE_ENV !== 'production'
-      ? 'http://localhost:8080/graphql'
-      : 'http://localhost:8080/graphql'
+  const uri = `${envs.serverURL}/graphql`
 
   const httpLink2 = new HttpLink({ uri, credentials })
 
