@@ -78,7 +78,7 @@ export default props => (
       }
     >
       <Menu.Item key="b1">
-        <Link href="/production/productAll">
+        <Link href="product">
           <a>Product(All)</a>
         </Link>
       </Menu.Item>

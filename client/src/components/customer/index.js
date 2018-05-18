@@ -6,7 +6,9 @@ import { customerAllQuery, customerDelete } from '../../graphql/customer'
 import CreateCustomer from './create'
 import UpdateCustomer from './update'
 
-const Table = <AntTable columns={props.columns} dataSource={props.data} />
+const Table = props => (
+  <AntTable columns={props.columns} dataSource={props.data} />
+)
 
 class Customer extends Component {
   state = {
