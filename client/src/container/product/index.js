@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { adopt } from 'react-adopt'
-import { Toggle, State, Value } from 'react-powerplug'
+import { Toggle, Value } from 'react-powerplug'
+import { Button, Divider } from 'antd'
+
 import CrudTemplate, {
   CREATE,
-  DELETE,
   UPDATE,
   DETAIL
 } from '../../components/crudTemplate'
-import { CrudContainer } from './graphql'
-import { Button, Divider } from 'antd'
 import Form from './form'
-import { productAllQuery } from '../../graphql/product'
-//this place is logic and state place
+import { CrudContainer, productAllQuery } from './graphql'
 
 const AdoptContainer = adopt({
   container: <CrudContainer />,
