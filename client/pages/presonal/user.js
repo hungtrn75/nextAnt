@@ -1,10 +1,8 @@
-import WithApollo from '../../src/lib/withApollo'
-import React, { Component } from 'react'
-import User from '../../src/container/user'
-class UserAll extends Component {
-  render() {
-    return <User />
-  }
-}
+import React from 'react'
 
-export default WithApollo(UserAll)
+import User from '../../src/features/user'
+import withApollo from '../../src/lib/withApollo'
+
+const UserPage = () => <User />
+
+export default withApollo(UserPage)
