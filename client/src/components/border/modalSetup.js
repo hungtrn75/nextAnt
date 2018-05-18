@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Table, Icon, Divider, Button, Modal } from 'antd'
+import { Button, Modal } from 'antd'
 import { CrudContext } from './index'
 import NormalForm from './form'
 import DetailForm from './detail'
+
 export default class ModalSetup extends Component {
   render() {
     return (

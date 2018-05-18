@@ -46,6 +46,16 @@ export default props => (
           </Link>
         </span>
       </Menu.Item>
+      <Menu.Item key="aa3">
+        <Icon type="user" />
+        <span>
+          <Link href={'/presonal/user'}>
+            <a>
+              <span>UserList</span>
+            </a>
+          </Link>
+        </span>
+      </Menu.Item>
     </SubMenu>
 
     <Menu.Item key="a1">
@@ -68,18 +78,8 @@ export default props => (
       }
     >
       <Menu.Item key="b1">
-        <Link href="/product/productAll">
+        <Link href="product">
           <a>Product(All)</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="b2">
-        <Link href="/product/productLimit">
-          <a>Product(Limit)</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="b3">
-        <Link href="/product/productSelf">
-          <a>Product(self)</a>
         </Link>
       </Menu.Item>
     </SubMenu>

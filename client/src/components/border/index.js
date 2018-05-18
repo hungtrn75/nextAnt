@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import TableSetup from './tableSetup'
-import { Divider, Icon, Button, Modal } from 'antd'
 import { CrudContainer } from './grpahql'
 import { BoardAllQuery } from '../../graphql/board'
 
