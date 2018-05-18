@@ -17,12 +17,10 @@ logic also here
 
 export const LogicBlock = React.createContext()
 
-export default props => {
-  return (
-    <LogicBlock.Provider value={props}>
-      <ModalBlock />
-      <SearchBlock />
-      <TableBlock />
-    </LogicBlock.Provider>
-  )
-}
+export default props => (
+  <LogicBlock.Provider value={props}>
+    <ModalBlock />
+    <SearchBlock />
+    <TableBlock />
+  </LogicBlock.Provider>
+)

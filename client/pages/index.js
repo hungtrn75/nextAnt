@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
-import Board from '../src/components/border'
-import WithApollo from '../src/lib/withApollo'
+import React from 'react'
+import Board from '../src/container/board'
+import withApollo from '../src/lib/withApollo'
 
-class componentName extends Component {
-  render() {
-    return <Board> </Board>
-  }
-}
+const Home = () => <Board />
 
-export default WithApollo(componentName)
+export default withApollo(Home)
