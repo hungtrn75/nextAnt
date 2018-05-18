@@ -1,8 +1,9 @@
 import React from 'react'
 import App, { Container } from 'next/app'
-import Layout from '../src/components/layout'
 import Head from 'next/head'
 import stylesheet from 'antd/dist/antd.min.css'
+
+import Layout from '../src/components/layout'
 
 export default class MyApp extends App {
   render() {
