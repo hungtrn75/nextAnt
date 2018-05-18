@@ -1,4 +1,7 @@
+import React from 'react'
 import gql from 'graphql-tag'
+import { Query, Mutation } from 'react-apollo'
+import { adopt } from 'react-adopt'
 
 export const customerAllQuery = gql`
   query customerAllQuery {
@@ -56,3 +59,28 @@ export const customerDelete = gql`
     }
   }
 `
+
+const createCrud = ({ render }) => (
+  <Mutation mutation={customerCreate}>
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+)
+
+const updateCrud = ({ render }) => (
+  <Mutation mutation={customerUpdate}>
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+)
+
+const deleteCrud = ({ render }) => (
+  <Mutation mutation={customerDelete}>
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+)
+
+export const CrudContainer = adopt({
+  query: <Query query={customerAllQuery} />,
+  createCrud,
+  updateCrud,
+  deleteCrud
+})
