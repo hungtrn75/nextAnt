@@ -3,11 +3,12 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 require('./src/models/customer')
+
 const schema = require('./src')
 const {
   apolloMiddleInterFace,
   apolloMiddle
-} = require('./serverMiddle/apolloMiddle')
+} = require('./middleware/apolloMiddle')
 const envs = require('./config/envs')
 
 mongoose.Promise = global.Promise
