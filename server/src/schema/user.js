@@ -1,20 +1,22 @@
 const queries = `
-     UserAllQuery:[User],
-     UserOneQuery(userId:String):User
+     userAllQuery:[user],
+     userOneQuery(userId:String):user
 `
-const typeDefs = ` type User{
+const typeDefs = ` type user{
   userId:String,
   name:String,
   tel:String,
-  nickName:String      
+  nickName:String,
+  account:String,
+  password:String
 }`
 
 const mutations = `
-  UserUpdate(userId:String,name:String,nickName:String,tel:String):User,
-  UserAdd(name:String,nickName:String,tel:String):User,
-  UserDelete(userId:String):User
+  userUpdate(userId:String,name:String,nickName:String,tel:String,account:String,password:String):user,
+  userAdd(name:String,nickName:String,tel:String,account:String,password:String):user,
+  userDelete(userId:String):user
 `
 
-const UserSchema = { typeDefs, queries, mutations }
+const userSchema = { typeDefs, queries, mutations }
 
-module.exports = UserSchema
+module.exports = userSchema
