@@ -27,8 +27,10 @@ app.prepare().then(() => {
   ApolloMiddle(server, schema)
   ApolloMiddleInterFace(server)
 
+  server.post('/login', (req, res) => {
+    console.log('login')
+  })
   server.get('*', (req, res) => handle(req, res))
-
   server.listen(port, err => {
     if (err) throw err
     console.log(`> ready  on http://localhost:${port}`)

@@ -10,14 +10,14 @@ import CrudTemplate, {
 import { CrudContainer } from './graphql'
 import { Button, Divider } from 'antd'
 import Form from './form'
-import { productAllQuery } from '../../graphql/product'
+import { userAllQuery } from '../../graphql/user'
 //this place is logic and state place
 
 const AdoptContainer = adopt({
   container: <CrudContainer />,
   toggleModal: <Toggle initial={false} />,
   modal: <Value initial={{ title: ' test' }} />,
-  crudInfo: <Value initial={{ queryName: 'productAllQuery' }} />,
+  crudInfo: <Value initial={{ queryName: 'userAllQuery' }} />,
   formData: <Value initial={{ formData: {} }} />,
   assignForm: <Value initial={'create'} />,
   recordChoose: <Value initial={''} />
@@ -40,6 +40,7 @@ export default () => {
           }
         } = result
         console.log(result)
+
         const CreateForm = () => {
           return <Form handleEvent={handleEvent} actionText={'create'} />
         }
@@ -62,8 +63,8 @@ export default () => {
                 break
               case UPDATE:
                 assignForm.setValue('update')
-                console.log('update')
-                console.log(record.data)
+                // console.log('update')
+                // console.log(record.data)
                 recordChoose.setValue(record.data)
                 break
               case CREATE:
@@ -73,11 +74,11 @@ export default () => {
             }
           },
           handleDelete: record => {
-            console.log('delete')
-            let values = { productId: recordChoose.value.productId }
+            //console.log('delete')
+            let values = { userId: recordChoose.value.userId }
             result.container.deleteCrud.mutation({
               variables: values,
-              refetchQueries: [{ query: productAllQuery }]
+              refetchQueries: [{ query: userAllQuery }]
             })
           },
           handleSubmit: resultX => {
@@ -87,23 +88,24 @@ export default () => {
                 // console.log('recordChoose')
                 // console.log(recordChoose)
                 // console.log(result)
-                //avoid update
-                toggleModal.toggle()
-                recordChoose.setValue(values)
-
                 if (assignForm.value === 'update') {
-                  values.productId = recordChoose.value.productId
-                  await result.container.updateCrud.mutation({
+                  values.userId = recordChoose.value.userId
+                  //avoid update
+                  recordChoose.setValue(values)
+                  result.container.updateCrud.mutation({
                     variables: values,
-                    refetchQueries: [{ query: productAllQuery }]
+                    refetchQueries: [{ query: userAllQuery }]
                   })
+
+                  toggleModal.toggle()
                   resultX.form.resetFields()
                 }
                 if (assignForm.value === 'create') {
-                  await result.container.createCrud.mutation({
+                  result.container.createCrud.mutation({
                     variables: values,
-                    refetchQueries: [{ query: productAllQuery }]
+                    refetchQueries: [{ query: userAllQuery }]
                   })
+                  toggleModal.toggle()
                   resultX.form.resetFields()
                 }
               }
@@ -114,9 +116,9 @@ export default () => {
 
         const columns = [
           {
-            title: 'TiTle',
-            dataIndex: 'title',
-            key: 'title',
+            title: 'name',
+            dataIndex: 'name',
+            key: 'name',
             render: (text, record) => (
               <a
                 href="#"
@@ -129,14 +131,14 @@ export default () => {
             )
           },
           {
-            title: 'Content',
-            dataIndex: 'content',
-            key: 'content'
+            title: 'tel',
+            dataIndex: 'tel',
+            key: 'tel'
           },
           {
-            title: 'StateDate',
-            dataIndex: 'stateDate',
-            key: 'stateData'
+            title: 'account',
+            dataIndex: 'account',
+            key: 'account'
           },
           {
             title: 'Function',
@@ -164,14 +166,18 @@ export default () => {
         if (loading) {
           return <div>Logining</div>
         }
+        //console.log('data')
+
+        //console.log(data)
+        //return <div>123</div>
         const dataSet = data[queryName].map((v, i) => {
           return {
             key: i,
-            title: v.Title,
-            content: v.Content,
-            stateDate: 'test',
-            endDate: 'test',
-            productId: v.productId
+            name: v.name,
+            tel: v.tel,
+            account: v.account,
+            password: v.password,
+            userId: v.userId
           }
         })
 

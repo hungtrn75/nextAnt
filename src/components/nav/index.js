@@ -46,6 +46,16 @@ export default props => (
           </Link>
         </span>
       </Menu.Item>
+      <Menu.Item key="aa3">
+        <Icon type="user" />
+        <span>
+          <Link href={'/presonal/user'}>
+            <a>
+              <span>UserList</span>
+            </a>
+          </Link>
+        </span>
+      </Menu.Item>
     </SubMenu>
 
     <Menu.Item key="a1">
