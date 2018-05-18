@@ -1,6 +1,5 @@
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Form, Input, Button } from 'antd'
 import { CrudContext } from './index'
-import { BoardAllQuery } from '../../graphql/board'
 
 const FormItem = Form.Item
 

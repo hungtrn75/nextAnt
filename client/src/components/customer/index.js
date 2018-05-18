@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { graphql, Query, Mutation } from 'react-apollo'
-import { Modal, Button, Divider } from 'antd'
+import { Query, Mutation } from 'react-apollo'
+import { Button, Divider, Table as AntTable } from 'antd'
 
-import Table from '../table'
 import { customerAllQuery, customerDelete } from '../../graphql/customer'
 import CreateCustomer from './create'
 import UpdateCustomer from './update'
+
+const Table = <AntTable columns={props.columns} dataSource={props.data} />
 
 class Customer extends Component {
   state = {

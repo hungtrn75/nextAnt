@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Icon, Divider, Button, Modal } from 'antd'
+import { Table, Divider, Button } from 'antd'
 import { CrudContext } from './index'
 import ModalSetup from './modalSetup'
 
