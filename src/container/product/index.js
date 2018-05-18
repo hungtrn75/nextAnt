@@ -84,10 +84,6 @@ export default () => {
             resultX.e.preventDefault()
             resultX.form.validateFields(async (err, values) => {
               if (!err) {
-                // console.log('recordChoose')
-                // console.log(recordChoose)
-                // console.log(result)
-                //avoid update
                 toggleModal.toggle()
                 recordChoose.setValue(values)
 

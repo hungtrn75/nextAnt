@@ -88,10 +88,13 @@ export default () => {
                 // console.log('recordChoose')
                 // console.log(recordChoose)
                 // console.log(result)
+
+                //avoid update
+                recordChoose.setValue(values)
+
                 if (assignForm.value === 'update') {
                   values.userId = recordChoose.value.userId
-                  //avoid update
-                  recordChoose.setValue(values)
+
                   result.container.updateCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: userAllQuery }]
