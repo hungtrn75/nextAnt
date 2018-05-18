@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node index.js"
+    "start": "NODE_ENV=production node index.js",
+    "start-pm2": "NODE_ENV=production pm2-runtime index.js -i 0"
   },
   "dependencies": {
     "@zeit/next-css": "^0.2.0",

@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/polo13999/nextAnt.svg?branch=master)](https://travis-ci.org/polo13999/nextAnt)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/polo13999/next5Ant.svg)](http://isitmaintained.com/project/polo13999/next5Ant 'Percentage of issues still open')
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/polo13999/nextAnt.svg)](http://isitmaintained.com/project/polo13999/nextAnt 'Percentage of issues still open')
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 AntDesign CRUD implementation built on Next.
