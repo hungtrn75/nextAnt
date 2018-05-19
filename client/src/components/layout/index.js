@@ -1,67 +1,101 @@
 import React from 'react'
 import { Avatar, Layout, Icon, Row, Col } from 'antd'
+import { adopt } from 'react-adopt'
+import { Toggle, Value } from 'react-powerplug'
 
 import Nav from '../nav'
-
 const { Header, Content, Sider } = Layout
 
-export default class SiderDemo extends React.Component {
-  state = {
-    collapsed: false
-  }
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed
-    })
-  }
-  render() {
-    return (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={this.state.collapsed}
-          style={{ minHeight: '100vh' }}
-          breakpoint="lg"
-          collapsedWidth="0"
-        >
-          <div className="logo" />
-          <Nav />
-        </Sider>
-        <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
-            <Row type="flex" justify="space-between">
-              <Col span={1}>
-                {' '}
-                <Icon
-                  className="trigger"
-                  type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                  onClick={this.toggle}
-                />
-              </Col>
-              <Col span={20}>
-                <div
-                  style={{ position: 'absolute', top: '-5px', right: '20px' }}
+const AdoptContainer = adopt({
+  toggleMenuModal: <Toggle initial={false} />,
+  token: <Value initial={''} />,
+  loginInfo: <Value initial={''} />,
+  loginState: <Value initial={false} />
+})
+export const GlobalBlock = React.createContext()
+
+export default props => {
+  return (
+    <AdoptContainer>
+      {({ toggleMenuModal, token, loginInfo, loginState }) => {
+        let loginblock = {}
+        let loginInfoData = ''
+        console.log("JSON.parse( localStorage.getItem('loginIngo')")
+
+        const handleLoginCheck = () => {
+          if (process.browser) {
+            if (localStorage.getItem('loginInfo')) {
+              loginInfoData = JSON.parse(localStorage.getItem('loginInfo'))
+              //     console.log(loginInfoData)
+            }
+            if (!loginInfoData) {
+              loginState.setValue(true)
+              loginInfo.setValue(loginInfoData)
+            } else {
+              loginState.setValue(false)
+              loginInfo.setValue('')
+            }
+          }
+        }
+        loginblock = { loginState, loginInfo, handleLoginCheck }
+        return (
+          <GlobalBlock.Provider value={loginblock}>
+            <Layout>
+              <Sider
+                trigger={null}
+                collapsible
+                collapsed={toggleMenuModal.on}
+                style={{ minHeight: '100vh' }}
+                breakpoint="lg"
+                collapsedWidth="0"
+              >
+                <div className="logo" />
+                <Nav />
+              </Sider>
+              <Layout>
+                <Header style={{ background: '#fff', padding: 0 }}>
+                  <Row type="flex" justify="space-between">
+                    <Col span={1}>
+                      {' '}
+                      <Icon
+                        className="trigger"
+                        type={toggleMenuModal.on ? 'menu-unfold' : 'menu-fold'}
+                        onClick={toggleMenuModal.toggle}
+                      />
+                    </Col>
+                    <Col span={20}>
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '-5px',
+                          right: '20px'
+                        }}
+                      >
+                        <span style={{ marginRight: '20px;' }}>Main</span>
+                        <Icon type="bell" style={{ marginRight: '20px' }} />
+                        <Avatar
+                          style={{ backgroundColor: '#87d068' }}
+                          icon="user"
+                        />
+                      </div>
+                    </Col>
+                  </Row>
+                </Header>
+                <Content
+                  style={{
+                    margin: '24px 16px',
+                    padding: 24,
+                    background: '#fff',
+                    minHeight: 300
+                  }}
                 >
-                  <span style={{ marginRight: '20px;' }}>Main</span>
-                  <Icon type="bell" style={{ marginRight: '20px' }} />
-                  <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
-                </div>
-              </Col>
-            </Row>
-          </Header>
-          <Content
-            style={{
-              margin: '24px 16px',
-              padding: 24,
-              background: '#fff',
-              minHeight: 300
-            }}
-          >
-            {this.props.children}
-          </Content>
-        </Layout>
-      </Layout>
-    )
-  }
+                  {props.children}
+                </Content>
+              </Layout>
+            </Layout>
+          </GlobalBlock.Provider>
+        )
+      }}
+    </AdoptContainer>
+  )
 }
