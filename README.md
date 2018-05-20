@@ -6,6 +6,7 @@
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/polo13999/nextAnt.svg)](http://isitmaintained.com/project/polo13999/nextAnt 'Percentage of issues still open')
 [![CodeFactor](https://www.codefactor.io/repository/github/polo13999/nextant/badge)](https://www.codefactor.io/repository/github/polo13999/nextant)
 [![Known Vulnerabilities](https://snyk.io/test/github/polo13999/nextAnt/badge.svg)](https://snyk.io/test/github/polo13999/nextAnt)
+[![BCH compliance](https://bettercodehub.com/edge/badge/polo13999/nextAnt?branch=master)](https://bettercodehub.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 AntDesign CRUD implementation built on Next.
