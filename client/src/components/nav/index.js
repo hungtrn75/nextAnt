@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Menu, Icon } from 'antd'
 import Link from 'next/link'
 
 const { SubMenu } = Menu
 
-export default props => (
+export default () => (
   <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
     <Menu.Item key="home">
       <Icon type="home" />
