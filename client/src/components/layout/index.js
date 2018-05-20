@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Layout, Icon, Row, Col } from 'antd'
 import { adopt } from 'react-adopt'
-import { Toggle, Value } from 'react-powerplug'
+import { Toggle, Value, State } from 'react-powerplug'
 
 import Nav from '../nav'
 const { Header, Content, Sider } = Layout
@@ -10,7 +10,7 @@ const AdoptContainer = adopt({
   toggleMenuModal: <Toggle initial={false} />,
   token: <Value initial={''} />,
   loginInfo: <Value initial={''} />,
-  loginState: <Value initial={false} />
+  loginState: <State initial={{ loginState: false }} />
 })
 export const GlobalBlock = React.createContext()
 
@@ -23,21 +23,63 @@ export default props => {
         console.log("JSON.parse( localStorage.getItem('loginIngo')")
 
         const handleLoginCheck = () => {
-          if (process.browser) {
-            if (localStorage.getItem('loginInfo')) {
-              loginInfoData = JSON.parse(localStorage.getItem('loginInfo'))
-              //     console.log(loginInfoData)
-            }
-            if (!loginInfoData) {
-              loginState.setValue(true)
-              loginInfo.setValue(loginInfoData)
-            } else {
-              loginState.setValue(false)
-              loginInfo.setValue('')
-            }
+          //only front end check
+          if (!process.browser) {
+            return
+          }
+          if (localStorage.getItem('loginInfo')) {
+            loginInfoData = JSON.parse(localStorage.getItem('loginInfo'))
+
+            console.log('---check handleLoginCheck---')
+            console.log(loginInfoData)
+          }
+          if (!loginInfoData) {
+            loginState.setState({ loginState: true })
+            loginInfo.setValue(loginInfoData)
+          } else {
+            loginState.setState({ loginState: false })
+            loginInfo.setValue('')
           }
         }
-        loginblock = { loginState, loginInfo, handleLoginCheck }
+
+        const handleLogout = resultX => {
+          resultX.e.preventDefault()
+
+          localStorage.removeItem('loginInfo')
+          loginState.setState({ loginState: false })
+          loginInfo.setValue('')
+        }
+        const handleLogin = resultX => {
+          resultX.e.preventDefault()
+          resultX.form.validateFields(async (err, values) => {
+            if (!err) {
+              fetch('http://localhost:8080/auth/login', {
+                method: 'post',
+                body: JSON.stringify(values),
+                mode: 'cors',
+                headers: {
+                  Accept:
+                    'application/json, application/xml, text/plain, text/html, *.*',
+                  'Content-Type': 'application/json'
+                }
+              })
+                .then(Response => {
+                  return Response.json()
+                })
+                .then(result => {
+                  if (result.success) {
+                    localStorage.setItem('loginInfo', JSON.stringify(result))
+                    loginState.setState({ loginState: true })
+                  } else {
+                    alert('account& password not match ')
+                  }
+                })
+            }
+          })
+        }
+        const handleLoginEvent = { handleLoginCheck, handleLogout, handleLogin }
+
+        loginblock = { loginState, loginInfo, handleLoginEvent }
         return (
           <GlobalBlock.Provider value={loginblock}>
             <Layout>

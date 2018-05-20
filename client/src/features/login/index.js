@@ -13,64 +13,38 @@ const formTailLayout = {
   wrapperCol: { span: 8, offset: 4 }
 }
 const LoginForm = props => {
-  const handleSubmit = async resultX => {
-    resultX.e.preventDefault()
-    resultX.form.validateFields(async (err, values) => {
-      if (!err) {
-        fetch('http://localhost:8080/auth/login', {
-          method: 'post',
-          body: JSON.stringify(values),
-          mode: 'cors',
-          headers: {
-            Accept:
-              'application/json, application/xml, text/plain, text/html, *.*',
-            'Content-Type': 'application/json'
-          }
-        })
-          .then(Response => {
-            return Response.json()
-          })
-          .then(
-            (result => {
-              console.log(result.success)
-              return localStorage.setItem('loginInfo', JSON.stringify(result))
-            }).then(() => {})
-          )
-      }
-    })
-  }
-
   const { getFieldDecorator, resetFields } = props.form
   return (
     <Form
-      onSubmit={e => handleSubmit({ e, form: props.form })}
+      onSubmit={e => props.handleLogin({ e, form: props.form })}
       className="login-form"
       resetFields={true}
     >
-      <FormItem {...formItemLayout} label="帳號">
+      <FormItem {...formItemLayout} label="account">
         {getFieldDecorator('account', {
           rules: [
             {
               required: true,
-              message: '請輸入你的帳號'
+              message: 'please input your account'
             }
           ]
-        })(<Input placeholder="請輸入你的帳號" />)}
+        })(<Input placeholder="please input your account" />)}
       </FormItem>
-      <FormItem {...formItemLayout} label="密碼">
+
+      <FormItem {...formItemLayout} label="password">
         {getFieldDecorator('password', {
           rules: [
             {
               required: true,
-              message: '請輸入你的密碼'
+              message: 'please input your password'
             }
           ]
-        })(<Input placeholder="請輸入你的密碼" />)}
+        })(<Input placeholder="please input your password" />)}
       </FormItem>
 
       <FormItem {...formTailLayout}>
         <Button type="primary" htmlType="submit">
-          確定送出
+          Login
         </Button>
       </FormItem>
     </Form>

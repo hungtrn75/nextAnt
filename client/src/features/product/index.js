@@ -55,14 +55,13 @@ export default () => {
             toggleModal.toggle()
             switch (action) {
               case DETAIL:
-                recordChoose.setValue(record.data)
+                recordChoose.setValue(record)
                 assignForm.setValue('detail')
                 break
               case UPDATE:
                 assignForm.setValue('update')
-                console.log('update')
-                console.log(record.data)
-                recordChoose.setValue(record.data)
+
+                recordChoose.setValue(record)
                 break
               case CREATE:
                 assignForm.setValue('create')
@@ -72,7 +71,8 @@ export default () => {
           },
           handleDelete: record => {
             console.log('delete')
-            let values = { productId: recordChoose.value.productId }
+
+            let values = { productId: record.productId }
             result.container.deleteCrud.mutation({
               variables: values,
               refetchQueries: [{ query: productAllQuery }]
@@ -114,9 +114,7 @@ export default () => {
             render: (text, record) => (
               <a
                 href="#"
-                onClick={() =>
-                  handleEvent.handleToggleModal(DETAIL, { data: record })
-                }
+                onClick={() => handleEvent.handleToggleModal(DETAIL, record)}
               >
                 {text}
               </a>
@@ -141,13 +139,13 @@ export default () => {
                 <span>
                   <Button
                     onClick={() =>
-                      handleEvent.handleToggleModal(UPDATE, { data: record })
+                      handleEvent.handleToggleModal(UPDATE, record)
                     }
                   >
                     Update
                   </Button>
                   <Divider type="vertical" />
-                  <Button onClick={() => handleEvent.handleDelete({ record })}>
+                  <Button onClick={() => handleEvent.handleDelete(record)}>
                     Delete
                   </Button>
                 </span>

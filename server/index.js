@@ -24,19 +24,23 @@ server.use(cors())
 
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
-
+server.use((req, res, next) => {
+  //console.log('middle')
+  const accessToken = req.headers.authorization
+  if (accessToken) {
+    var decoded = jwt.verify(accessToken, 'gg')
+    //console.log(decoded) // bar
+  }
+  next()
+})
 apolloMiddle(server, schema)
 apolloMiddleInterFace(server)
 
-server.post('/auth/login', (req, res) => {
-  //const params = JSON.parse(req.body)
-  // console.log('req.body')
-  // console.log(req.body)
-  // console.log('req.query')
-  // console.log(req.query)
-  // console.log(' ')
-  // console.log(req.params)
+server.post('/auth/logout', (req, res) => {
+  //clear something
+})
 
+server.post('/auth/login', (req, res) => {
   if (req.body.account === 'admin') {
     var token = jwt.sign({ admin: 'admin' }, 'gg', {
       expiresIn: 60 * 60 * 24
