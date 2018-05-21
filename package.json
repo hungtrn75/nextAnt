@@ -24,6 +24,8 @@
     "babel-eslint": "^8.2.3",
     "body-parser": "^1.18.3",
     "concurrently": "^3.5.1",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",

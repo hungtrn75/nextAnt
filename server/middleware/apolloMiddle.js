@@ -5,12 +5,10 @@ const apolloMiddle = (server, schema) =>
   server.use(
     '/graphql',
     bodyParser.json(),
-    graphqlExpress(async () => {
+    graphqlExpress(async req => {
       return {
-        schema
-        // context: { user: req.user },
-        // tracing: true,
-        // cacheControl: true
+        schema,
+        context: { req }
       }
     })
   )

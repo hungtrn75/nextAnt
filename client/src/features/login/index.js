@@ -13,12 +13,12 @@ const formTailLayout = {
   wrapperCol: { span: 8, offset: 4 }
 }
 const LoginForm = props => {
-  const { getFieldDecorator, resetFields } = props.form
+  const { getFieldDecorator, resetfields } = props.form
   return (
     <Form
       onSubmit={e => props.handleLogin({ e, form: props.form })}
       className="login-form"
-      resetFields={true}
+      resetfields={true}
     >
       <FormItem {...formItemLayout} label="account">
         {getFieldDecorator('account', {

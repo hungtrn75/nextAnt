@@ -31,12 +31,16 @@ export default () => {
           toggleModal,
           recordChoose,
           container: {
-            query: { data, loading }
+            query: { error, data, loading }
           },
           crudInfo: {
             value: { queryName }
           }
         } = result
+
+        if (error) {
+          return <div>an error occer</div>
+        }
 
         const handleEvent = {
           handleToggleModal: (action, record) => {
@@ -76,14 +80,14 @@ export default () => {
                     variables: values,
                     refetchQueries: [{ query: BoardAllQuery }]
                   })
-                  resultX.form.resetFields()
+                  resultX.form.resetfields()
                 }
                 if (assignForm.value === 'create') {
                   await result.container.createCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: BoardAllQuery }]
                   })
-                  resultX.form.resetFields()
+                  resultX.form.resetfields()
                 }
               }
             })

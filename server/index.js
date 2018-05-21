@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
-
+const cookieParser = require('cookie-parser')
+const cookieSession = require('cookie-session')
 require('./src/models/customer')
 
 const schema = require('./src')
@@ -11,6 +12,7 @@ const {
   apolloMiddleInterFace,
   apolloMiddle
 } = require('./middleware/apolloMiddle')
+const jwtVerify = require('./middleware/jwtVerify')
 const envs = require('./config/envs')
 
 mongoose.Promise = global.Promise
@@ -21,40 +23,36 @@ const port = process.env.PORT || 8080
 const server = express()
 
 server.use(cors())
-
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
-server.use((req, res, next) => {
-  //console.log('middle')
-  const accessToken = req.headers.authorization
-  if (accessToken) {
-    var decoded = jwt.verify(accessToken, 'gg')
-    //console.log(decoded) // bar
-  }
-  next()
-})
+server.use(cookieParser())
+server.use(jwtVerify())
+
 apolloMiddle(server, schema)
 apolloMiddleInterFace(server)
-
-server.post('/auth/logout', (req, res) => {
-  //clear something
-})
+// server.use((req, res, next) => {
+//   console.log('Cookies: ', req.cookies)
+//   next()
+// })
 
 server.post('/auth/login', (req, res) => {
+  let loginInfo = { success: false }
   if (req.body.account === 'admin') {
     var token = jwt.sign({ admin: 'admin' }, 'gg', {
       expiresIn: 60 * 60 * 24
     })
-    res.json({
+
+    loginInfo = {
       success: true,
       message: 'login success',
       level: 999,
       token
-    })
+    }
+    res.cookie('loginInfo', JSON.stringify(loginInfo))
+    res.json(loginInfo)
   } else {
-    res.json({
-      success: false
-    })
+    res.cookie('loginInfo', JSON.stringify(loginInfo))
+    res.json()
   }
 })
 

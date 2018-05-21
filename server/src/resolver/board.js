@@ -1,11 +1,20 @@
 var shortid = require('shortid')
+
+//const jwtVerify = require('../../middleware/jwtVerify')
+
 let InitData = [
   { BoardId: '1', Title: 'Wonder Wonmen', Content: 'Wonder Wonmen is Beauty' },
   { BoardId: '2', Title: 'batMan', Content: 'batMan is Cool' }
 ]
+
 const Query = {
   Query: {
-    BoardAllQuery: () => {
+    BoardAllQuery: (parent, args, context) => {
+      //       console.log('context.req', context.req)
+
+      // jwtVerify(context)
+      //throw new Error('Not authenticated')
+      //return
       return InitData
     },
     BoardOneQuery: async (_, { BoardId = '1' }) => {
@@ -17,10 +26,10 @@ const Query = {
     }
   }
 }
+
 const Mutation = {
   Mutation: {
-    BoardUpdate: async (_, { BoardId, Title, Content }) => {
-      console.log('Updating')
+    BoardUpdate: async (_, { BoardId, Title, Content }, { user }) => {
       const sleep = waitTime => {
         setTimeout(() => {}, waitTime)
       }

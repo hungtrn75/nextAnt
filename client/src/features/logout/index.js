@@ -13,12 +13,12 @@ const formTailLayout = {
   wrapperCol: { span: 8, offset: 4 }
 }
 const LogoutForm = props => {
-  const { getFieldDecorator, resetFields } = props.form
+  const { getFieldDecorator, resetfields } = props.form
   return (
     <Form
       onSubmit={e => props.handleLogout({ e, form: props.form })}
       className="login-form"
-      resetFields={true}
+      resetfields={true}
     >
       <FormItem {...formTailLayout}>
         <Button type="primary" htmlType="submit">

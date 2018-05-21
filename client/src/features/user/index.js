@@ -99,7 +99,7 @@ export default () => (
                 })
 
                 toggleModal.toggle()
-                resultX.form.resetFields()
+                resultX.form.resetfields()
               }
               if (assignForm.value === 'create') {
                 result.container.createCrud.mutation({
@@ -107,7 +107,7 @@ export default () => (
                   refetchQueries: [{ query: userAllQuery }]
                 })
                 toggleModal.toggle()
-                resultX.form.resetFields()
+                resultX.form.resetfields()
               }
             }
           })
