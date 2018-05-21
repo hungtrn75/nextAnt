@@ -1,6 +1,6 @@
 module.exports = {
   origin: 'https://next-ant.herokuapp.com/',
   mongoURI: 'mongodb://admin:password@ds133657.mlab.com:33657/next-ant',
-  cookieKey: 'sadlkq2318sa8D',
+  cookieKey: 'asdasdklh2wdasd28ssS',
   secret: 'wdasd28sSGW32s&'
 }

@@ -1,53 +1,67 @@
-var shortid = require('shortid')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
-let InitData = [
-  { userId: '1', name: '神力女超人', nickName: 'Wonder Wonmen', tel: '' },
-  { userId: '2', name: '蝙蝠俠', nickName: 'batMan', tel: '' }
-]
-const Query = {
-  Query: {
-    userAllQuery: () => {
-      return InitData
-    },
-    userOneQuery: async (_, { userId = '1' }) => {
-      const result = InitData.find(item => {
-        return item.userId === userId
-      })
-      return result
-    }
-  }
-}
+const User = require('../models/user')
+const config = require('../../config')
+
+const Query = {}
+
 const Mutation = {
   Mutation: {
-    userUpdate: (_, { userId, name, nickName, tel, account, password }) => {
-      InitData.map(item => {
-        if (item.userId === userId) {
-          item.name = name
-          item.nickName = nickName
-          item.tel = tel
-          item.account = account
-          item.password = password
-        }
-        return item
-      })
+    signup: async (_, args, ctx) => {
+      let user = new User()
+      user.email = args.email
+      user.password = args.password
 
-      return { userId, name, nickName, tel }
-    },
-    userAdd: (_, { name, nickName, tel, account, password }) => {
-      const userId = shortid.generate()
-      const NewOne = { userId, name, nickName, tel, account, password }
-      InitData = [...InitData, NewOne]
-      return NewOne
-    },
-    userDelete: (_, { userId }) => {
-      const result = InitData.findIndex(item => {
-        return item.userId === userId
-      })
-      if (result) {
-        return InitData.splice(result, 1)
+      const existingUser = await User.findOne({ email: args.email })
+
+      if (existingUser) {
+        throw new Error('Account with that email is already exist')
       } else {
-        return {}
+        user.save()
+
+        const token = jwt.sign(
+          {
+            userId: user._id
+          },
+          config.secret,
+          {
+            expiresIn: '7d'
+          }
+        )
+
+        ctx.req.session.userToken = token
+        return 'Sign up success'
       }
+    },
+    login: async (_, args, ctx) => {
+      const user = await User.findOne({ email: args.email })
+
+      if (!user) {
+        throw new Error('No such user found')
+      }
+
+      const valid = await bcrypt.compare(args.password, user.password)
+      if (!valid) {
+        throw new Error('Invalid password')
+      }
+
+      const token = jwt.sign(
+        {
+          userId: user._id
+        },
+        config.secret,
+        {
+          expiresIn: '7d'
+        }
+      )
+
+      ctx.req.session.userToken = token
+      return 'Log in success'
+    },
+    logout: async (_, args, ctx) => {
+      ctx.req.session.userToken = null
+      return 'Log out success'
     }
   }
 }
