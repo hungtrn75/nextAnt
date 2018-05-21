@@ -20,7 +20,6 @@ export default props => {
       {({ toggleMenuModal, token, loginInfo, loginState }) => {
         let loginblock = {}
         let loginInfoData = ''
-        console.log("JSON.parse( localStorage.getItem('loginIngo')")
 
         const handleLoginCheck = () => {
           //only front end check

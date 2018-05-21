@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
-const cookieParser = require('cookie-parser')
 const cookieSession = require('cookie-session')
+
 require('./src/models/customer')
 
 const schema = require('./src')
@@ -25,33 +25,33 @@ const server = express()
 server.use(cors())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
-server.use(cookieParser())
-server.use(jwtVerify())
+server.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [envs.cookieKey]
+  })
+)
+server.use(jwtVerify)
 
 apolloMiddle(server, schema)
 apolloMiddleInterFace(server)
-// server.use((req, res, next) => {
-//   console.log('Cookies: ', req.cookies)
-//   next()
-// })
 
 server.post('/auth/login', (req, res) => {
   let loginInfo = { success: false }
   if (req.body.account === 'admin') {
-    var token = jwt.sign({ admin: 'admin' }, 'gg', {
+    const token = jwt.sign({ admin: 'admin' }, envs.secret, {
       expiresIn: 60 * 60 * 24
     })
-
     loginInfo = {
       success: true,
       message: 'login success',
       level: 999,
       token
     }
-    res.cookie('loginInfo', JSON.stringify(loginInfo))
+    req.session.loginInfo = JSON.stringify(loginInfo)
     res.json(loginInfo)
   } else {
-    res.cookie('loginInfo', JSON.stringify(loginInfo))
+    req.session.loginInfo = JSON.stringify(loginInfo)
     res.json()
   }
 })
