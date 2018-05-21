@@ -31,12 +31,14 @@ export default () => {
           toggleModal,
           recordChoose,
           container: {
-            query: { data, loading }
+            query: { error, data, loading }
           },
           crudInfo: {
             value: { queryName }
           }
         } = result
+
+        if (error) return <div>an error occer</div>
 
         const handleEvent = {
           handleToggleModal: (action, record) => {
