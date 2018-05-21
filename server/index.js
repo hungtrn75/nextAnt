@@ -22,7 +22,9 @@ const port = process.env.PORT || 8080
 
 const server = express()
 
-server.use(cors())
+//server.use(cors())
+server.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
+
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(

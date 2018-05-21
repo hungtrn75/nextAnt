@@ -56,6 +56,7 @@ export default props => {
                 method: 'post',
                 body: JSON.stringify(values),
                 mode: 'cors',
+                credentials: 'include',
                 headers: {
                   Accept:
                     'application/json, application/xml, text/plain, text/html, *.*',
