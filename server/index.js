@@ -44,9 +44,14 @@ server.post('/auth/login', (req, res) => {
     req.session.userToken = token
     res.end()
   } else {
-    req.session.userToken = token
+    req.session.userToken = ''
     res.end()
   }
+})
+
+server.post('/auth/logout', (req, res) => {
+  req.session = null
+  res.end()
 })
 
 server.listen(port, err => {
