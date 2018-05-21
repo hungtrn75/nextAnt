@@ -56,5 +56,6 @@ server.post('/auth/logout', (req, res) => {
 
 server.listen(port, err => {
   if (err) throw err
+  // eslint-disable-next-line no-console
   console.log(`> ready on http://localhost:${port}`)
 })
