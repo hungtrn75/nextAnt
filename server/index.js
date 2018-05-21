@@ -37,22 +37,15 @@ apolloMiddle(server, schema)
 apolloMiddleInterFace(server)
 
 server.post('/auth/login', (req, res) => {
-  let loginInfo = { success: false }
   if (req.body.account === 'admin') {
     const token = jwt.sign({ admin: 'admin' }, envs.secret, {
       expiresIn: 60 * 60 * 24
     })
-    loginInfo = {
-      success: true,
-      message: 'login success',
-      level: 999,
-      token
-    }
-    req.session.loginInfo = JSON.stringify(loginInfo)
-    res.json(loginInfo)
+    req.session.userToken = token
+    res.end()
   } else {
-    req.session.loginInfo = JSON.stringify(loginInfo)
-    res.json()
+    req.session.userToken = token
+    res.end()
   }
 })
 
