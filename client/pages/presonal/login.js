@@ -1,9 +1,10 @@
 import React from 'react'
-import LoginForm from '../../src/features/login'
+import LoginForm from '../../src/features/login/login'
 import { GlobalBlock } from '../../src/components/layout'
 import LogoutForm from '../../src/features/logout'
+import withApollo from '../../src/lib/withApollo'
 
-export default props => {
+const Login = props => {
   return (
     <GlobalBlock.Consumer>
       {result => {
@@ -20,3 +21,5 @@ export default props => {
     </GlobalBlock.Consumer>
   )
 }
+
+export default withApollo(Login)

@@ -20,35 +20,40 @@ export default props => (
 
       const handleLogout = resultX => {
         resultX.e.preventDefault()
-        fetch('http://localhost:8080/auth/logout', {
-          method: 'post',
-          credentials: 'include'
-        })
-          .then(({ status }) => {
-            if (status === 200) {
-              loginState.setState({ loggedIn: false })
-            }
-          })
-          .catch(err => {
-            console.log('err', err)
-          })
+        // fetch('http://localhost:8080/auth/logout', {
+        //   method: 'post',
+        //   credentials: 'include'
+        // })
+        //   .then(({ status }) => {
+        //     if (status === 200) {
+        //       loginState.setState({ loggedIn: false })
+        //     }
+        //   })
+        //   .catch(err => {
+        //     console.log('err', err)
+        //   })
+        loginState.setState({ loggedIn: false })
       }
 
       const handleLogin = resultX => {
         resultX.e.preventDefault()
         resultX.form.validateFields(async (err, values) => {
           if (!err) {
-            fetch('http://localhost:8080/auth/login', {
-              method: 'post',
-              body: JSON.stringify(values),
-              credentials: 'include'
-            })
-              .then(({ status }) => {
-                if (status === 200) loginState.setState({ loggedIn: true })
-              })
-              .catch(err => {
-                console.log('err', err)
-              })
+            // fetch('http://localhost:8080/auth/login', {
+            //   method: 'post',
+            //   body: JSON.stringify(values),
+            //   credentials: 'include'
+            // })
+            //   .then(({ status }) => {
+            //     if (status === 200) loginState.setState({ loggedIn: true })
+            //   })
+            //   .catch(err => {
+            //     console.log('err', err)
+            //   })
+
+            console.log('===test===')
+            resultX.loginAction.mutation({ variables: values })
+            loginState.setState({ loggedIn: true })
           }
         })
       }

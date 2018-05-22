@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch'
 
 import { Row, Col, Form, Input, Button, Checkbox } from 'antd'
 import Link from 'next/link'
+import { ActionContainer } from './grapgql'
 
 const FormItem = Form.Item
 const formItemLayout = {
@@ -16,46 +17,72 @@ const formTailLayout = {
 
 const SignUpForm = props => {
   const { getFieldDecorator, resetFields } = props.form
+
   return (
-    <Form
-      onSubmit={e => props.handleLogin({ e, form: props.form })}
-      className="login-form"
-      resetFields={true}
-    >
-      <FormItem {...formItemLayout} label="account">
-        {getFieldDecorator('account', {
-          rules: [
-            {
-              required: true,
-              message: 'please input your account'
+    <ActionContainer>
+      {({ signupAction }) => {
+        const { result } = signupAction
+
+        const handleSignup = resultX => {
+          resultX.e.preventDefault()
+          resultX.form.validateFields(async (err, values) => {
+            if (!err) {
+              await signupAction.mutation({ variables: values })
+              signupAction.result.data ? resultX.form.resetFields() : ''
             }
-          ]
-        })(<Input placeholder="please input your account" />)}
-      </FormItem>
+          })
+        }
 
-      <FormItem {...formItemLayout} label="password">
-        {getFieldDecorator('password', {
-          rules: [
-            {
-              required: true,
-              message: 'please input your password'
-            }
-          ]
-        })(<Input placeholder="please input your password" />)}
-      </FormItem>
+        return (
+          <Form
+            onSubmit={e => handleSignup({ e, form: props.form })}
+            className="login-form"
+            resetFields={true}
+          >
+            <FormItem {...formItemLayout} label="email">
+              {getFieldDecorator('email', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'please input your email'
+                  }
+                ]
+              })(<Input placeholder="please input your email" />)}
+            </FormItem>
 
-      <Row>
-        <Col span={14} style={{ textAlign: 'right' }}>
-          <Button type="primary" htmlType="submit" style={{ marginRight: 15 }}>
-            Signup{' '}
-          </Button>
+            <FormItem {...formItemLayout} label="password">
+              {getFieldDecorator('password', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'please input your password'
+                  }
+                ]
+              })(<Input placeholder="please input your password" />)}
+            </FormItem>
 
-          <Link href="/presonal/login" style={{ marginLeft: 8 }}>
-            <a>Login</a>
-          </Link>
-        </Col>
-      </Row>
-    </Form>
+            <Row>
+              {signupAction.result.error ? <div>error</div> : ''}
+              {signupAction.result.data ? <div>ok</div> : ''}
+
+              <Col span={14} style={{ textAlign: 'right' }}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{ marginRight: 15 }}
+                >
+                  Signup{' '}
+                </Button>
+
+                <Link href="/presonal/login" style={{ marginLeft: 8 }}>
+                  <a>Forward Login</a>
+                </Link>
+              </Col>
+            </Row>
+          </Form>
+        )
+      }}
+    </ActionContainer>
   )
 }
 
