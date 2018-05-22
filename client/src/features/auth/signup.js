@@ -62,7 +62,12 @@ const SignUpForm = props => {
                     message: 'please input your password'
                   }
                 ]
-              })(<Input placeholder="please input your password" />)}
+              })(
+                <Input
+                  type="password"
+                  placeholder="please input your password"
+                />
+              )}
             </FormItem>
 
             <Row>

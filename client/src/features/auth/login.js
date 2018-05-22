@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import fetch from 'isomorphic-fetch'
+import cookie from 'react-cookie'
+
 import { GlobalBlock } from '../../../src/components/layout'
 
 import { Row, Col, Form, Input, Button, Checkbox } from 'antd'
@@ -37,7 +39,13 @@ const LoginForm = props => {
                 resultX.form.validateFields(async (err, values) => {
                   if (!err) {
                     await loginAction.mutation({ variables: values })
-                    loginAction.result.data ? resultX.form.resetFields() : ''
+                    //console.log('loginAction.result.data', loginAction.result.data)
+                    // if (loginAction.result.data) {
+                    //   loginAction.result.data ? resultX.form.resetFields() : ''
+                    //   console.log('document', cookie.load("session"))
+
+                    loginState.setState({ loggedIn: true })
+                    // }
                   }
                 })
               }
@@ -69,7 +77,12 @@ const LoginForm = props => {
                           message: 'please input your password'
                         }
                       ]
-                    })(<Input placeholder="please input your password" />)}
+                    })(
+                      <Input
+                        type="password"
+                        placeholder="please input your password"
+                      />
+                    )}
                   </FormItem>
 
                   <Row>

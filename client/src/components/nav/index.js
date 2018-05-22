@@ -75,35 +75,6 @@ export default () => (
     </SubMenu>
 
     <SubMenu
-      key="event"
-      title={
-        <span>
-          <Icon type="gift" />
-          <span>Event</span>
-        </span>
-      }
-    >
-      <Menu.Item key="c1">
-        <Link href="#">
-          {' '}
-          <a>EventInfo</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="c2">
-        <Link href="#">
-          {' '}
-          <a>Event</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="c5">
-        <Link href="#">
-          <a> PastEvent</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="c6">LetterPrint</Menu.Item>
-    </SubMenu>
-
-    <SubMenu
       key="sub6"
       title={
         <span>
