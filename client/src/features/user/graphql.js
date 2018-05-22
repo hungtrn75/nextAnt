@@ -6,7 +6,7 @@ import { adopt } from 'react-adopt'
 export const userAllQuery = gql`
   query userAllQuery {
     userAllQuery {
-      id
+      _id
       email
       password
     }
@@ -26,7 +26,7 @@ export const userAllQuery = gql`
 // `
 
 export const userDelete = gql`
-  mutation userDelete($_id: String) {
+  mutation userDelete($_id: String!) {
     userDelete(_id: $_id) {
       _id
     }

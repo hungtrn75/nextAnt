@@ -29,7 +29,7 @@ export default () => (
       <Menu.Item key="aa1">
         <Icon type="user" />
         <span>
-          <Link href={'/presonal/presonal'}>
+          <Link href={'/presonal/'}>
             <a>
               <span>MyProfile</span>
             </a>
@@ -62,13 +62,13 @@ export default () => (
       key="product"
       title={
         <span>
-          <Icon type="solution" />
+          <Icon type="/solution" />
           <span>Product</span>
         </span>
       }
     >
       <Menu.Item key="b1">
-        <Link href="product">
+        <Link href="/product">
           <a>Product(All)</a>
         </Link>
       </Menu.Item>

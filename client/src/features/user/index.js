@@ -60,14 +60,15 @@ export default () => (
           toggleModal.toggle()
           switch (action) {
             case DETAIL:
-              recordChoose.setValue(record.data)
+              recordChoose.setValue(record)
               assignForm.setValue('detail')
               break
           }
         },
         handleDelete: record => {
-          //console.log('delete')
-          let values = { userId: recordChoose.value.userId }
+          let values = { _id: record._id }
+          console.log('delete', record)
+
           result.container.deleteCrud.mutation({
             variables: values,
             refetchQueries: [{ query: userAllQuery }]
@@ -77,30 +78,19 @@ export default () => (
 
       const columns = [
         {
-          title: 'name',
-          dataIndex: 'name',
-          key: 'name',
+          title: 'email',
+          dataIndex: 'email',
+          key: 'email',
           render: (text, record) => (
             <a
               href="#"
-              onClick={() =>
-                handleEvent.handleToggleModal(DETAIL, { data: record })
-              }
+              onClick={() => handleEvent.handleToggleModal(DETAIL, record)}
             >
               {text}
             </a>
           )
         },
-        {
-          title: 'tel',
-          dataIndex: 'tel',
-          key: 'tel'
-        },
-        {
-          title: 'account',
-          dataIndex: 'account',
-          key: 'account'
-        },
+
         {
           title: 'Function',
           dataIndex: 'endDate',
@@ -108,7 +98,7 @@ export default () => (
           render: (text, record) => {
             return (
               <span>
-                <Button onClick={() => handleEvent.handleDelete({ record })}>
+                <Button onClick={() => handleEvent.handleDelete(record)}>
                   Delete
                 </Button>
               </span>
@@ -126,11 +116,8 @@ export default () => (
       const dataSet = data[queryName].map((v, i) => {
         return {
           key: i,
-          name: v.name,
-          tel: v.tel,
-          account: v.account,
-          password: v.password,
-          userId: v.userId
+          _id: v._id,
+          email: v.email
         }
       })
 

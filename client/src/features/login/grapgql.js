@@ -4,17 +4,26 @@ import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
 
 export const login = gql`
-  mutation login($email: String, $password: String) {
+  mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      message
+      token
+    }
+  }
+`
+export const userAllQuery = gql`
+  query userAllQuery {
+    userAllQuery {
+      _id
+      email
+      password
     }
   }
 `
 
 export const signup = gql`
-  mutation signup($email: String, $password: String) {
+  mutation signup($email: String!, $password: String!) {
     signup(email: $email, password: $password) {
-      message
+      token
     }
   }
 `
@@ -22,7 +31,7 @@ export const signup = gql`
 export const logout = gql`
   mutation logout {
     logout {
-      message
+      token
     }
   }
 `

@@ -3,7 +3,7 @@ userAllQuery:[User]
 `
 
 const typeDefs = `type User {
-  id: ID! @unique
+  _id: ID! @unique
   email: String! @unique
   password: String!
 }

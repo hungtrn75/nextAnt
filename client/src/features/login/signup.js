@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch'
 
 import { Row, Col, Form, Input, Button, Checkbox } from 'antd'
 import Link from 'next/link'
-import { ActionContainer } from './grapgql'
+import { ActionContainer, userAllQuery } from './grapgql'
 
 const FormItem = Form.Item
 const formItemLayout = {
@@ -27,7 +27,11 @@ const SignUpForm = props => {
           resultX.e.preventDefault()
           resultX.form.validateFields(async (err, values) => {
             if (!err) {
-              await signupAction.mutation({ variables: values })
+              await signupAction.mutation({
+                variables: values,
+                refetchQueries: [{ query: userAllQuery }]
+              })
+              console.log(signupAction.result.data)
               signupAction.result.data ? resultX.form.resetFields() : ''
             }
           })
@@ -62,7 +66,15 @@ const SignUpForm = props => {
             </FormItem>
 
             <Row>
-              {signupAction.result.error ? <div>error</div> : ''}
+              {signupAction.result.error ? (
+                <div>
+                  <label style={{ color: 'red' }}>
+                    {signupAction.result.error.message}
+                  </label>
+                </div>
+              ) : (
+                ''
+              )}
               {signupAction.result.data ? <div>ok</div> : ''}
 
               <Col span={14} style={{ textAlign: 'right' }}>
