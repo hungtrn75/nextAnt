@@ -84,19 +84,19 @@ export default () => (
       }
     >
       <Menu.Item key="c1">
-        <Link href="/event/eventInfo">
+        <Link href="#">
           {' '}
           <a>EventInfo</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="c2">
-        <Link href="/event/eventTransfer">
+        <Link href="#">
           {' '}
           <a>Event</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="c5">
-        <Link href="/event/eventTransferRecord">
+        <Link href="#">
           <a> PastEvent</a>
         </Link>
       </Menu.Item>
@@ -137,18 +137,18 @@ export default () => (
         </span>
       </Menu.Item>
       <Menu.Item key="f2">
-        <Link href="/admin/premissonTemplate">
+        <Link href="#">
           <a>permission-Template</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="f3">
-        <Link href="/admin/premisson">
+        <Link href="#">
           <a>permission</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="f4">Board</Menu.Item>
       <Menu.Item key="f5">
-        <Link href="/admin/log">
+        <Link href="#">
           <a>BoardManage</a>
         </Link>{' '}
       </Menu.Item>
