@@ -25,8 +25,7 @@ const LoginForm = props => {
         return (
           <ActionContainer>
             {({ loginAction }) => {
-              const handleLogin = resultX => {
-                resultX.e.preventDefault()
+              const handleLogin = resultX => () => {
                 resultX.form.validateFields(async (err, values) => {
                   if (!err) {
                     await loginAction.mutation({ variables: values })
@@ -37,13 +36,7 @@ const LoginForm = props => {
               }
 
               return (
-                <Form
-                  onSubmit={e =>
-                    handleLogin({ e, form: props.form, loginAction })
-                  }
-                  className="login-form"
-                  resetFields={true}
-                >
+                <Form className="login-form" resetFields={true}>
                   <FormItem {...formItemLayout} label="email">
                     {getFieldDecorator('email', {
                       rules: [
@@ -83,8 +76,8 @@ const LoginForm = props => {
 
                       <Button
                         type="primary"
-                        htmlType="submit"
                         style={{ marginRight: 15 }}
+                        onClick={handleLogin({ form: props.form, loginAction })}
                       >
                         Login{' '}
                       </Button>

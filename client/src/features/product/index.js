@@ -50,7 +50,7 @@ export default () => {
         let TempForm = DetailForm
 
         const handleEvent = {
-          handleToggleModal: () => (action, record) => {
+          handleToggleModal: (action, record) => () => {
             toggleModal.toggle()
             switch (action) {
               case DETAIL:
@@ -75,8 +75,7 @@ export default () => {
               refetchQueries: [{ query: productAllQuery }]
             })
           },
-          handleSubmit: resultX => {
-            resultX.e.preventDefault()
+          handleSubmit: resultX => () => {
             resultX.form.validateFields(async (err, values) => {
               if (!err) {
                 toggleModal.toggle()

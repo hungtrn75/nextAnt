@@ -16,24 +16,20 @@ const SignUpForm = props => {
   return (
     <ActionContainer>
       {({ signupAction }) => {
-        const handleSignup = () => resultX => {
-          resultX.e.preventDefault()
-          resultX.form.validateFields(async (err, values) => {
+        const handleSignup = form => () => {
+          form.validateFields(async (err, values) => {
             if (!err) {
               await signupAction.mutation({
                 variables: values,
                 refetchQueries: [{ query: userAllQuery }]
               })
-              signupAction.result.data ? resultX.form.resetFields() : ''
+              signupAction.result.data ? form.resetFields() : ''
             }
           })
         }
 
         return (
-          <Form
-            onSubmit={handleSignup({ e, form: props.form })}
-            className="login-form"
-          >
+          <Form className="login-form">
             <FormItem {...formItemLayout} label="email">
               {getFieldDecorator('email', {
                 rules: [
@@ -76,8 +72,8 @@ const SignUpForm = props => {
               <Col span={14} style={{ textAlign: 'right' }}>
                 <Button
                   type="primary"
-                  htmlType="submit"
                   style={{ marginRight: 15 }}
+                  onClick={handleSignup(props.form)}
                 >
                   Signup{' '}
                 </Button>

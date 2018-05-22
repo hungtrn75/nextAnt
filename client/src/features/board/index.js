@@ -67,9 +67,9 @@ export default () => {
               refetchQueries: [{ query: BoardAllQuery }]
             })
           },
-          handleSubmit: resultX => {
-            resultX.e.preventDefault()
-            resultX.form.validateFields(async (err, values) => {
+          handleSubmit: form => () => {
+            //resultX.e.preventDefault()
+            form.validateFields(async (err, values) => {
               if (!err) {
                 toggleModal.toggle()
                 recordChoose.setValue(values)
@@ -80,14 +80,14 @@ export default () => {
                     variables: values,
                     refetchQueries: [{ query: BoardAllQuery }]
                   })
-                  resultX.form.resetFields()
+                  form.resetFields()
                 }
                 if (assignForm.value === 'create') {
                   await result.container.createCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: BoardAllQuery }]
                   })
-                  resultX.form.resetFields()
+                  form.resetFields()
                 }
               }
             })

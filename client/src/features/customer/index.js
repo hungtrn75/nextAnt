@@ -69,9 +69,7 @@ export default () => {
             })
           },
 
-          handleSubmit: resultX => {
-            resultX.e.preventDefault()
-
+          handleSubmit: resultX => () => {
             resultX.form.validateFields(async (err, values) => {
               if (!err) {
                 toggleModal.toggle()

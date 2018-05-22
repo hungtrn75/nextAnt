@@ -8,17 +8,12 @@ const FormBlock = props => {
   const { form, handleEvent, record } = props
   const { getFieldDecorator, resetFields } = form
 
-  // handleEvent.handleSubmit({ e, form })
   return (
     <LogicBlock.Consumer>
       {({ result: { recordChoose } }) => {
         const { value } = recordChoose
         return (
-          <Form
-            onSubmit={e => handleEvent.handleSubmit({ e, form: props.form })}
-            className="login-form"
-            resetFields={true}
-          >
+          <Form className="login-form" resetFields={true}>
             <FormItem>
               {getFieldDecorator('email', {
                 rules: [{ required: true, message: 'Please input email!' }],
@@ -36,8 +31,8 @@ const FormBlock = props => {
               <FormItem>
                 <Button
                   type="primary"
-                  htmlType="submit"
                   className="login-form-button"
+                  onClick={handleEvent.handleSubmit({ form: props.form })}
                 >
                   {props.actionText}
                 </Button>
