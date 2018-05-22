@@ -6,103 +6,55 @@ import { adopt } from 'react-adopt'
 export const userAllQuery = gql`
   query userAllQuery {
     userAllQuery {
-      userId
-      name
-      tel
-      nickName
-      account
-      password
-    }
-  }
-`
-export const userOneQuery = gql`
-  query userOneQuery($userId: String) {
-    userOneQuery(userId: $userId) {
-      userId
-      name
-      tel
-      nickName
-      account
+      id
+      email
       password
     }
   }
 `
 
-export const userUpdate = gql`
-  mutation userUpdate(
-    $userId: String
-    $name: String
-    $nickName: String
-    $tel: String
-    $account: String
-    $password: String
-  ) {
-    userUpdate(
-      userId: $userId
-      name: $name
-      nickName: $nickName
-      tel: $tel
-      account: $account
-      password: $password
-    ) {
-      userId
-      name
-      tel
-      nickName
-      account
-      password
-    }
-  }
-`
+// export const userUpdate = gql`
+//   mutation userUpdate(    $_id: String    $email: String    $password: String
+//   ) {
+//     userUpdate(      _id: $_id      email: $email      password: $password
+//     ) {
+//       _id
+//       email
+//       password
+//     }
+//   }
+// `
 
 export const userDelete = gql`
-  mutation userDelete($userId: String) {
-    userDelete(userId: $userId) {
-      userId
-      name
-      tel
-      nickName
-      account
-      password
+  mutation userDelete($_id: String) {
+    userDelete(_id: $_id) {
+      _id
     }
   }
 `
 
-export const userAdd = gql`
-  mutation userAdd(
-    $name: String
-    $nickName: String
-    $tel: String
-    $account: String
-    $password: String
-  ) {
-    userAdd(
-      name: $name
-      nickName: $nickName
-      tel: $tel
-      account: $account
-      password: $password
-    ) {
-      userId
-      name
-      tel
-      nickName
-      account
-      password
-    }
-  }
-`
+// export const userCreate = gql`
+//   mutation userCreate(
+//     $email: String
+//     $password: String
+//   ) {
+//     userCreate(
+//       email: $email
+//       password: $password
+//     ) {
+//       _id
+//       email
+//       password
+//     }
+//   }
+// `
 
-const createCrud = ({ render }) => (
-  <Mutation mutation={userAdd}>
-    {(mutation, result) => render({ mutation, result })}
-  </Mutation>
-)
-const updateCrud = ({ render }) => (
-  <Mutation mutation={userUpdate}>
-    {(mutation, result) => render({ mutation, result })}
-  </Mutation>
-)
+// const createCrud = ({ render }) => (
+//   <Mutation mutation={userCreate}>
+//     {(mutation, result) => render({ mutation, result })}
+//   </Mutation>
+// )
+
 const deleteCrud = ({ render }) => (
   <Mutation mutation={userDelete}>
     {(mutation, result) => render({ mutation, result })}
@@ -110,7 +62,5 @@ const deleteCrud = ({ render }) => (
 )
 export const CrudContainer = adopt({
   query: <Query query={userAllQuery} />,
-  createCrud,
-  updateCrud,
   deleteCrud
 })

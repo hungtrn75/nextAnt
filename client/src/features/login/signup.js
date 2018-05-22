@@ -14,7 +14,7 @@ const formTailLayout = {
   wrapperCol: { span: 8, offset: 4 }
 }
 
-const LoginForm = props => {
+const SignUpForm = props => {
   const { getFieldDecorator, resetFields } = props.form
   return (
     <Form
@@ -47,11 +47,11 @@ const LoginForm = props => {
       <Row>
         <Col span={14} style={{ textAlign: 'right' }}>
           <Button type="primary" htmlType="submit" style={{ marginRight: 15 }}>
-            Login{' '}
+            Signup{' '}
           </Button>
 
-          <Link href="/presonal/signup" style={{ marginLeft: 8 }}>
-            <a>SignUp</a>
+          <Link href="/presonal/login" style={{ marginLeft: 8 }}>
+            <a>Login</a>
           </Link>
         </Col>
       </Row>
@@ -59,4 +59,4 @@ const LoginForm = props => {
   )
 }
 
-export default Form.create()(LoginForm)
+export default Form.create()(SignUpForm)

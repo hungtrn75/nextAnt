@@ -15,7 +15,8 @@ export default () => {
           toggleModal,
           crudInfo: {
             value: { queryName }
-          }
+          },
+          isCreateButton
         }
       }) => {
         // console.log('tableData')
@@ -27,13 +28,17 @@ export default () => {
         return (
           <div>
             <Table columns={columns} dataSource={dataSet} />
-            <Button
-              onClick={() => {
-                handleEvent.handleToggleModal(CREATE)
-              }}
-            >
-              create
-            </Button>
+            {!isCreateButton ? (
+              <Button
+                onClick={() => {
+                  handleEvent.handleToggleModal(CREATE)
+                }}
+              >
+                create
+              </Button>
+            ) : (
+              ''
+            )}
           </div>
         )
       }}

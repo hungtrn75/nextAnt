@@ -6,7 +6,7 @@ const FormItem = Form.Item
 
 const FormBlock = props => {
   const { form, handleEvent, record } = props
-  const { getFieldDecorator, resetfields } = form
+  const { getFieldDecorator, resetFields } = form
 
   // handleEvent.handleSubmit({ e, form })
   return (
@@ -18,25 +18,13 @@ const FormBlock = props => {
           <Form
             onSubmit={e => handleEvent.handleSubmit({ e, form: props.form })}
             className="login-form"
-            resetfields={true}
+            resetFields={true}
           >
             <FormItem>
-              {getFieldDecorator('name', {
-                rules: [{ required: true, message: 'Please input name!' }],
-                initialValue: value.name ? value.name : ''
-              })(<Input placeholder="name" />)}
-            </FormItem>
-            <FormItem>
-              {getFieldDecorator('tel', {
-                rules: [{ required: true, message: 'Please input tel!' }],
-                initialValue: value.tel ? value.tel : ''
-              })(<Input type="textArea" placeholder="tel" />)}
-            </FormItem>
-            <FormItem>
-              {getFieldDecorator('account', {
-                rules: [{ required: true, message: 'Please input account!' }],
-                initialValue: value.account ? value.account : ''
-              })(<Input type="textArea" placeholder="account" />)}
+              {getFieldDecorator('email', {
+                rules: [{ required: true, message: 'Please input email!' }],
+                initialValue: value.email ? value.email : ''
+              })(<Input placeholder="email" />)}
             </FormItem>
             <FormItem>
               {getFieldDecorator('password', {

@@ -6,7 +6,7 @@ const FormItem = Form.Item
 
 const FormBlock = props => {
   const { form, handleEvent, record } = props
-  const { getFieldDecorator, resetfields } = form
+  const { getFieldDecorator, resetFields } = form
 
   // handleEvent.handleSubmit({ e, form })
   return (
@@ -17,7 +17,7 @@ const FormBlock = props => {
           <Form
             onSubmit={e => handleEvent.handleSubmit({ e, form })}
             className="login-form"
-            resetfields={true}
+            resetFields={true}
           >
             <FormItem>
               {getFieldDecorator('Title', {

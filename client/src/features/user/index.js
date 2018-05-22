@@ -19,7 +19,8 @@ const AdoptContainer = adopt({
   crudInfo: <Value initial={{ queryName: 'userAllQuery' }} />,
   formData: <Value initial={{ formData: {} }} />,
   assignForm: <Value initial={'create'} />,
-  recordChoose: <Value initial={''} />
+  recordChoose: <Value initial={''} />,
+  isCreateButton: <Value initial={'false'} />
 })
 
 export default () => (
@@ -31,14 +32,17 @@ export default () => (
         toggleModal,
         recordChoose,
         container: {
-          query: { data, loading }
+          query: { data, loading, error }
         },
         crudInfo: {
           value: { queryName }
         }
       } = result
-      console.log(result)
-
+      //console.log(result)
+      if (error) {
+        console.log(error)
+        return <div>Opps something wrong</div>
+      }
       const CreateForm = () => {
         return <Form handleEvent={handleEvent} actionText={'create'} />
       }
@@ -59,16 +63,6 @@ export default () => (
               recordChoose.setValue(record.data)
               assignForm.setValue('detail')
               break
-            case UPDATE:
-              assignForm.setValue('update')
-              // console.log('update')
-              // console.log(record.data)
-              recordChoose.setValue(record.data)
-              break
-            case CREATE:
-              assignForm.setValue('create')
-              recordChoose.setValue('')
-              break
           }
         },
         handleDelete: record => {
@@ -78,40 +72,6 @@ export default () => (
             variables: values,
             refetchQueries: [{ query: userAllQuery }]
           })
-        },
-        handleSubmit: resultX => {
-          resultX.e.preventDefault()
-          resultX.form.validateFields(async (err, values) => {
-            if (!err) {
-              // console.log('recordChoose')
-              // console.log(recordChoose)
-              // console.log(result)
-
-              //avoid update
-              recordChoose.setValue(values)
-
-              if (assignForm.value === 'update') {
-                values.userId = recordChoose.value.userId
-
-                result.container.updateCrud.mutation({
-                  variables: values,
-                  refetchQueries: [{ query: userAllQuery }]
-                })
-
-                toggleModal.toggle()
-                resultX.form.resetfields()
-              }
-              if (assignForm.value === 'create') {
-                result.container.createCrud.mutation({
-                  variables: values,
-                  refetchQueries: [{ query: userAllQuery }]
-                })
-                toggleModal.toggle()
-                resultX.form.resetfields()
-              }
-            }
-          })
-          //console.log('handleSubmit')
         }
       }
 
@@ -148,14 +108,6 @@ export default () => (
           render: (text, record) => {
             return (
               <span>
-                <Button
-                  onClick={() =>
-                    handleEvent.handleToggleModal(UPDATE, { data: record })
-                  }
-                >
-                  Update
-                </Button>
-                <Divider type="vertical" />
                 <Button onClick={() => handleEvent.handleDelete({ record })}>
                   Delete
                 </Button>
@@ -188,9 +140,7 @@ export default () => (
           columns={columns}
           dataSet={dataSet}
           result={result}
-          CreateForm={CreateForm}
           DetailForm={DetailForm}
-          UpdateForm={UpdateForm}
         />
       )
     }}

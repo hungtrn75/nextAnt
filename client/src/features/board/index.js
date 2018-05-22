@@ -80,14 +80,14 @@ export default () => {
                     variables: values,
                     refetchQueries: [{ query: BoardAllQuery }]
                   })
-                  resultX.form.resetfields()
+                  resultX.form.resetFields()
                 }
                 if (assignForm.value === 'create') {
                   await result.container.createCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: BoardAllQuery }]
                   })
-                  resultX.form.resetfields()
+                  resultX.form.resetFields()
                 }
               }
             })

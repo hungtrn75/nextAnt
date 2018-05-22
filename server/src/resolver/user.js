@@ -4,7 +4,13 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 const config = require('../../config')
 
-const Query = {}
+const Query = {
+  Query: {
+    userAllQuery: async () => {
+      return User.find()
+    }
+  }
+}
 
 const Mutation = {
   Mutation: {
@@ -62,6 +68,10 @@ const Mutation = {
     logout: async (_, args, ctx) => {
       ctx.req.session.userToken = null
       return 'Log out success'
+    },
+    userDelete: async (_, { _id }) => {
+      await User.findOneAndRemove({ _id })
+      return { _id }
     }
   }
 }
