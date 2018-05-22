@@ -43,16 +43,16 @@ export default () => {
         }
 
         const handleEvent = {
-          handleToggleModal: (action, record) => {
+          handleToggleModal: (action, record) => () => {
             toggleModal.toggle()
             switch (action) {
               case DETAIL:
-                recordChoose.setValue(record.data)
+                recordChoose.setValue(record)
                 assignForm.setValue('detail')
                 break
               case UPDATE:
                 assignForm.setValue('update')
-                recordChoose.setValue(record.data)
+                recordChoose.setValue(record)
                 break
               case CREATE:
                 assignForm.setValue('create')
@@ -60,8 +60,8 @@ export default () => {
                 break
             }
           },
-          handleDelete: record => {
-            let values = { BoardId: recordChoose.value.BoardId }
+          handleDelete: record => () => {
+            let values = { BoardId: record.BoardId }
             result.container.deleteCrud.mutation({
               variables: values,
               refetchQueries: [{ query: BoardAllQuery }]
@@ -104,8 +104,6 @@ export default () => {
           return <Form handleEvent={handleEvent} actionText={'update'} />
         }
 
-        let TempForm = DetailForm
-
         const columns = [
           {
             title: 'TiTle',
@@ -114,9 +112,9 @@ export default () => {
             render: (text, record) => (
               <a
                 href="#"
-                onClick={() =>
-                  handleEvent.handleToggleModal(DETAIL, { data: record })
-                }
+                onClick={handleEvent.handleToggleModal(DETAIL, {
+                  data: record
+                })}
               >
                 {text}
               </a>
@@ -140,14 +138,12 @@ export default () => {
               return (
                 <span>
                   <Button
-                    onClick={() =>
-                      handleEvent.handleToggleModal(UPDATE, { data: record })
-                    }
+                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
                   >
                     Update
                   </Button>
                   <Divider type="vertical" />
-                  <Button onClick={() => handleEvent.handleDelete({ record })}>
+                  <Button onClick={handleEvent.handleDelete(record)}>
                     Delete
                   </Button>
                 </span>

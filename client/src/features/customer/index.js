@@ -41,7 +41,9 @@ export default () => {
         if (error) return <div>an error occer</div>
 
         const handleEvent = {
-          handleToggleModal: (action, record) => {
+          handleToggleModal: (action, record) => () => {
+            console.log('action', action)
+            console.log('record', record)
             toggleModal.toggle()
             switch (action) {
               case DETAIL:
@@ -59,7 +61,7 @@ export default () => {
             }
           },
 
-          handleDelete: record => {
+          handleDelete: record => () => {
             let values = { _id: record._id }
             result.container.deleteCrud.mutation({
               variables: values,
@@ -69,6 +71,7 @@ export default () => {
 
           handleSubmit: resultX => {
             resultX.e.preventDefault()
+
             resultX.form.validateFields(async (err, values) => {
               if (!err) {
                 toggleModal.toggle()
@@ -131,13 +134,11 @@ export default () => {
             key: 'function',
             render: (text, record) => (
               <span>
-                <Button
-                  onClick={() => handleEvent.handleToggleModal(UPDATE, record)}
-                >
+                <Button onClick={handleEvent.handleToggleModal(UPDATE, record)}>
                   Update
                 </Button>
                 <Divider type="vertical" />
-                <Button onClick={() => handleEvent.handleDelete(record)}>
+                <Button onClick={handleEvent.handleDelete(record)}>
                   Delete
                 </Button>
               </span>

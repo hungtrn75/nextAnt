@@ -1,13 +1,9 @@
 import React from 'react'
 import { adopt } from 'react-adopt'
 import { Toggle, Value } from 'react-powerplug'
-import { Button, Divider } from 'antd'
+import { Button } from 'antd'
 
-import CrudTemplate, {
-  CREATE,
-  UPDATE,
-  DETAIL
-} from '../../components/crudTemplate'
+import CrudTemplate, { DETAIL } from '../../components/crudTemplate'
 import { CrudContainer, userAllQuery } from './graphql'
 
 import Form from './form'
@@ -25,8 +21,7 @@ const AdoptContainer = adopt({
 
 export default () => (
   <AdoptContainer>
-    {//({ container, toggleModel, state }) => {
-    result => {
+    {result => {
       const {
         assignForm,
         toggleModal,
@@ -41,20 +36,9 @@ export default () => (
       if (error) {
         return <div>Opps something wrong</div>
       }
-      const CreateForm = () => {
-        return <Form handleEvent={handleEvent} actionText={'create'} />
-      }
-      const DetailForm = () => {
-        return <Form handleEvent={handleEvent} actionText={'detail'} />
-      }
-      const UpdateForm = () => {
-        return <Form handleEvent={handleEvent} actionText={'update'} />
-      }
-
-      let TempForm = DetailForm
 
       const handleEvent = {
-        handleToggleModal: (action, record) => {
+        handleToggleModal: () => (action, record) => {
           toggleModal.toggle()
           switch (action) {
             case DETAIL:
@@ -63,7 +47,7 @@ export default () => (
               break
           }
         },
-        handleDelete: record => {
+        handleDelete: record => () => {
           let values = { _id: record._id }
 
           result.container.deleteCrud.mutation({
@@ -79,10 +63,7 @@ export default () => (
           dataIndex: 'email',
           key: 'email',
           render: (text, record) => (
-            <a
-              href="#"
-              onClick={() => handleEvent.handleToggleModal(DETAIL, record)}
-            >
+            <a href="#" onClick={handleEvent.handleToggleModal(DETAIL, record)}>
               {text}
             </a>
           )
@@ -95,7 +76,7 @@ export default () => (
           render: (text, record) => {
             return (
               <span>
-                <Button onClick={() => handleEvent.handleDelete(record)}>
+                <Button onClick={handleEvent.handleDelete(record)}>
                   Delete
                 </Button>
               </span>
@@ -103,6 +84,10 @@ export default () => (
           }
         }
       ]
+
+      const DetailForm = () => {
+        return <Form handleEvent={handleEvent} actionText={'detail'} />
+      }
       if (loading) {
         return <div>Logining</div>
       }

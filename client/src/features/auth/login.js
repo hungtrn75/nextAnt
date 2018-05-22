@@ -2,7 +2,7 @@ import React from 'react'
 
 import { GlobalBlock } from '../../../src/components/layout'
 
-import { Row, Col, Form, Input, Button, Checkbox } from 'antd'
+import { Row, Col, Form, Input, Button } from 'antd'
 import Link from 'next/link'
 import { ActionContainer } from './grapgql'
 
@@ -11,26 +11,20 @@ const formItemLayout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 8 }
 }
-const formTailLayout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 8, offset: 4 }
-}
 
 const LoginForm = props => {
-  const { getFieldDecorator, resetFields } = props.form
+  const { getFieldDecorator } = props.form
   return (
     <GlobalBlock.Consumer>
       {result => {
         if (!process.browser) {
           return <div />
         }
-        const { loginState, handleLoginEvent } = result
+        const { loginState } = result
 
         return (
           <ActionContainer>
             {({ loginAction }) => {
-              const { result: resultY } = loginAction
-
               const handleLogin = resultX => {
                 resultX.e.preventDefault()
                 resultX.form.validateFields(async (err, values) => {

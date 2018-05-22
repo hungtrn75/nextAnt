@@ -50,7 +50,7 @@ export default () => {
         let TempForm = DetailForm
 
         const handleEvent = {
-          handleToggleModal: (action, record) => {
+          handleToggleModal: () => (action, record) => {
             toggleModal.toggle()
             switch (action) {
               case DETAIL:
@@ -68,7 +68,7 @@ export default () => {
                 break
             }
           },
-          handleDelete: record => {
+          handleDelete: record => () => {
             let values = { productId: record.productId }
             result.container.deleteCrud.mutation({
               variables: values,
@@ -110,7 +110,7 @@ export default () => {
             render: (text, record) => (
               <a
                 href="#"
-                onClick={() => handleEvent.handleToggleModal(DETAIL, record)}
+                onClick={handleEvent.handleToggleModal(DETAIL, record)}
               >
                 {text}
               </a>
@@ -134,14 +134,12 @@ export default () => {
               return (
                 <span>
                   <Button
-                    onClick={() =>
-                      handleEvent.handleToggleModal(UPDATE, record)
-                    }
+                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
                   >
                     Update
                   </Button>
                   <Divider type="vertical" />
-                  <Button onClick={() => handleEvent.handleDelete(record)}>
+                  <Button onClick={handleEvent.handleDelete(record)}>
                     Delete
                   </Button>
                 </span>

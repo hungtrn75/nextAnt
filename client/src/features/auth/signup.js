@@ -11,14 +11,12 @@ const formItemLayout = {
 }
 
 const SignUpForm = props => {
-  const { getFieldDecorator, resetFields } = props.form
+  const { getFieldDecorator } = props.form
 
   return (
     <ActionContainer>
       {({ signupAction }) => {
-        const { result } = signupAction
-
-        const handleSignup = resultX => {
+        const handleSignup = () => resultX => {
           resultX.e.preventDefault()
           resultX.form.validateFields(async (err, values) => {
             if (!err) {
@@ -33,9 +31,8 @@ const SignUpForm = props => {
 
         return (
           <Form
-            onSubmit={e => handleSignup({ e, form: props.form })}
+            onSubmit={handleSignup({ e, form: props.form })}
             className="login-form"
-            resetFields={true}
           >
             <FormItem {...formItemLayout} label="email">
               {getFieldDecorator('email', {

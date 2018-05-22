@@ -23,11 +23,7 @@ export default () => {
           <div>
             <Table columns={columns} dataSource={dataSet} />
             {!isCreateButton ? (
-              <Button
-                onClick={() => {
-                  handleEvent.handleToggleModal(CREATE)
-                }}
-              >
+              <Button onClick={handleEvent.handleToggleModal(CREATE)}>
                 create
               </Button>
             ) : (
