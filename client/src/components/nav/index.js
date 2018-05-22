@@ -62,20 +62,20 @@ export default () => (
       key="product"
       title={
         <span>
-          <Icon type="/solution" />
+          <Icon type="solution" />
           <span>Product</span>
         </span>
       }
     >
       <Menu.Item key="b1">
         <Link href="/product">
-          <a>Product(All)</a>
+          <a>Product </a>
         </Link>
       </Menu.Item>
     </SubMenu>
 
     <SubMenu
-      key="sub6"
+      key="report"
       title={
         <span>
           <Icon type="area-chart" />
@@ -83,9 +83,30 @@ export default () => (
         </span>
       }
     >
-      <Menu.Item key="e4">ReportDaily</Menu.Item>
-      <Menu.Item key="e5">TopProducts</Menu.Item>
-      <Menu.Item key="e6">TopSales</Menu.Item>
+      <Menu.Item key="e1">
+        {' '}
+        <span>
+          <Link href="/report/demo1">
+            <a>Report Demo1</a>
+          </Link>{' '}
+        </span>
+      </Menu.Item>
+      <Menu.Item key="e2">
+        {' '}
+        <span>
+          <Link href="/report/demo2">
+            <a>Report Demo2</a>
+          </Link>{' '}
+        </span>
+      </Menu.Item>
+      <Menu.Item key="e3">
+        {' '}
+        <span>
+          <Link href="/report/demo3">
+            <a>Report Demo3</a>
+          </Link>{' '}
+        </span>
+      </Menu.Item>
     </SubMenu>
 
     <SubMenu
