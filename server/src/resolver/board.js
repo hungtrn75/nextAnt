@@ -10,11 +10,6 @@ let InitData = [
 const Query = {
   Query: {
     BoardAllQuery: (parent, args, context) => {
-      //       console.log('context.req', context.req)
-
-      // jwtVerify(context)
-      //throw new Error('Not authenticated')
-      //return
       return InitData
     },
     BoardOneQuery: async (_, { BoardId = '1' }) => {
@@ -48,20 +43,15 @@ const Mutation = {
       const BoardId = shortid.generate()
       const NewOne = { BoardId, Title, Content }
       InitData = [...InitData, NewOne]
-      console.log('GoGoBackend')
-      console.log(InitData)
+
       return NewOne
     },
     BoardDelete: (_, { BoardId }) => {
-      console.log('GoGBackendDelete')
       const result = InitData.findIndex(item => {
         return item.BoardId === BoardId
       })
-      console.log('----')
-      console.log(result)
+
       if (result !== undefined) {
-        console.log('有找到')
-        console.log(result)
         return InitData.splice(result, 1)
       } else {
         return {}

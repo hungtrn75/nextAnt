@@ -10,7 +10,6 @@ let InitData = [
 const Query = {
   Query: {
     productAllQuery: () => {
-      console.log('ooo')
       return InitData
     },
     productOneQuery: async (_, { productId = '1' }) => {
@@ -25,7 +24,6 @@ const Query = {
 const Mutation = {
   Mutation: {
     productUpdate: async (_, { productId, Title, Content }) => {
-      console.log('Updating')
       const sleep = waitTime => {
         setTimeout(() => {}, waitTime)
       }
@@ -44,20 +42,14 @@ const Mutation = {
       const productId = shortid.generate()
       const NewOne = { productId, Title, Content }
       InitData = [...InitData, NewOne]
-      console.log('GoGoBackend')
-      console.log(InitData)
+
       return NewOne
     },
     productDelete: (_, { productId }) => {
-      console.log('GoGBackendDelete')
       const result = InitData.findIndex(item => {
         return item.productId === productId
       })
-      console.log('----')
-      console.log(result)
       if (result !== undefined) {
-        console.log('有找到')
-        console.log(result)
         return InitData.splice(result, 1)
       } else {
         return {}

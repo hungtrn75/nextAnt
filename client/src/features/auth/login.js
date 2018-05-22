@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import fetch from 'isomorphic-fetch'
-import cookie from 'react-cookie'
+import React from 'react'
 
 import { GlobalBlock } from '../../../src/components/layout'
 
@@ -33,19 +31,13 @@ const LoginForm = props => {
             {({ loginAction }) => {
               const { result: resultY } = loginAction
 
-              console.log('loginAction ', loginAction)
               const handleLogin = resultX => {
                 resultX.e.preventDefault()
                 resultX.form.validateFields(async (err, values) => {
                   if (!err) {
                     await loginAction.mutation({ variables: values })
-                    //console.log('loginAction.result.data', loginAction.result.data)
-                    // if (loginAction.result.data) {
-                    //   loginAction.result.data ? resultX.form.resetFields() : ''
-                    //   console.log('document', cookie.load("session"))
 
                     loginState.setState({ loggedIn: true })
-                    // }
                   }
                 })
               }

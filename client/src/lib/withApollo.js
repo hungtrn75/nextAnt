@@ -19,9 +19,7 @@ export default ComposedComponet => {
       if (ComposedComponet.getInitialProps) {
         composedInitialProps = await ComposedComponet.getInitialProps(ctx)
       }
-      //      console.log('===apolloA===')
       if (!process.browser) {
-        //ServerSide
         const apollo = initApollo()
         const url = { query: ctx.query, pathname: ctx.pathname }
         try {

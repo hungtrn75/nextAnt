@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import fetch from 'isomorphic-fetch'
+import React from 'react'
 
-import { Row, Col, Form, Input, Button, Checkbox } from 'antd'
+import { Row, Col, Form, Input, Button } from 'antd'
 import Link from 'next/link'
 import { ActionContainer, userAllQuery } from './grapgql'
 
@@ -9,10 +8,6 @@ const FormItem = Form.Item
 const formItemLayout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 8 }
-}
-const formTailLayout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 8, offset: 4 }
 }
 
 const SignUpForm = props => {
@@ -31,7 +26,6 @@ const SignUpForm = props => {
                 variables: values,
                 refetchQueries: [{ query: userAllQuery }]
               })
-              console.log(signupAction.result.data)
               signupAction.result.data ? resultX.form.resetFields() : ''
             }
           })

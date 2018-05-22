@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import React from 'react'
+import { Form, Input, Button } from 'antd'
 import { LogicBlock } from '../../components/crudTemplate'
 
 const FormItem = Form.Item
@@ -12,7 +12,6 @@ const FormBlock = props => {
   return (
     <LogicBlock.Consumer>
       {({ result: { recordChoose } }) => {
-        console.log('record')
         const { value } = recordChoose
         return (
           <Form

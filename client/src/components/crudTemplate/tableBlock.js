@@ -19,12 +19,6 @@ export default () => {
           isCreateButton
         }
       }) => {
-        // console.log('tableData')
-
-        // data[queryName].map(v=>{
-
-        // })
-
         return (
           <div>
             <Table columns={columns} dataSource={dataSet} />

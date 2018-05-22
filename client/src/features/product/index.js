@@ -37,7 +37,6 @@ export default () => {
             value: { queryName }
           }
         } = result
-        console.log(result)
         const CreateForm = () => {
           return <Form handleEvent={handleEvent} actionText={'create'} />
         }
@@ -70,8 +69,6 @@ export default () => {
             }
           },
           handleDelete: record => {
-            console.log('delete')
-
             let values = { productId: record.productId }
             result.container.deleteCrud.mutation({
               variables: values,
@@ -102,7 +99,6 @@ export default () => {
                 }
               }
             })
-            //console.log('handleSubmit')
           }
         }
 

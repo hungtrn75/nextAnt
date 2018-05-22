@@ -38,9 +38,7 @@ export default () => (
           value: { queryName }
         }
       } = result
-      //console.log(result)
       if (error) {
-        console.log(error)
         return <div>Opps something wrong</div>
       }
       const CreateForm = () => {
@@ -67,7 +65,6 @@ export default () => (
         },
         handleDelete: record => {
           let values = { _id: record._id }
-          console.log('delete', record)
 
           result.container.deleteCrud.mutation({
             variables: values,
@@ -109,10 +106,7 @@ export default () => (
       if (loading) {
         return <div>Logining</div>
       }
-      //console.log('data')
 
-      //console.log(data)
-      //return <div>123</div>
       const dataSet = data[queryName].map((v, i) => {
         return {
           key: i,

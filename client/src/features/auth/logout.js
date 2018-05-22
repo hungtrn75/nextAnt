@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
-import fetch from 'isomorphic-fetch'
+import React from 'react'
 
-import { Form, Input, Button, Checkbox } from 'antd'
+import { Form, Button } from 'antd'
 
 const FormItem = Form.Item
-const formItemLayout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 8 }
-}
+
 const formTailLayout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 8, offset: 4 }
