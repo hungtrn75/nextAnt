@@ -37,7 +37,10 @@ const Mutation = {
         )
 
         ctx.req.session.userToken = token
-        return 'Sign up success'
+
+        return {
+          token
+        }
       }
     },
     login: async (_, args, ctx) => {
@@ -63,12 +66,21 @@ const Mutation = {
       )
 
       ctx.req.session.userToken = token
-      return 'Log in success'
+
+      return {
+        token
+      }
     },
+
     logout: async (_, args, ctx) => {
+      const token = ctx.req.session.userToken
       ctx.req.session.userToken = null
-      return 'Log out success'
+
+      return {
+        token
+      }
     },
+
     userDelete: async (_, { _id }) => {
       await User.findOneAndRemove({ _id })
       return { _id }
