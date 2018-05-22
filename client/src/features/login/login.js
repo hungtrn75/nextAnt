@@ -35,7 +35,10 @@ const LoginForm = props => {
               const handleLogin = resultX => {
                 resultX.e.preventDefault()
                 resultX.form.validateFields(async (err, values) => {
-                  if (!err) loginAction.mutation({ variables: values })
+                  if (!err) {
+                    await loginAction.mutation({ variables: values })
+                    loginAction.result.data ? resultX.form.resetFields() : ''
+                  }
                 })
               }
 

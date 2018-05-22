@@ -46,16 +46,6 @@ export default () => (
           </Link>
         </span>
       </Menu.Item>
-      <Menu.Item key="aa3">
-        <Icon type="user" />
-        <span>
-          <Link href={'/presonal/user'}>
-            <a>
-              <span>UserList</span>
-            </a>
-          </Link>
-        </span>
-      </Menu.Item>
     </SubMenu>
 
     <Menu.Item key="a1">
@@ -137,9 +127,14 @@ export default () => (
       }
     >
       <Menu.Item key="f1">
-        <Link href="/admin/employee">
-          <a>employee</a>
-        </Link>
+        <Icon type="user" />
+        <span>
+          <Link href={'/admin/user'}>
+            <a>
+              <span>UserList</span>
+            </a>
+          </Link>
+        </span>
       </Menu.Item>
       <Menu.Item key="f2">
         <Link href="/admin/premissonTemplate">

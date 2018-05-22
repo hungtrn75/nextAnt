@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginForm from '../../src/features/login/login'
 import { GlobalBlock } from '../../src/components/layout'
-import LogoutForm from '../../src/features/logout'
+import LogoutForm from '../../src/features/login/logout'
 import withApollo from '../../src/lib/withApollo'
 
 const Login = props => {
