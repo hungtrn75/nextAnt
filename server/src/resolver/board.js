@@ -1,7 +1,5 @@
 var shortid = require('shortid')
 
-//const jwtVerify = require('../../middleware/jwtVerify')
-
 let InitData = [
   { BoardId: '1', Title: 'Wonder Wonmen', Content: 'Wonder Wonmen is Beauty' },
   { BoardId: '2', Title: 'batMan', Content: 'batMan is Cool' }

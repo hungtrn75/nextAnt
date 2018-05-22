@@ -70,13 +70,6 @@ const deleteCrud = ({ render }) => (
   </Mutation>
 )
 
-// let combineData = {
-//   query: <Query query={BoardAllQuery} />,
-//   createCrud,
-//   updateCrud,
-//   deleteCrud
-// }
-
 export const CrudContainer = adopt({
   query: <Query query={BoardAllQuery} />,
   createCrud,

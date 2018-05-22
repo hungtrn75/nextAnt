@@ -24,8 +24,7 @@ const AdoptContainer = adopt({
 export default () => {
   return (
     <AdoptContainer>
-      {//({ container, toggleModel, state }) => {
-      result => {
+      {result => {
         const {
           assignForm,
           toggleModal,
@@ -42,8 +41,6 @@ export default () => {
 
         const handleEvent = {
           handleToggleModal: (action, record) => () => {
-            console.log('action', action)
-            console.log('record', record)
             toggleModal.toggle()
             switch (action) {
               case DETAIL:

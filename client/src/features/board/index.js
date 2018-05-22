@@ -24,8 +24,7 @@ const AdoptContainer = adopt({
 export default () => {
   return (
     <AdoptContainer>
-      {//({ container, toggleModel, state }) => {
-      result => {
+      {result => {
         const {
           assignForm,
           toggleModal,
@@ -68,7 +67,6 @@ export default () => {
             })
           },
           handleSubmit: form => () => {
-            //resultX.e.preventDefault()
             form.validateFields(async (err, values) => {
               if (!err) {
                 toggleModal.toggle()

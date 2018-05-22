@@ -24,8 +24,7 @@ const AdoptContainer = adopt({
 export default () => {
   return (
     <AdoptContainer>
-      {//({ container, toggleModel, state }) => {
-      result => {
+      {result => {
         const {
           assignForm,
           toggleModal,

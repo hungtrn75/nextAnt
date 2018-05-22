@@ -38,13 +38,11 @@ export default ComposedComponet => {
           }
         }
       }
-      //把ServerSide的資料變成 Props
       return {
         serverState,
         ...composedInitialProps
       }
     }
-    //private apollo;
     constructor(props) {
       super(props)
       this.apollo = initApollo(this.props.serverState.apollo.data)
