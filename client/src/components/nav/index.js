@@ -1,22 +1,19 @@
 import React from 'react'
 import { Menu, Icon } from 'antd'
-import Link from 'next/link'
-
+import Router from 'next/router'
 const { SubMenu } = Menu
+
+const goto = url => () => {
+  Router.push(url)
+}
 
 export default () => (
   <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-    <Menu.Item key="home">
+    <Menu.Item key="home" onClick={goto('/')}>
       <Icon type="home" />
-      <span>
-        <Link href={'/'}>
-          <a>
-            <span> CRM System Demo</span>
-          </a>
-        </Link>
-      </span>
-    </Menu.Item>
 
+      <span> CRM System Demo</span>
+    </Menu.Item>
     <SubMenu
       key="personal"
       title={
@@ -26,56 +23,40 @@ export default () => (
         </span>
       }
     >
-      <Menu.Item key="aa1">
+      <Menu.Item key="aa1" onClick={goto('/presonal')}>
         <Icon type="user" />
-        <span>
-          <Link href={'/presonal/'}>
-            <a>
-              <span>MyProfile</span>
-            </a>
-          </Link>
-        </span>
+        <span>MyProfile</span>
       </Menu.Item>
-      <Menu.Item key="aa2">
+      <Menu.Item key="aa2" onClick={goto('/presonal/login')}>
         <Icon type="user" />
-        <span>
-          <Link href={'/presonal/login'}>
-            <a>
-              <span>Login</span>
-            </a>
-          </Link>
-        </span>
+
+        <span>Login</span>
       </Menu.Item>
     </SubMenu>
 
-    <Menu.Item key="a1">
+    <Menu.Item key="a1" onClick={goto('/customer')}>
       <span>
         <Icon type="team" />
         <span>Customer</span>
       </span>
-      <Link href="/customer">
-        <a>Customer</a>
-      </Link>
     </Menu.Item>
 
     <SubMenu
       key="product"
       title={
         <span>
-          <Icon type="solution" />
+          <Icon type="/solution" />
           <span>Product</span>
         </span>
       }
     >
-      <Menu.Item key="b1">
-        <Link href="/product">
-          <a>Product </a>
-        </Link>
+      <Menu.Item key="b1" onClick={goto('/product')}>
+        Product(All)
       </Menu.Item>
     </SubMenu>
 
     <SubMenu
-      key="report"
+      key="sub6"
       title={
         <span>
           <Icon type="area-chart" />
@@ -83,30 +64,9 @@ export default () => (
         </span>
       }
     >
-      <Menu.Item key="e1">
-        {' '}
-        <span>
-          <Link href="/report/demo1">
-            <a>Report Demo1</a>
-          </Link>{' '}
-        </span>
-      </Menu.Item>
-      <Menu.Item key="e2">
-        {' '}
-        <span>
-          <Link href="/report/demo2">
-            <a>Report Demo2</a>
-          </Link>{' '}
-        </span>
-      </Menu.Item>
-      <Menu.Item key="e3">
-        {' '}
-        <span>
-          <Link href="/report/demo3">
-            <a>Report Demo3</a>
-          </Link>{' '}
-        </span>
-      </Menu.Item>
+      <Menu.Item key="e4">ReportDaily</Menu.Item>
+      <Menu.Item key="e5">TopProducts</Menu.Item>
+      <Menu.Item key="e6">TopSales</Menu.Item>
     </SubMenu>
 
     <SubMenu
@@ -118,32 +78,14 @@ export default () => (
         </span>
       }
     >
-      <Menu.Item key="f1">
+      <Menu.Item key="f1" onClick={goto('/admin/user')}>
         <Icon type="user" />
-        <span>
-          <Link href={'/admin/user'}>
-            <a>
-              <span>UserList</span>
-            </a>
-          </Link>
-        </span>
+        <span>UserList</span>
       </Menu.Item>
-      <Menu.Item key="f2">
-        <Link href="#">
-          <a>permission-Template</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="f3">
-        <Link href="#">
-          <a>permission</a>
-        </Link>
-      </Menu.Item>
+      <Menu.Item key="f2">permission-Template</Menu.Item>
+      <Menu.Item key="f3">permission</Menu.Item>
       <Menu.Item key="f4">Board</Menu.Item>
-      <Menu.Item key="f5">
-        <Link href="#">
-          <a>BoardManage</a>
-        </Link>{' '}
-      </Menu.Item>
+      <Menu.Item key="f5">BoardManage</Menu.Item>
     </SubMenu>
     <SubMenu
       key="sub8"
