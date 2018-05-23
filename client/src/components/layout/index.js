@@ -1,41 +1,10 @@
 import React from 'react'
 import { Avatar, Layout, Icon, Row, Col } from 'antd'
-import { adopt } from 'react-adopt'
-import { Toggle, Value, State } from 'react-powerplug'
 
 import Nav from '../nav'
+
 const { Header, Content, Sider } = Layout
 
-const AdoptContainer = adopt({
-  toggleMenuModal: <Toggle initial={false} />,
-  token: <Value initial={''} />,
-  loginState: <State initial={{ loggedIn: false }} />
-})
-export const GlobalBlock = React.createContext()
-
-export default props => (
-  <AdoptContainer>
-    {({ toggleMenuModal, loginState }) => {
-      let loginblock = {}
-
-      const handleLogout = resultX => {
-        resultX.e.preventDefault()
-        loginState.setState({ loggedIn: false })
-      }
-
-      const handleLogin = resultX => {
-        resultX.e.preventDefault()
-        resultX.form.validateFields(async (err, values) => {
-          if (!err) {
-            resultX.loginAction.mutation({ variables: values })
-            loginState.setState({ loggedIn: true })
-          }
-        })
-      }
-
-      const handleLoginEvent = { handleLogout, handleLogin }
-
-      loginblock = { loginState, handleLoginEvent }
 
       return (
         <GlobalBlock.Provider value={loginblock}>
@@ -98,3 +67,4 @@ export default props => (
     }}
   </AdoptContainer>
 )
+

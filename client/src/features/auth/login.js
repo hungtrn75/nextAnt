@@ -2,7 +2,7 @@ import React from 'react'
 
 import { GlobalBlock } from '../../../src/components/layout'
 
-import { Row, Col, Form, Input, Button } from 'antd'
+import { Row, Icon, Col, Form, Input, Button } from 'antd'
 import Link from 'next/link'
 import { ActionContainer } from './grapgql'
 
@@ -45,7 +45,17 @@ const LoginForm = props => {
                           message: 'please input your email'
                         }
                       ]
-                    })(<Input placeholder="please input your email" />)}
+                    })(
+                      <Input
+                        placeholder="please input your email"
+                        prefix={
+                          <Icon
+                            type="user"
+                            style={{ color: 'rgba(0,0,0,.25)' }}
+                          />
+                        }
+                      />
+                    )}
                   </FormItem>
 
                   <FormItem {...formItemLayout} label="password">
@@ -59,6 +69,12 @@ const LoginForm = props => {
                     })(
                       <Input
                         type="password"
+                        prefix={
+                          <Icon
+                            type="lock"
+                            style={{ color: 'rgba(0,0,0,.25)' }}
+                          />
+                        }
                         placeholder="please input your password"
                       />
                     )}

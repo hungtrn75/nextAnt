@@ -6,7 +6,7 @@ const FormItem = Form.Item
 
 const formTailLayout = {
   labelCol: { span: 4 },
-  wrapperCol: { span: 8, offset: 4 }
+  wrapperCol: { span: 8, offset: 2 }
 }
 const LogoutForm = props => {
   const { getFieldDecorator, resetFields } = props.form
