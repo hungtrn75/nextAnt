@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Router from 'next/router'
 const { SubMenu } = Menu
 
-const goto = (url = () => {
+const goto = url => () => {
   Router.push(url)
-})
+}
 
 export default () => (
   <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
