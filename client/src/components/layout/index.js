@@ -37,6 +37,7 @@ export default class SiderDemo extends React.Component {
                   className="trigger"
                   type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                   onClick={this.toggle}
+                  style={{ marginLeft: '15px' }}
                 />
               </Col>
               <Col span={20}>
