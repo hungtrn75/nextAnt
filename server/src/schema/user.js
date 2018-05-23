@@ -10,7 +10,8 @@ type AuthPayload {
 }
 
 type Profile {
-  email: String
+  email: String,
+  picture: String
 }
 `
 

@@ -11,7 +11,7 @@ const Query = {
     profile: async (parent, args, ctx) => {
       const _id = getUserId(ctx)
       const user = await User.findOne({ _id })
-      return { email: user.email }
+      return { email: user.email, picture: user.picture }
     },
 
     userAllQuery: async () => {
@@ -26,6 +26,7 @@ const Mutation = {
       let user = new User()
       user.email = args.email
       user.password = args.password
+      user.picture = user.gravatar()
 
       const existingUser = await User.findOne({ email: args.email })
 
@@ -51,6 +52,7 @@ const Mutation = {
         }
       }
     },
+
     login: async (_, args, ctx) => {
       const user = await User.findOne({ email: args.email })
 
