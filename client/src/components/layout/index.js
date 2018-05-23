@@ -60,6 +60,7 @@ export default props => (
                       className="trigger"
                       type={toggleMenuModal.on ? 'menu-unfold' : 'menu-fold'}
                       onClick={toggleMenuModal.toggle}
+                      style={{marginLeft:'15px'}}
                     />
                   </Col>
                   <Col span={20}>
