@@ -1,5 +1,6 @@
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
+import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import * as fetch from 'isomorphic-unfetch'
 
@@ -11,22 +12,34 @@ if (!process.browser) {
   global.fetch = fetch
 }
 
-const link = createHttpLink({
-  uri: `${envs.serverURL}/graphql`,
-  credentials: 'include'
-})
-
-const create = initialState =>
-  new ApolloClient({
-    ssrMode: !process.browser,
-    link: link,
-    cache: new InMemoryCache().restore(initialState || {})
+function create(initialState, { getToken }) {
+  const httpLink = createHttpLink({
+    uri: `${envs.serverURL}/graphql`,
+    credentials: 'include'
   })
 
-export default initialState => {
-  if (!process.browser) return create(initialState)
+  const authLink = setContext((_, { headers }) => {
+    const token = getToken()
+    return {
+      headers: {
+        ...headers,
+        Cookie: token ? token : null
+      }
+    }
+  })
+
+  return new ApolloClient({
+    connectToDevTools: process.browser,
+    ssrMode: !process.browser,
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache().restore(initialState || {})
+  })
+}
+
+export default (initialState, options) => {
+  if (!process.browser) return create(initialState, options)
   if (!apolloClient) {
-    apolloClient = create(initialState)
+    apolloClient = create(initialState, options)
   }
   return apolloClient
 }

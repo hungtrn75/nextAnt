@@ -5,9 +5,20 @@ import stylesheet from 'antd/dist/antd.min.css'
 
 import Layout from '../src/components/layout'
 
-export default class MyApp extends App {
+import withApollo from '../src/lib/withApollo'
+import checkLoggedIn from '../src/lib/checkLoggedIn'
+
+class MyApp extends App {
+  static async getInitialProps(ctx, apolloClient) {
+    const { loggedInUser } = await checkLoggedIn(ctx, apolloClient)
+    return {
+      user: loggedInUser.profile
+    }
+  }
+
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, user } = this.props
+
     return (
       <Container>
         <Head>
@@ -16,10 +27,12 @@ export default class MyApp extends App {
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-        <Layout>
+        <Layout user={user}>
           <Component {...pageProps} />
         </Layout>
       </Container>
     )
   }
 }
+
+export default withApollo(MyApp)

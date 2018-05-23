@@ -1,8 +1,5 @@
-const queries = `
-userAllQuery:[User]
-`
-
-const typeDefs = `type User {
+const typeDefs = `
+type User {
   _id: ID! @unique
   email: String! @unique
   password: String!
@@ -11,6 +8,15 @@ const typeDefs = `type User {
 type AuthPayload {
   token: String
 }
+
+type Profile {
+  email: String
+}
+`
+
+const queries = `
+  userAllQuery: [User]
+  profile: Profile
 `
 
 const mutations = `

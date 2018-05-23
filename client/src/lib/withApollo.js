@@ -1,11 +1,15 @@
-import * as React from 'react'
-import initApollo from './initApollo'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import Head from 'next/head'
 
-function getComponentDisplayName(Component) {
-  return Component.displayName || Component.name || 'Unknown'
-}
+import initApollo from './initApollo'
+
+const getCookie = (ctx = {}) =>
+  ctx.req && ctx.req.headers.cookie ? ctx.req.headers.cookie : document.cookie
+
+const getComponentDisplayName = Component =>
+  Component.displayName || Component.name || 'Unknown'
 
 export default ComposedComponet => {
   return class WithData extends React.Component {
@@ -13,14 +17,26 @@ export default ComposedComponet => {
       ComposedComponet
     )})`
 
-    static async getInitialProps(ctx) {
-      let serverState = { apollo: { data: {} } }
+    static async getInitialProps({ ctx }) {
+      let serverState = {}
+
+      const apollo = initApollo(
+        {},
+        {
+          getToken: () => getCookie(ctx)
+        }
+      )
+
       let composedInitialProps = {}
+
       if (ComposedComponet.getInitialProps) {
-        composedInitialProps = await ComposedComponet.getInitialProps(ctx)
+        composedInitialProps = await ComposedComponet.getInitialProps(
+          ctx,
+          apollo
+        )
       }
+
       if (!process.browser) {
-        const apollo = initApollo()
         const url = { query: ctx.query, pathname: ctx.pathname }
         try {
           await getDataFromTree(
@@ -31,13 +47,12 @@ export default ComposedComponet => {
         } catch (err) {
           console.log(err)
         }
+
         Head.rewind()
-        serverState = {
-          apollo: {
-            data: apollo.cache.extract()
-          }
-        }
+
+        serverState = apollo.cache.extract()
       }
+
       return {
         serverState,
         ...composedInitialProps
@@ -45,7 +60,9 @@ export default ComposedComponet => {
     }
     constructor(props) {
       super(props)
-      this.apollo = initApollo(this.props.serverState.apollo.data)
+      this.apollo = initApollo(this.props.serverState, {
+        getToken: () => getCookie()
+      })
     }
     render() {
       return (
@@ -54,5 +71,9 @@ export default ComposedComponet => {
         </ApolloProvider>
       )
     }
+  }
+
+  WithData.propTypes = {
+    serverState: PropTypes.object
   }
 }
