@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Avatar, Layout, Icon, Row, Col } from 'antd'
 import { adopt } from 'react-adopt'
 import { Toggle, Value, State } from 'react-powerplug'
@@ -15,8 +16,8 @@ const AdoptContainer = adopt({
 
 export const GlobalBlock = React.createContext()
 
-export default props => (
-  console.log(props.user),
+const MyLayout = ({ user }) => (
+  console.log(user),
   (
     <AdoptContainer>
       {({ toggleMenuModal, loginState }) => {
@@ -64,7 +65,7 @@ export default props => (
                         className="trigger"
                         type={toggleMenuModal.on ? 'menu-unfold' : 'menu-fold'}
                         onClick={toggleMenuModal.toggle}
-                        style={{marginLeft: '15px'}}
+                        style={{ marginLeft: '15px' }}
                       />
                     </Col>
                     <Col span={20}>
@@ -103,3 +104,9 @@ export default props => (
     </AdoptContainer>
   )
 )
+
+MyLayout.propTypes = {
+  user: PropTypes.object
+}
+
+export default MyLayout

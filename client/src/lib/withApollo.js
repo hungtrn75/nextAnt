@@ -1,4 +1,5 @@
-import * as React from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import Head from 'next/head'
 
@@ -7,9 +8,8 @@ import initApollo from './initApollo'
 const getCookie = (ctx = {}) =>
   ctx.req && ctx.req.headers.cookie ? ctx.req.headers.cookie : document.cookie
 
-function getComponentDisplayName(Component) {
-  return Component.displayName || Component.name || 'Unknown'
-}
+const getComponentDisplayName = Component =>
+  Component.displayName || Component.name || 'Unknown'
 
 export default ComposedComponet => {
   return class WithData extends React.Component {
@@ -18,7 +18,7 @@ export default ComposedComponet => {
     )})`
 
     static async getInitialProps({ ctx }) {
-      let serverState = { apollo: { data: {} } }
+      let serverState = {}
 
       const apollo = initApollo(
         {},
@@ -47,13 +47,12 @@ export default ComposedComponet => {
         } catch (err) {
           console.log(err)
         }
+
         Head.rewind()
-        serverState = {
-          apollo: {
-            data: apollo.cache.extract()
-          }
-        }
+
+        serverState = apollo.cache.extract()
       }
+
       return {
         serverState,
         ...composedInitialProps
@@ -61,7 +60,7 @@ export default ComposedComponet => {
     }
     constructor(props) {
       super(props)
-      this.apollo = initApollo(this.props.serverState.apollo.data, {
+      this.apollo = initApollo(this.props.serverState, {
         getToken: () => getCookie()
       })
     }
@@ -72,5 +71,9 @@ export default ComposedComponet => {
         </ApolloProvider>
       )
     }
+  }
+
+  WithData.propTypes = {
+    serverState: PropTypes.object
   }
 }
