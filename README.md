@@ -18,9 +18,11 @@ AntDesign CRUD implementation built on Next.
 * [x] [express](https://github.com/expressjs/express) for web framework.
 * [x] [styled-components](https://github.com/styled-components/styled-components) for styling.
 * [x] [ant design](https://ant.design/docs/react/introduce) for components.
+* [x] [jwt](https://jwt.io/) for authentication.
 * [x] [mongodb](https://www.mongodb.com/) for database.
 * [x] [docker](https://www.docker.com/) for containerization.
 * [x] [pm2](http://pm2.keymetrics.io/) fro clustering.
+* [x] [jest](https://facebook.github.io/jest/) for testing.
 
 ## Getting Started
 

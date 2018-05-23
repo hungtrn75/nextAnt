@@ -24,8 +24,7 @@ const AdoptContainer = adopt({
 export default () => {
   return (
     <AdoptContainer>
-      {//({ container, toggleModel, state }) => {
-      result => {
+      {result => {
         const {
           assignForm,
           toggleModal,
@@ -37,7 +36,6 @@ export default () => {
             value: { queryName }
           }
         } = result
-        console.log(result)
         const CreateForm = () => {
           return <Form handleEvent={handleEvent} actionText={'create'} />
         }
@@ -51,18 +49,17 @@ export default () => {
         let TempForm = DetailForm
 
         const handleEvent = {
-          handleToggleModal: (action, record) => {
+          handleToggleModal: (action, record) => () => {
             toggleModal.toggle()
             switch (action) {
               case DETAIL:
-                recordChoose.setValue(record.data)
+                recordChoose.setValue(record)
                 assignForm.setValue('detail')
                 break
               case UPDATE:
                 assignForm.setValue('update')
-                console.log('update')
-                console.log(record.data)
-                recordChoose.setValue(record.data)
+
+                recordChoose.setValue(record)
                 break
               case CREATE:
                 assignForm.setValue('create')
@@ -70,16 +67,14 @@ export default () => {
                 break
             }
           },
-          handleDelete: record => {
-            console.log('delete')
-            let values = { productId: recordChoose.value.productId }
+          handleDelete: record => () => {
+            let values = { productId: record.productId }
             result.container.deleteCrud.mutation({
               variables: values,
               refetchQueries: [{ query: productAllQuery }]
             })
           },
-          handleSubmit: resultX => {
-            resultX.e.preventDefault()
+          handleSubmit: resultX => () => {
             resultX.form.validateFields(async (err, values) => {
               if (!err) {
                 toggleModal.toggle()
@@ -102,7 +97,6 @@ export default () => {
                 }
               }
             })
-            //console.log('handleSubmit')
           }
         }
 
@@ -114,9 +108,7 @@ export default () => {
             render: (text, record) => (
               <a
                 href="#"
-                onClick={() =>
-                  handleEvent.handleToggleModal(DETAIL, { data: record })
-                }
+                onClick={handleEvent.handleToggleModal(DETAIL, record)}
               >
                 {text}
               </a>
@@ -140,14 +132,12 @@ export default () => {
               return (
                 <span>
                   <Button
-                    onClick={() =>
-                      handleEvent.handleToggleModal(UPDATE, { data: record })
-                    }
+                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
                   >
                     Update
                   </Button>
                   <Divider type="vertical" />
-                  <Button onClick={() => handleEvent.handleDelete({ record })}>
+                  <Button onClick={handleEvent.handleDelete(record)}>
                     Delete
                   </Button>
                 </span>

@@ -19,9 +19,7 @@ export default ComposedComponet => {
       if (ComposedComponet.getInitialProps) {
         composedInitialProps = await ComposedComponet.getInitialProps(ctx)
       }
-      //      console.log('===apolloA===')
       if (!process.browser) {
-        //ServerSide
         const apollo = initApollo()
         const url = { query: ctx.query, pathname: ctx.pathname }
         try {
@@ -40,13 +38,11 @@ export default ComposedComponet => {
           }
         }
       }
-      //把ServerSide的資料變成 Props
       return {
         serverState,
         ...composedInitialProps
       }
     }
-    //private apollo;
     constructor(props) {
       super(props)
       this.apollo = initApollo(this.props.serverState.apollo.data)

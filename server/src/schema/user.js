@@ -1,20 +1,23 @@
 const queries = `
-     userAllQuery:[user],
-     userOneQuery(userId:String):user
+userAllQuery:[User]
 `
-const typeDefs = ` type user{
-  userId:String,
-  name:String,
-  tel:String,
-  nickName:String,
-  account:String,
-  password:String
-}`
+
+const typeDefs = `type User {
+  _id: ID! @unique
+  email: String! @unique
+  password: String!
+}
+
+type AuthPayload {
+  token: String
+}
+`
 
 const mutations = `
-  userUpdate(userId:String,name:String,nickName:String,tel:String,account:String,password:String):user,
-  userAdd(name:String,nickName:String,tel:String,account:String,password:String):user,
-  userDelete(userId:String):user
+  signup(email: String!, password: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  logout: AuthPayload
+  userDelete(_id:String!): User
 `
 
 const userSchema = { typeDefs, queries, mutations }

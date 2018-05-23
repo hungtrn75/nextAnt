@@ -29,7 +29,7 @@ export default () => (
       <Menu.Item key="aa1">
         <Icon type="user" />
         <span>
-          <Link href={'/presonal/presonal'}>
+          <Link href={'/presonal/'}>
             <a>
               <span>MyProfile</span>
             </a>
@@ -42,16 +42,6 @@ export default () => (
           <Link href={'/presonal/login'}>
             <a>
               <span>Login</span>
-            </a>
-          </Link>
-        </span>
-      </Menu.Item>
-      <Menu.Item key="aa3">
-        <Icon type="user" />
-        <span>
-          <Link href={'/presonal/user'}>
-            <a>
-              <span>UserList</span>
             </a>
           </Link>
         </span>
@@ -72,45 +62,16 @@ export default () => (
       key="product"
       title={
         <span>
-          <Icon type="solution" />
+          <Icon type="/solution" />
           <span>Product</span>
         </span>
       }
     >
       <Menu.Item key="b1">
-        <Link href="product">
+        <Link href="/product">
           <a>Product(All)</a>
         </Link>
       </Menu.Item>
-    </SubMenu>
-
-    <SubMenu
-      key="event"
-      title={
-        <span>
-          <Icon type="gift" />
-          <span>Event</span>
-        </span>
-      }
-    >
-      <Menu.Item key="c1">
-        <Link href="/event/eventInfo">
-          {' '}
-          <a>EventInfo</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="c2">
-        <Link href="/event/eventTransfer">
-          {' '}
-          <a>Event</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="c5">
-        <Link href="/event/eventTransferRecord">
-          <a> PastEvent</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="c6">LetterPrint</Menu.Item>
     </SubMenu>
 
     <SubMenu
@@ -137,23 +98,28 @@ export default () => (
       }
     >
       <Menu.Item key="f1">
-        <Link href="/admin/employee">
-          <a>employee</a>
-        </Link>
+        <Icon type="user" />
+        <span>
+          <Link href={'/admin/user'}>
+            <a>
+              <span>UserList</span>
+            </a>
+          </Link>
+        </span>
       </Menu.Item>
       <Menu.Item key="f2">
-        <Link href="/admin/premissonTemplate">
+        <Link href="#">
           <a>permission-Template</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="f3">
-        <Link href="/admin/premisson">
+        <Link href="#">
           <a>permission</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="f4">Board</Menu.Item>
       <Menu.Item key="f5">
-        <Link href="/admin/log">
+        <Link href="#">
           <a>BoardManage</a>
         </Link>{' '}
       </Menu.Item>

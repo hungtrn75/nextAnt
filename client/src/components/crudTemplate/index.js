@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TableBlock from './tableBlock'
 import SearchBlock from './searchBlock'
 import ModalBlock from './modalBlock'
