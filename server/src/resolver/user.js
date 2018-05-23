@@ -4,8 +4,16 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 const config = require('../../config')
 
+const { getUserId } = require('../utils')
+
 const Query = {
   Query: {
+    profile: async (parent, args, ctx) => {
+      const _id = getUserId(ctx)
+      const user = await User.findOne({ _id })
+      return { email: user.email }
+    },
+
     userAllQuery: async () => {
       return User.find()
     }

@@ -1,7 +1,11 @@
 import * as React from 'react'
-import initApollo from './initApollo'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import Head from 'next/head'
+
+import initApollo from './initApollo'
+
+const getCookie = (ctx = {}) =>
+  ctx.req && ctx.req.headers.cookie ? ctx.req.headers.cookie : document.cookie
 
 function getComponentDisplayName(Component) {
   return Component.displayName || Component.name || 'Unknown'
@@ -13,14 +17,26 @@ export default ComposedComponet => {
       ComposedComponet
     )})`
 
-    static async getInitialProps(ctx) {
+    static async getInitialProps({ ctx }) {
       let serverState = { apollo: { data: {} } }
+
+      const apollo = initApollo(
+        {},
+        {
+          getToken: () => getCookie(ctx)
+        }
+      )
+
       let composedInitialProps = {}
+
       if (ComposedComponet.getInitialProps) {
-        composedInitialProps = await ComposedComponet.getInitialProps(ctx)
+        composedInitialProps = await ComposedComponet.getInitialProps(
+          ctx,
+          apollo
+        )
       }
+
       if (!process.browser) {
-        const apollo = initApollo()
         const url = { query: ctx.query, pathname: ctx.pathname }
         try {
           await getDataFromTree(
@@ -45,7 +61,9 @@ export default ComposedComponet => {
     }
     constructor(props) {
       super(props)
-      this.apollo = initApollo(this.props.serverState.apollo.data)
+      this.apollo = initApollo(this.props.serverState.apollo.data, {
+        getToken: () => getCookie()
+      })
     }
     render() {
       return (
