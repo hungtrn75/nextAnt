@@ -17,6 +17,10 @@ export default ComposedComponet => {
       ComposedComponet
     )})`
 
+    static propTypes = {
+      serverState: PropTypes.object
+    }
+
     static async getInitialProps({ ctx }) {
       let serverState = {}
 
@@ -58,12 +62,14 @@ export default ComposedComponet => {
         ...composedInitialProps
       }
     }
+
     constructor(props) {
       super(props)
-      this.apollo = initApollo(this.props.serverState, {
+      this.apollo = initApollo(props.serverState, {
         getToken: () => getCookie()
       })
     }
+
     render() {
       return (
         <ApolloProvider client={this.apollo}>
@@ -71,9 +77,5 @@ export default ComposedComponet => {
         </ApolloProvider>
       )
     }
-  }
-
-  WithData.propTypes = {
-    serverState: PropTypes.object
   }
 }
