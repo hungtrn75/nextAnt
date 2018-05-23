@@ -1,11 +1,13 @@
 var shortid = require('shortid')
+
 let InitData = [
   { BoardId: '1', Title: 'Wonder Wonmen', Content: 'Wonder Wonmen is Beauty' },
   { BoardId: '2', Title: 'batMan', Content: 'batMan is Cool' }
 ]
+
 const Query = {
   Query: {
-    BoardAllQuery: () => {
+    BoardAllQuery: (parent, args, context) => {
       return InitData
     },
     BoardOneQuery: async (_, { BoardId = '1' }) => {
@@ -17,10 +19,10 @@ const Query = {
     }
   }
 }
+
 const Mutation = {
   Mutation: {
-    BoardUpdate: async (_, { BoardId, Title, Content }) => {
-      console.log('Updating')
+    BoardUpdate: async (_, { BoardId, Title, Content }, { user }) => {
       const sleep = waitTime => {
         setTimeout(() => {}, waitTime)
       }
@@ -39,20 +41,15 @@ const Mutation = {
       const BoardId = shortid.generate()
       const NewOne = { BoardId, Title, Content }
       InitData = [...InitData, NewOne]
-      console.log('GoGoBackend')
-      console.log(InitData)
+
       return NewOne
     },
     BoardDelete: (_, { BoardId }) => {
-      console.log('GoGBackendDelete')
       const result = InitData.findIndex(item => {
         return item.BoardId === BoardId
       })
-      console.log('----')
-      console.log(result)
+
       if (result !== undefined) {
-        console.log('有找到')
-        console.log(result)
         return InitData.splice(result, 1)
       } else {
         return {}

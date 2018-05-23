@@ -1,10 +1,13 @@
 const mongoose = require('mongoose')
 
+const { getUserId } = require('../utils')
+
 const Customer = mongoose.model('Customer')
 
 const Query = {
   Query: {
-    customerAllQuery: async () => {
+    customerAllQuery: async (parent, args, ctx) => {
+      getUserId(ctx)
       const customers = await Customer.find()
       return customers
     }

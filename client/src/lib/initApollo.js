@@ -1,5 +1,5 @@
 import { ApolloClient } from 'apollo-client'
-import { HttpLink } from 'apollo-link-http'
+import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import * as fetch from 'isomorphic-unfetch'
 
@@ -11,26 +11,22 @@ if (!process.browser) {
   global.fetch = fetch
 }
 
-const create = initialState => {
-  const credentials = 'readbook'
+const link = createHttpLink({
+  uri: `${envs.serverURL}/graphql`,
+  credentials: 'include'
+})
 
-  const uri = `${envs.serverURL}/graphql`
-
-  const httpLink2 = new HttpLink({ uri, credentials })
-
-  return new ApolloClient({
+const create = initialState =>
+  new ApolloClient({
     ssrMode: !process.browser,
-    link: httpLink2,
+    link: link,
     cache: new InMemoryCache().restore(initialState || {})
   })
-}
 
 export default initialState => {
   if (!process.browser) return create(initialState)
-
   if (!apolloClient) {
     apolloClient = create(initialState)
   }
-
   return apolloClient
 }

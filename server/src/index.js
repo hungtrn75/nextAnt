@@ -1,11 +1,11 @@
-var { makeExecutableSchema } = require('graphql-tools')
+const { makeExecutableSchema } = require('graphql-tools')
 
-var AllDef = require('./schema')
-var AllResolvers = require('./resolver')
+const AllDef = require('./schema')
+const AllResolvers = require('./resolver')
 
-let typeDefs = []
-let queries = []
-let mutations = []
+const typeDefs = []
+const queries = []
+const mutations = []
 
 AllDef.forEach(s => {
   typeDefs.push(s.typeDefs)

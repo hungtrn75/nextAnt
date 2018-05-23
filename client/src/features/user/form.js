@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import React from 'react'
+import { Form, Input, Button } from 'antd'
 import { LogicBlock } from '../../components/crudTemplate'
 
 const FormItem = Form.Item
@@ -8,35 +8,17 @@ const FormBlock = props => {
   const { form, handleEvent, record } = props
   const { getFieldDecorator, resetFields } = form
 
-  // handleEvent.handleSubmit({ e, form })
   return (
     <LogicBlock.Consumer>
       {({ result: { recordChoose } }) => {
-        console.log('record')
         const { value } = recordChoose
         return (
-          <Form
-            onSubmit={e => handleEvent.handleSubmit({ e, form: props.form })}
-            className="login-form"
-            resetFields={true}
-          >
+          <Form className="login-form" resetFields={true}>
             <FormItem>
-              {getFieldDecorator('name', {
-                rules: [{ required: true, message: 'Please input name!' }],
-                initialValue: value.name ? value.name : ''
-              })(<Input placeholder="name" />)}
-            </FormItem>
-            <FormItem>
-              {getFieldDecorator('tel', {
-                rules: [{ required: true, message: 'Please input tel!' }],
-                initialValue: value.tel ? value.tel : ''
-              })(<Input type="textArea" placeholder="tel" />)}
-            </FormItem>
-            <FormItem>
-              {getFieldDecorator('account', {
-                rules: [{ required: true, message: 'Please input account!' }],
-                initialValue: value.account ? value.account : ''
-              })(<Input type="textArea" placeholder="account" />)}
+              {getFieldDecorator('email', {
+                rules: [{ required: true, message: 'Please input email!' }],
+                initialValue: value.email ? value.email : ''
+              })(<Input placeholder="email" />)}
             </FormItem>
             <FormItem>
               {getFieldDecorator('password', {
@@ -49,8 +31,8 @@ const FormBlock = props => {
               <FormItem>
                 <Button
                   type="primary"
-                  htmlType="submit"
                   className="login-form-button"
+                  onClick={handleEvent.handleSubmit({ form: props.form })}
                 >
                   {props.actionText}
                 </Button>
