@@ -45,7 +45,7 @@ export default () => (
       key="product"
       title={
         <span>
-          <Icon type="/solution" />
+          <Icon type="solution" />
           <span>Product</span>
         </span>
       }
