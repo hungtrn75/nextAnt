@@ -2,27 +2,22 @@ const typeDefs = `
 type User {
   _id: ID! @unique
   email: String! @unique
-  password: String!
+  picture: String
 }
 
 type AuthPayload {
   token: String
 }
-
-type Profile {
-  email: String,
-  picture: String
-}
 `
 
 const queries = `
   userAllQuery: [User]
-  profile: Profile
+  profile: User
 `
 
 const mutations = `
-  signup(email: String!, password: String!): AuthPayload
-  login(email: String!, password: String!): AuthPayload
+  signup(email: String!, password: String!): User
+  login(email: String!, password: String!): User
   logout: AuthPayload
   userDelete(_id:String!): User
 `

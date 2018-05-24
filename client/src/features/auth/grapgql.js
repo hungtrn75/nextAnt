@@ -6,7 +6,9 @@ import { adopt } from 'react-adopt'
 export const login = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      token
+      _id
+      email
+      picture
     }
   }
 `
@@ -15,7 +17,6 @@ export const userAllQuery = gql`
     userAllQuery {
       _id
       email
-      password
     }
   }
 `
@@ -23,7 +24,9 @@ export const userAllQuery = gql`
 export const signup = gql`
   mutation signup($email: String!, $password: String!) {
     signup(email: $email, password: $password) {
-      token
+      _id
+      email
+      picture
     }
   }
 `

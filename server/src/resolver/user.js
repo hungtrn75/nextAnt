@@ -11,12 +11,10 @@ const Query = {
     profile: async (parent, args, ctx) => {
       const _id = getUserId(ctx)
       const user = await User.findOne({ _id })
-      return { email: user.email, picture: user.picture }
+      return user
     },
 
-    userAllQuery: async () => {
-      return User.find()
-    }
+    userAllQuery: async () => User.find()
   }
 }
 
@@ -47,9 +45,7 @@ const Mutation = {
 
         ctx.req.session.userToken = token
 
-        return {
-          token
-        }
+        return user
       }
     },
 
@@ -77,9 +73,7 @@ const Mutation = {
 
       ctx.req.session.userToken = token
 
-      return {
-        token
-      }
+      return user
     },
 
     logout: async (_, args, ctx) => {

@@ -8,7 +8,6 @@ export const userAllQuery = gql`
     userAllQuery {
       _id
       email
-      password
     }
   }
 `
