@@ -64,9 +64,15 @@ export default () => (
         </span>
       }
     >
-      <Menu.Item key="e4">ReportDaily</Menu.Item>
-      <Menu.Item key="e5">TopProducts</Menu.Item>
-      <Menu.Item key="e6">TopSales</Menu.Item>
+      <Menu.Item key="e4" onClick={goto('/report/demo1')}>
+        ReportDaily
+      </Menu.Item>
+      <Menu.Item key="e5" onClick={goto('/report/demo2')}>
+        TopProducts
+      </Menu.Item>
+      <Menu.Item key="e6" onClick={goto('/report/demo3')}>
+        TopSales
+      </Menu.Item>
     </SubMenu>
 
     <SubMenu
