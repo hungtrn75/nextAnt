@@ -11,12 +11,10 @@ const Query = {
     profile: async (parent, args, ctx) => {
       const _id = getUserId(ctx)
       const user = await User.findOne({ _id })
-      return { email: user.email }
+      return user
     },
 
-    userAllQuery: async () => {
-      return User.find()
-    }
+    userAllQuery: async () => User.find()
   }
 }
 
@@ -26,6 +24,7 @@ const Mutation = {
       let user = new User()
       user.email = args.email
       user.password = args.password
+      user.picture = user.gravatar()
 
       const existingUser = await User.findOne({ email: args.email })
 
@@ -46,11 +45,10 @@ const Mutation = {
 
         ctx.req.session.userToken = token
 
-        return {
-          token
-        }
+        return user
       }
     },
+
     login: async (_, args, ctx) => {
       const user = await User.findOne({ email: args.email })
 
@@ -75,9 +73,7 @@ const Mutation = {
 
       ctx.req.session.userToken = token
 
-      return {
-        token
-      }
+      return user
     },
 
     logout: async (_, args, ctx) => {
