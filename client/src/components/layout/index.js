@@ -81,10 +81,17 @@ const MyLayout = ({ children, user }) => (
                       >
                         <span style={{ marginRight: '20px;' }}>Main</span>
                         <Icon type="bell" style={{ marginRight: '20px' }} />
-                        <Avatar
-                          style={{ backgroundColor: '#87d068' }}
-                          icon="user"
-                        />
+                        {user ? (
+                          <Avatar
+                            style={{ backgroundColor: '#87d068' }}
+                            src={user.picture}
+                          />
+                        ) : (
+                          <Avatar
+                            style={{ backgroundColor: '#87d068' }}
+                            icon="user"
+                          />
+                        )}
                       </div>
                     </Col>
                   </Row>

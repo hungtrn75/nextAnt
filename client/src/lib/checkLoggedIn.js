@@ -7,6 +7,7 @@ export default (ctx, apolloClient) =>
         query profile {
           profile {
             email
+            picture
           }
         }
       `
