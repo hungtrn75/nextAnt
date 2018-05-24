@@ -10,11 +10,13 @@ const Login = () => (
       if (!process.browser) {
         return <div />
       }
-      const { loginState, handleLoginEvent } = result
-      if (loginState.state.loggedIn === false) {
-        return <LoginForm handleLogin={handleLoginEvent.handleLogin} />
+
+      const { loginState } = result
+
+      if (!!loginState.state.loginUser) {
+        return <LogoutForm />
       } else {
-        return <LogoutForm handleLogout={handleLoginEvent.handleLogout} />
+        return <LoginForm />
       }
     }}
   </GlobalBlock.Consumer>
