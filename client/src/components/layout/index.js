@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Avatar, Layout, Icon, Row, Col } from 'antd'
 import { adopt } from 'react-adopt'
 import { Toggle, Value, State } from 'react-powerplug'
-
+import { userAllQuery } from '../../features/user/graphql'
 import Nav from '../nav'
 
 const { Header, Content, Sider } = Layout
@@ -32,7 +32,10 @@ const MyLayout = ({ children, user }) => (
           resultX.e.preventDefault()
           resultX.form.validateFields(async (err, values) => {
             if (!err) {
-              resultX.loginAction.mutation({ variables: values })
+              resultX.loginAction.mutation({
+                variables: values,
+                refetchQueries: [{ query: userAllQuery }]
+              })
               loginState.setState({ loggedIn: true })
             }
           })
@@ -78,10 +81,17 @@ const MyLayout = ({ children, user }) => (
                       >
                         <span style={{ marginRight: '20px;' }}>Main</span>
                         <Icon type="bell" style={{ marginRight: '20px' }} />
-                        <Avatar
-                          style={{ backgroundColor: '#87d068' }}
-                          icon="user"
-                        />
+                        {user ? (
+                          <Avatar
+                            style={{ backgroundColor: '#87d068' }}
+                            src={user.picture}
+                          />
+                        ) : (
+                          <Avatar
+                            style={{ backgroundColor: '#87d068' }}
+                            icon="user"
+                          />
+                        )}
                       </div>
                     </Col>
                   </Row>
