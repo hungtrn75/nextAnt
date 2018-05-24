@@ -5,8 +5,7 @@ const config = require('../config')
 function getUserId(ctx) {
   const userToken = ctx.req.session.userToken
   if (userToken) {
-    const token = userToken.replace('Bearer ', '')
-    const { userId } = jwt.verify(token, config.secret)
+    const { userId } = jwt.verify(userToken, config.secret)
     return userId
   }
   throw new Error('Not authenticated')
