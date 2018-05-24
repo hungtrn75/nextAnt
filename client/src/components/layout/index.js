@@ -16,7 +16,7 @@ const AdoptContainer = adopt({
 
 export const GlobalBlock = React.createContext()
 
-const MyLayout = ({ user }) => (
+const MyLayout = ({ children, user }) => (
   console.log(user),
   (
     <AdoptContainer>
@@ -94,7 +94,7 @@ const MyLayout = ({ user }) => (
                     minHeight: 300
                   }}
                 >
-                  {props.children}
+                  {children}
                 </Content>
               </Layout>
             </Layout>
