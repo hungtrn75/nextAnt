@@ -34,6 +34,7 @@ const FormBlock = props => {
                   htmlType="submit"
                   className="login-form-button"
                   onClick={handleEvent.handleSubmit(form)}
+                  loading={props.loading}
                 >
                   {props.actionText}
                 </Button>
