@@ -131,6 +131,7 @@ export default () => {
                   data: record
                 })}
               >
+                {' '}
                 {text}
               </a>
             )
