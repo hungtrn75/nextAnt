@@ -1,12 +1,10 @@
 const mongoose = require('mongoose')
 
-//const { getUserId } = require('../utils')
-
 const Board = mongoose.model('Board')
 
 const Query = {
   Query: {
-    boardAllQuery: async (_, args, context) => {
+    boardAllQuery: async (_, args) => {
       const boards = await Board.find()
       return boards
     }
