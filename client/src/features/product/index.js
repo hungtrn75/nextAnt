@@ -30,20 +30,35 @@ export default () => {
           toggleModal,
           recordChoose,
           container: {
-            query: { data, loading }
+            query: { data, loading },
+            createCrud,
+            updateCrud,
+            deleteCrud
           },
           crudInfo: {
             value: { queryName }
           }
         } = result
         const CreateForm = () => {
-          return <Form handleEvent={handleEvent} actionText={'create'} />
+          return (
+            <Form
+              handleEvent={handleEvent}
+              loading={createCrud.result.loading}
+              actionText={'create'}
+            />
+          )
         }
         const DetailForm = () => {
           return <Form handleEvent={handleEvent} actionText={'detail'} />
         }
         const UpdateForm = () => {
-          return <Form handleEvent={handleEvent} actionText={'update'} />
+          return (
+            <Form
+              handleEvent={handleEvent}
+              loading={updateCrud.result.loading}
+              actionText={'update'}
+            />
+          )
         }
 
         let TempForm = DetailForm
@@ -137,7 +152,10 @@ export default () => {
                     Update
                   </Button>
                   <Divider type="vertical" />
-                  <Button onClick={handleEvent.handleDelete(record)}>
+                  <Button
+                    loading={deleteCrud.result.loading}
+                    onClick={handleEvent.handleDelete(record)}
+                  >
                     Delete
                   </Button>
                 </span>

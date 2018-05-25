@@ -107,13 +107,7 @@ export default () => {
           )
         }
         const DetailForm = () => {
-          return (
-            <Form
-              handleEvent={handleEvent}
-              loading={updateCrud.result.loading}
-              actionText={'detail'}
-            />
-          )
+          return <Form handleEvent={handleEvent} actionText={'detail'} />
         }
         const UpdateForm = () => {
           return (
@@ -164,7 +158,10 @@ export default () => {
                     Update
                   </Button>
                   <Divider type="vertical" />
-                  <Button onClick={handleEvent.handleDelete(record)}>
+                  <Button
+                    loading={deleteCrud.result.loading}
+                    onClick={handleEvent.handleDelete(record)}
+                  >
                     Delete
                   </Button>
                 </span>
