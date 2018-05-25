@@ -148,14 +148,14 @@ export default () => {
         if (loading) {
           return <div>Logining</div>
         }
-        const dataSet = data[queryName].map((v, i) => {
+        const dataSet = data[queryName].map(({ _id, title, content }) => {
           return {
-            key: i,
-            title: v.title,
-            content: v.content,
+            key: _id,
+            title: title,
+            content: content,
             stateDate: 'test',
             endDate: 'test',
-            _id: v._id
+            _id: _id
           }
         })
 
