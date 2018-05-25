@@ -3,75 +3,75 @@ import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
 
-export const BoardAllQuery = gql`
-  query BoardAllQuery {
-    BoardAllQuery {
-      BoardId
-      Title
-      Content
+export const boardAllQuery = gql`
+  query boardAllQuery {
+    boardAllQuery {
+      _id
+      title
+      content
     }
   }
 `
-export const BoardOneQuery = gql`
-  query BoardOneQuery($BoardId: String) {
-    BoardOneQuery(BoardId: $BoardId) {
-      BoardId
-      Title
-      Content
-    }
-  }
-`
-
-export const BoardUpdate = gql`
-  mutation BoardUpdate($Title: String, $Content: String, $BoardId: String) {
-    BoardUpdate(Title: $Title, Content: $Content, BoardId: $BoardId) {
-      BoardId
-      Title
-      Content
+export const boardOneQuery = gql`
+  query boardOneQuery($_id: String) {
+    boardOneQuery(_id: $_id) {
+      _id
+      title
+      content
     }
   }
 `
 
-export const BoardDelete = gql`
-  mutation BoardDelete($BoardId: String) {
-    BoardDelete(BoardId: $BoardId) {
-      BoardId
-      Title
-      Content
+export const boardUpdate = gql`
+  mutation boardUpdate($title: String, $content: String, $_id: String) {
+    boardUpdate(title: $title, content: $content, _id: $_id) {
+      _id
+      title
+      content
     }
   }
 `
 
-export const BoardAdd = gql`
-  mutation BoardAdd($Title: String, $Content: String) {
-    BoardAdd(Title: $Title, Content: $Content) {
-      Title
-      Content
-      BoardId
+export const boardDelete = gql`
+  mutation boardDelete($_id: String) {
+    boardDelete(_id: $_id) {
+      _id
+      title
+      content
+    }
+  }
+`
+
+export const boardCreate = gql`
+  mutation boardCreate($title: String, $content: String) {
+    boardCreate(title: $title, content: $content) {
+      title
+      content
+      _id
     }
   }
 `
 
 const createCrud = ({ render }) => (
-  <Mutation mutation={BoardAdd}>
+  <Mutation mutation={boardCreate}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
 const updateCrud = ({ render }) => (
-  <Mutation mutation={BoardUpdate}>
+  <Mutation mutation={boardUpdate}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
 const deleteCrud = ({ render }) => (
-  <Mutation mutation={BoardDelete}>
+  <Mutation mutation={boardDelete}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
 export const CrudContainer = adopt({
-  query: <Query query={BoardAllQuery} />,
+  query: <Query query={boardAllQuery} />,
   createCrud,
   updateCrud,
   deleteCrud

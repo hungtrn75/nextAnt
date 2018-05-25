@@ -1,21 +1,22 @@
 const queries = `
-     BoardAllQuery:[Board],
-     BoardOneQuery(BoardId:String):Board
+     boardAllQuery:[board],
+     boardOneQuery(_id:String):board
 `
-const typeDefs = ` type Board{
-  BoardId:String,
+const typeDefs = ` type board{
+  _id:String,
   Title:String,
   Content:String,
   StartDate:String,
-  EndDate:String 
+  EndDate:String  
+  
 }`
 
 const mutations = `
-  BoardUpdate(BoardId:String,Title:String,Content:String):Board,
-  BoardAdd(Title:String,Content:String):Board,
-  BoardDelete(BoardId:String):Board
+  boardUpdate(_id:String,Title:String,Content:String):board,
+  boardCreate(Title:String,Content:String):board,
+  boardDelete(_id:String):board
 `
 
-const BoardSchema = { typeDefs, queries, mutations }
+const boardSchema = { typeDefs, queries, mutations }
 
-module.exports = BoardSchema
+module.exports = boardSchema

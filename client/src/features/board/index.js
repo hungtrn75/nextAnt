@@ -9,13 +9,13 @@ import CrudTemplate, {
   DETAIL
 } from '../../components/crudTemplate'
 import Form from './form'
-import { CrudContainer, BoardAllQuery } from './graphql'
+import { CrudContainer, boardAllQuery } from './graphql'
 
 const AdoptContainer = adopt({
   container: <CrudContainer />,
   toggleModal: <Toggle initial={false} />,
   modal: <Value initial={{ title: ' test' }} />,
-  crudInfo: <Value initial={{ queryName: 'BoardAllQuery' }} />,
+  crudInfo: <Value initial={{ queryName: 'boardAllQuery' }} />,
   formData: <Value initial={{ formData: {} }} />,
   assignForm: <Value initial={'create'} />,
   recordChoose: <Value initial={''} />
@@ -60,10 +60,10 @@ export default () => {
             }
           },
           handleDelete: record => () => {
-            let values = { BoardId: record.BoardId }
+            let values = { _id: record._id }
             result.container.deleteCrud.mutation({
               variables: values,
-              refetchQueries: [{ query: BoardAllQuery }]
+              refetchQueries: [{ query: boardAllQuery }]
             })
           },
           handleSubmit: form => () => {
@@ -73,17 +73,17 @@ export default () => {
                 recordChoose.setValue(values)
 
                 if (assignForm.value === 'update') {
-                  values.BoardId = recordChoose.value.BoardId
+                  values._id = recordChoose.value._id
                   await result.container.updateCrud.mutation({
                     variables: values,
-                    refetchQueries: [{ query: BoardAllQuery }]
+                    refetchQueries: [{ query: boardAllQuery }]
                   })
                   form.resetFields()
                 }
                 if (assignForm.value === 'create') {
                   await result.container.createCrud.mutation({
                     variables: values,
-                    refetchQueries: [{ query: BoardAllQuery }]
+                    refetchQueries: [{ query: boardAllQuery }]
                   })
                   form.resetFields()
                 }
@@ -104,7 +104,7 @@ export default () => {
 
         const columns = [
           {
-            title: 'TiTle',
+            title: 'tiTle',
             dataIndex: 'title',
             key: 'title',
             render: (text, record) => (
@@ -119,7 +119,7 @@ export default () => {
             )
           },
           {
-            title: 'Content',
+            title: 'content',
             dataIndex: 'content',
             key: 'content'
           },
@@ -155,11 +155,11 @@ export default () => {
         const dataSet = data[queryName].map((v, i) => {
           return {
             key: i,
-            title: v.Title,
-            content: v.Content,
+            title: v.title,
+            content: v.content,
             stateDate: 'test',
             endDate: 'test',
-            BoardId: v.BoardId
+            _id: v._id
           }
         })
 
