@@ -8,7 +8,6 @@ const Query = {
   Query: {
     boardAllQuery: async (_, args, context) => {
       const boards = await Board.find()
-      console.log('boards', boards)
       return boards
     }
   }
@@ -19,7 +18,6 @@ const Mutation = {
     boardCreate: async (_, { title, content }) => {
       const board = new Board({ title, content })
       await board.save()
-      console.log('board', board)
       return board
     },
     boardUpdate: async (_, { _id, title, content }) => {
