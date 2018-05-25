@@ -77,7 +77,7 @@ export default () => {
                 if (assignForm.value === 'update') {
                   values._id = recordChoose.value._id
 
-                  await result.container.updateCrud.mutation({
+                  await updateCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: boardAllQuery }]
                   })
@@ -85,7 +85,7 @@ export default () => {
                   form.resetFields()
                 }
                 if (assignForm.value === 'create') {
-                  await result.container.createCrud.mutation({
+                  await createCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: boardAllQuery }]
                   })
