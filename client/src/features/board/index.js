@@ -155,7 +155,7 @@ export default () => {
         }
         const dataSet = data[queryName].map((v, i) => {
           return {
-            key: i,
+            key: v._id,
             title: v.title,
             content: v.content,
             stateDate: 'test',
