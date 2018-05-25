@@ -1,19 +1,19 @@
 const queries = `
      productAllQuery:[product],
-     productOneQuery(productId:String):product
+     productOneQuery(_id:String):product
 `
 const typeDefs = ` type product{
-  productId:String,
-  Title:String,
-  Content:String,
-  StartDate:String,
-  EndDate:String 
+  _id:String,
+  title:String,
+  content:String,
+  startDate:String,
+  endDate:String 
 }`
 
 const mutations = `
-  productUpdate(productId:String,Title:String,Content:String):product,
-  productAdd(Title:String,Content:String):product,
-  productDelete(productId:String):product
+  productUpdate(_id:String,title:String,content:String):product,
+  productCreate(title:String,content:String):product,
+  productDelete(_id:String):product
 `
 
 const productSchema = { typeDefs, queries, mutations }

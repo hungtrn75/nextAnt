@@ -6,55 +6,55 @@ import { adopt } from 'react-adopt'
 export const productAllQuery = gql`
   query productAllQuery {
     productAllQuery {
-      productId
-      Title
-      Content
+      _id
+      title
+      content
     }
   }
 `
 
 export const productOneQuery = gql`
-  query productOneQuery($productId: String) {
-    productOneQuery(productId: $productId) {
-      productId
-      Title
-      Content
+  query productOneQuery($_id: String) {
+    productOneQuery(_id: $_id) {
+      _id
+      title
+      content
     }
   }
 `
 
 export const productUpdate = gql`
-  mutation productUpdate($Title: String, $Content: String, $productId: String) {
-    productUpdate(Title: $Title, Content: $Content, productId: $productId) {
-      productId
-      Title
-      Content
+  mutation productUpdate($title: String, $content: String, $_id: String) {
+    productUpdate(title: $title, content: $content, _id: $_id) {
+      _id
+      title
+      content
     }
   }
 `
 
 export const productDelete = gql`
-  mutation productDelete($productId: String) {
-    productDelete(productId: $productId) {
-      productId
-      Title
-      Content
+  mutation productDelete($_id: String) {
+    productDelete(_id: $_id) {
+      _id
+      title
+      content
     }
   }
 `
 
-export const productAdd = gql`
-  mutation productAdd($Title: String, $Content: String) {
-    productAdd(Title: $Title, Content: $Content) {
-      Title
-      Content
-      productId
+export const productCreate = gql`
+  mutation productCreate($title: String, $content: String) {
+    productCreate(title: $title, content: $content) {
+      title
+      content
+      _id
     }
   }
 `
 
 const createCrud = ({ render }) => (
-  <Mutation mutation={productAdd}>
+  <Mutation mutation={productCreate}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )

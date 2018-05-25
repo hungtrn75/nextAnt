@@ -68,7 +68,7 @@ export default () => {
             }
           },
           handleDelete: record => () => {
-            let values = { productId: record.productId }
+            let values = { _id: record._id }
             result.container.deleteCrud.mutation({
               variables: values,
               refetchQueries: [{ query: productAllQuery }]
@@ -81,7 +81,7 @@ export default () => {
                 recordChoose.setValue(values)
 
                 if (assignForm.value === 'update') {
-                  values.productId = recordChoose.value.productId
+                  values._id = recordChoose.value._id
                   await result.container.updateCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: productAllQuery }]
@@ -102,7 +102,7 @@ export default () => {
 
         const columns = [
           {
-            title: 'TiTle',
+            title: 'title',
             dataIndex: 'title',
             key: 'title',
             render: (text, record) => (
@@ -115,7 +115,7 @@ export default () => {
             )
           },
           {
-            title: 'Content',
+            title: 'content',
             dataIndex: 'content',
             key: 'content'
           },
@@ -148,14 +148,14 @@ export default () => {
         if (loading) {
           return <div>Logining</div>
         }
-        const dataSet = data[queryName].map((v, i) => {
+        const dataSet = data[queryName].map(({ _id, title, content }) => {
           return {
-            key: i,
-            title: v.Title,
-            content: v.Content,
+            key: _id,
+            title: title,
+            content: content,
             stateDate: 'test',
             endDate: 'test',
-            productId: v.productId
+            _id: _id
           }
         })
 

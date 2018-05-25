@@ -1,59 +1,30 @@
-var shortid = require('shortid')
+const mongoose = require('mongoose')
 
-let InitData = [
-  { BoardId: '1', Title: 'Wonder Wonmen', Content: 'Wonder Wonmen is Beauty' },
-  { BoardId: '2', Title: 'batMan', Content: 'batMan is Cool' }
-]
+const Board = mongoose.model('Board')
 
 const Query = {
   Query: {
-    BoardAllQuery: (parent, args, context) => {
-      return InitData
-    },
-    BoardOneQuery: async (_, { BoardId = '1' }) => {
-      const result = InitData.find(item => {
-        return item.BoardId === BoardId
-      })
-
-      return result
+    boardAllQuery: async (_, {}) => {
+      const boards = await Board.find()
+      return boards
     }
   }
 }
 
 const Mutation = {
   Mutation: {
-    BoardUpdate: async (_, { BoardId, Title, Content }, { user }) => {
-      const sleep = waitTime => {
-        setTimeout(() => {}, waitTime)
-      }
-      await sleep(3000)
-      InitData.map(item => {
-        if (item.BoardId === BoardId) {
-          item.Title = Title
-          item.Content = Content
-        }
-        return item
-      })
-
-      return { Title, Content, BoardId }
+    boardCreate: async (_, { title, content }) => {
+      const board = new Board({ title, content })
+      await board.save()
+      return board
     },
-    BoardAdd: (_, { Title, Content }) => {
-      const BoardId = shortid.generate()
-      const NewOne = { BoardId, Title, Content }
-      InitData = [...InitData, NewOne]
-
-      return NewOne
+    boardUpdate: async (_, { _id, title, content }) => {
+      await Board.findOneAndUpdate({ _id }, { title, content })
+      return _id
     },
-    BoardDelete: (_, { BoardId }) => {
-      const result = InitData.findIndex(item => {
-        return item.BoardId === BoardId
-      })
-
-      if (result !== undefined) {
-        return InitData.splice(result, 1)
-      } else {
-        return {}
-      }
+    boardDelete: async (_, { _id }) => {
+      await Board.findOneAndRemove({ _id })
+      return { _id }
     }
   }
 }

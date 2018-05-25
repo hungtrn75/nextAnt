@@ -8,6 +8,8 @@ const config = require('./config')
 
 require('./src/models/customer')
 require('./src/models/user')
+require('./src/models/board')
+require('./src/models/product')
 
 const schema = require('./src')
 const {
