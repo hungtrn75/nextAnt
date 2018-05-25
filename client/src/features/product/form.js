@@ -15,16 +15,16 @@ const FormBlock = props => {
         return (
           <Form className="login-form" resetFields={true}>
             <FormItem>
-              {getFieldDecorator('Title', {
-                rules: [{ required: true, message: 'Please input Title!' }],
+              {getFieldDecorator('title', {
+                rules: [{ required: true, message: 'Please input title!' }],
                 initialValue: value.title ? value.title : ''
-              })(<Input placeholder="Title" />)}
+              })(<Input placeholder="title" />)}
             </FormItem>
             <FormItem>
-              {getFieldDecorator('Content', {
-                rules: [{ required: true, message: 'Please input Content!' }],
+              {getFieldDecorator('content', {
+                rules: [{ required: true, message: 'Please input content!' }],
                 initialValue: value.content ? value.content : ''
-              })(<Input type="textArea" placeholder="Content" />)}
+              })(<Input type="textArea" placeholder="content" />)}
             </FormItem>
 
             {props.actionText !== 'detail' ? (

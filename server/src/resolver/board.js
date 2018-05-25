@@ -7,17 +7,20 @@ const Board = mongoose.model('Board')
 const Query = {
   Query: {
     boardAllQuery: async (_, args, context) => {
-      const board = await Board.find()
-      return board
+      const boards = await Board.find()
+      console.log('boards', boards)
+      return boards
     }
   }
 }
 
 const Mutation = {
   Mutation: {
-    boardCreate: (_, { title, content }) => {
+    boardCreate: async (_, { title, content }) => {
       const board = new Board({ title, content })
-      return NewOne
+      await board.save()
+      console.log('board', board)
+      return board
     },
     boardUpdate: async (_, { _id, title, content }) => {
       await Board.findOneAndUpdate({ _id }, { title, content })

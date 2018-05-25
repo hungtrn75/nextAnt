@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const BoardSchema = new Schema({
-  _id: String,
   title: String,
   content: String,
   startDate: String,
@@ -10,4 +9,4 @@ const BoardSchema = new Schema({
   createdAt: { type: Date, default: Date.now }
 })
 
-mongoose.model('Board', BoardSchema)
+module.exports = mongoose.model('Board', BoardSchema)

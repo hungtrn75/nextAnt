@@ -4,16 +4,16 @@ const queries = `
 `
 const typeDefs = ` type board{
   _id:String,
-  Title:String,
-  Content:String,
-  StartDate:String,
-  EndDate:String  
+  title:String,
+  content:String,
+  startDate:String,
+  endDate:String  
   
 }`
 
 const mutations = `
-  boardUpdate(_id:String,Title:String,Content:String):board,
-  boardCreate(Title:String,Content:String):board,
+  boardUpdate(_id:String,title:String,content:String):board,
+  boardCreate(title:String,content:String):board,
   boardDelete(_id:String):board
 `
 
