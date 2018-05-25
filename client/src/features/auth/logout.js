@@ -1,8 +1,10 @@
 import React from 'react'
-
 import { Form, Button } from 'antd'
 
 const FormItem = Form.Item
+
+import { GlobalBlock } from '../../../src/components/layout'
+import { ActionContainer } from './grapgql'
 
 const formTailLayout = {
   labelCol: { span: 4 },
@@ -10,18 +12,43 @@ const formTailLayout = {
 }
 const LogoutForm = props => {
   const { getFieldDecorator, resetFields } = props.form
+
   return (
-    <Form
-      onSubmit={e => props.handleLogout({ e, form: props.form })}
-      className="login-form"
-      resetFields={true}
-    >
-      <FormItem {...formTailLayout}>
-        <Button type="primary" htmlType="submit">
-          Logout
-        </Button>
-      </FormItem>
-    </Form>
+    <GlobalBlock.Consumer>
+      {result => {
+        if (!process.browser) {
+          return <div />
+        }
+
+        const { loginState } = result
+
+        return (
+          <ActionContainer>
+            {({ logoutAction }) => {
+              const handleLogout = async e => {
+                e.preventDefault()
+                await logoutAction.mutation()
+                loginState.setState({ loginUser: null })
+              }
+
+              return (
+                <Form
+                  onSubmit={handleLogout}
+                  className="login-form"
+                  resetFields={true}
+                >
+                  <FormItem {...formTailLayout}>
+                    <Button type="primary" htmlType="submit">
+                      Logout
+                    </Button>
+                  </FormItem>
+                </Form>
+              )
+            }}
+          </ActionContainer>
+        )
+      }}
+    </GlobalBlock.Consumer>
   )
 }
 

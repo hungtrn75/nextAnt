@@ -1,6 +1,6 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Query, Mutation } from 'react-apollo'
+import { Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
 
 export const login = gql`
@@ -35,6 +35,15 @@ export const logout = gql`
   mutation logout {
     logout {
       token
+    }
+  }
+`
+
+export const userPorfile = gql`
+  query profile {
+    profile {
+      email
+      picture
     }
   }
 `
