@@ -173,9 +173,9 @@ export default () => {
         if (loading) {
           return <div>Logining</div>
         }
-        const dataSet = data[queryName].map((v, i) => {
+        const dataSet = data[queryName].map(v => {
           return {
-            key: i,
+            key: v._id,
             title: v.title,
             content: v.content,
             stateDate: 'test',

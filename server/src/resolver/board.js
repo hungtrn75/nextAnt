@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 
-//const { getUserId } = require('../utils')
-
 const Board = mongoose.model('Board')
 
 const Query = {
