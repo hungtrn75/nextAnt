@@ -10,14 +10,14 @@ import checkLoggedIn from '../src/lib/checkLoggedIn'
 
 class MyApp extends App {
   static async getInitialProps(ctx, apolloClient) {
-    const { loggedInUser } = await checkLoggedIn(ctx, apolloClient)
+    const { loginUser } = await checkLoggedIn(ctx, apolloClient)
     return {
-      user: loggedInUser.profile
+      loginUser: loginUser.profile
     }
   }
 
   render() {
-    const { Component, pageProps, user } = this.props
+    const { Component, pageProps, loginUser } = this.props
 
     return (
       <Container>
@@ -27,7 +27,7 @@ class MyApp extends App {
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-        <Layout user={user}>
+        <Layout loginUser={loginUser}>
           <Component {...pageProps} />
         </Layout>
       </Container>
