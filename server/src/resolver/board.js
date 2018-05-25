@@ -6,7 +6,7 @@ const Board = mongoose.model('Board')
 
 const Query = {
   Query: {
-    boardAllQuery: async (_, args, context) => {
+    boardAllQuery: async (_, {}) => {
       const boards = await Board.find()
       return boards
     }
