@@ -32,7 +32,6 @@ export default () => {
           container: {
             query: { error, data, loading },
             createCrud,
-            updateCrud,
             deleteCrud
           },
           crudInfo: {

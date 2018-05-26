@@ -1,5 +1,6 @@
 import React from 'react'
-import { Row, Icon, Col, Form, Input, Button } from 'antd'
+ 
+import { message, Row, Icon, Col, Form, Input, Button } from 'antd'
 import Link from 'next/link'
 
 import { GlobalBlock } from '../../../src/components/layout'
@@ -84,13 +85,9 @@ const LoginForm = props => {
 
                   <Row>
                     <Col span={14} style={{ textAlign: 'right' }}>
-                      {loginAction.result.error ? (
-                        <label style={{ marginRight: '20px', color: 'red' }}>
-                          {loginAction.result.error.message}
-                        </label>
-                      ) : (
-                        ''
-                      )}
+                      {loginAction.result.error
+                        ? message.error(loginAction.result.error.message, 1)
+                        : ''}
 
                       <Button
                         type="primary"
