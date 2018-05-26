@@ -50,7 +50,8 @@ const FormBlock = props => {
 }
 
 FormBlock.PropTypes = {
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  handleEvent: PropTypes.func
 }
 
 export default Form.create()(FormBlock)
