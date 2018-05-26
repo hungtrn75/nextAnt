@@ -39,29 +39,6 @@ export default () => {
             value: { queryName }
           }
         } = result
-        const CreateForm = () => {
-          return (
-            <Form
-              handleEvent={handleEvent}
-              loading={createCrud.result.loading}
-              actionText={'create'}
-            />
-          )
-        }
-        const DetailForm = () => {
-          return <Form handleEvent={handleEvent} actionText={'detail'} />
-        }
-        const UpdateForm = () => {
-          return (
-            <Form
-              handleEvent={handleEvent}
-              loading={updateCrud.result.loading}
-              actionText={'update'}
-            />
-          )
-        }
-
-        let TempForm = DetailForm
 
         const handleEvent = {
           handleToggleModal: (action, record) => () => {
@@ -113,6 +90,28 @@ export default () => {
               }
             })
           }
+        }
+
+        const CreateForm = () => {
+          return (
+            <Form
+              handleEvent={handleEvent}
+              loading={createCrud.result.loading}
+              actionText={'create'}
+            />
+          )
+        }
+        const DetailForm = () => {
+          return <Form handleEvent={handleEvent} actionText={'detail'} />
+        }
+        const UpdateForm = () => {
+          return (
+            <Form
+              handleEvent={handleEvent}
+              loading={updateCrud.result.loading}
+              actionText={'update'}
+            />
+          )
         }
 
         const columns = [
