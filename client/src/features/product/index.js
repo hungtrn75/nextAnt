@@ -113,6 +113,28 @@ export default () => {
           )
         }
 
+        const CreateForm = () => {
+          return (
+            <Form
+              handleEvent={handleEvent}
+              loading={createCrud.result.loading}
+              actionText={'create'}
+            />
+          )
+        }
+        const DetailForm = () => {
+          return <Form handleEvent={handleEvent} actionText={'detail'} />
+        }
+        const UpdateForm = () => {
+          return (
+            <Form
+              handleEvent={handleEvent}
+              loading={updateCrud.result.loading}
+              actionText={'update'}
+            />
+          )
+        }
+
         const columns = [
           {
             title: 'title',
@@ -164,14 +186,16 @@ export default () => {
         if (loading) {
           return <div>Logining</div>
         }
-        const dataSet = data[queryName].map(v => {
+
+        const dataSet = data[queryName].map(({ _id, title, content }) => {
           return {
-            key: v._id,
-            title: v.title,
-            content: v.content,
+            key: _id,
+            title: title,
+            content: content,
+
             stateDate: 'test',
             endDate: 'test',
-            _id: v._id
+            _id: _id
           }
         })
 

@@ -1,10 +1,10 @@
 import React from 'react'
-
-import { GlobalBlock } from '../../../src/components/layout'
-
+ 
 import { message, Row, Icon, Col, Form, Input, Button } from 'antd'
 import Link from 'next/link'
-import { ActionContainer } from './grapgql'
+
+import { GlobalBlock } from '../../../src/components/layout'
+import { ActionContainer, userAllQuery } from './grapgql'
 
 const FormItem = Form.Item
 const formItemLayout = {
@@ -20,6 +20,7 @@ const LoginForm = props => {
         if (!process.browser) {
           return <div />
         }
+
         const { loginState } = result
 
         return (
@@ -28,9 +29,11 @@ const LoginForm = props => {
               const handleLogin = resultX => () => {
                 resultX.form.validateFields(async (err, values) => {
                   if (!err) {
-                    await loginAction.mutation({ variables: values })
-
-                    loginState.setState({ loggedIn: true })
+                    const result = await loginAction.mutation({
+                      variables: values,
+                      refetchQueries: [{ query: userAllQuery }]
+                    })
+                    loginState.setState({ loginUser: result.data.login })
                   }
                 })
               }

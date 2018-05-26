@@ -92,11 +92,11 @@ export default () => (
         return <div>Logining</div>
       }
 
-      const dataSet = data[queryName].map((v, i) => {
+      const dataSet = data[queryName].map(({ _id, email }) => {
         return {
-          key: i,
-          _id: v._id,
-          email: v.email
+          key: _id,
+          _id: _id,
+          email: email
         }
       })
 

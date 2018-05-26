@@ -1,11 +1,12 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
 import { LogicBlock } from '../../components/crudTemplate'
+import PropTypes from 'prop-types'
 
 const FormItem = Form.Item
 
 const FormBlock = props => {
-  const { form, handleEvent, record } = props
+  const { form, handleEvent, actionText, loading } = props
   const { getFieldDecorator, resetFields } = form
 
   return (
@@ -32,10 +33,10 @@ const FormBlock = props => {
                 <Button
                   type="primary"
                   className="login-form-button"
-                  onClick={handleEvent.handleSubmit({ form: props.form })}
-                  loading={props.loading}
+                  onClick={handleEvent.handleSubmit({ form })}
+                  loading={loading}
                 >
-                  {props.actionText}
+                  {actionText}
                 </Button>
               </FormItem>
             ) : (
@@ -46,6 +47,12 @@ const FormBlock = props => {
       }}
     </LogicBlock.Consumer>
   )
+}
+
+FormBlock.propTypes = {
+  loading: PropTypes.bool,
+  handleEvent: PropTypes.func,
+  actionText: PropTypes.string
 }
 
 export default Form.create()(FormBlock)

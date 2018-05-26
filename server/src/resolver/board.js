@@ -1,20 +1,18 @@
 const mongoose = require('mongoose')
 
-//const { getUserId } = require('../utils')
-
 const Board = mongoose.model('Board')
 
 const Query = {
   Query: {
-    boardAllQuery: async (_, args, context) => {
+    boardAllQuery: async (_, {}) => {
       const boards = await Board.find()
       return boards
     }
   }
 }
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
+// function sleep(ms) {
+//   return new Promise(resolve => setTimeout(resolve, ms))
+// }
 
 const Mutation = {
   Mutation: {
