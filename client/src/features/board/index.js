@@ -30,17 +30,18 @@ export default () => {
           toggleModal,
           recordChoose,
           container: {
-            query: { error, data, loading }
+            query: { error, data, loading },
+            createCrud,
+            updateCrud,
+            deleteCrud
           },
           crudInfo: {
             value: { queryName }
           }
         } = result
-
         if (error) {
           return <div>an error occer</div>
         }
-
         const handleEvent = {
           handleToggleModal: (action, record) => () => {
             toggleModal.toggle()
@@ -69,38 +70,51 @@ export default () => {
           handleSubmit: form => () => {
             form.validateFields(async (err, values) => {
               if (!err) {
-                toggleModal.toggle()
                 recordChoose.setValue(values)
 
                 if (assignForm.value === 'update') {
                   values._id = recordChoose.value._id
 
-                  await result.container.updateCrud.mutation({
+                  await updateCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: boardAllQuery }]
                   })
+
                   form.resetFields()
                 }
                 if (assignForm.value === 'create') {
-                  await result.container.createCrud.mutation({
+                  await createCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: boardAllQuery }]
                   })
                   form.resetFields()
                 }
+                toggleModal.toggle()
               }
             })
           }
         }
 
         const CreateForm = () => {
-          return <Form handleEvent={handleEvent} actionText={'create'} />
+          return (
+            <Form
+              handleEvent={handleEvent}
+              loading={createCrud.result.loading}
+              actionText={'create'}
+            />
+          )
         }
         const DetailForm = () => {
           return <Form handleEvent={handleEvent} actionText={'detail'} />
         }
         const UpdateForm = () => {
-          return <Form handleEvent={handleEvent} actionText={'update'} />
+          return (
+            <Form
+              handleEvent={handleEvent}
+              loading={deleteCrud.result.loading}
+              actionText={'update'}
+            />
+          )
         }
 
         const columns = [
@@ -115,6 +129,7 @@ export default () => {
                   data: record
                 })}
               >
+                {' '}
                 {text}
               </a>
             )
@@ -142,7 +157,10 @@ export default () => {
                     Update
                   </Button>
                   <Divider type="vertical" />
-                  <Button onClick={handleEvent.handleDelete(record)}>
+                  <Button
+                    loading={deleteCrud.result.loading}
+                    onClick={handleEvent.handleDelete(record)}
+                  >
                     Delete
                   </Button>
                 </span>

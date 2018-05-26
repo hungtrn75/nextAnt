@@ -1,17 +1,19 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
 import { LogicBlock } from '../../components/crudTemplate'
+import PropTypes from 'prop-types'
 
 const FormItem = Form.Item
 
 const FormBlock = props => {
-  const { form, handleEvent, record } = props
+  const { form, handleEvent, loading, actionText } = props
   const { getFieldDecorator, resetFields } = form
 
   return (
     <LogicBlock.Consumer>
       {({ result: { recordChoose } }) => {
         const { value } = recordChoose
+
         return (
           <Form className="login-form" resetFields={true}>
             <FormItem>
@@ -34,8 +36,9 @@ const FormBlock = props => {
                   htmlType="submit"
                   className="login-form-button"
                   onClick={handleEvent.handleSubmit(form)}
+                  loading={loading}
                 >
-                  {props.actionText}
+                  {actionText}
                 </Button>
               </FormItem>
             ) : (
@@ -47,5 +50,9 @@ const FormBlock = props => {
     </LogicBlock.Consumer>
   )
 }
-
+FormBlock.propTypes = {
+  loading: PropTypes.bool,
+  handleEvent: PropTypes.func,
+  actionText: PropTypes.string
+}
 export default Form.create()(FormBlock)

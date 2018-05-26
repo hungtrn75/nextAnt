@@ -10,10 +10,14 @@ const Query = {
     }
   }
 }
+// function sleep(ms) {
+//   return new Promise(resolve => setTimeout(resolve, ms))
+// }
 
 const Mutation = {
   Mutation: {
     boardCreate: async (_, { title, content }) => {
+      //await sleep(3000)
       const board = new Board({ title, content })
       await board.save()
       return board
