@@ -43,7 +43,12 @@ const Mutation = {
           }
         )
 
-        ctx.req.session.userToken = token
+        ctx.res.cookie('userToken', token, {
+          domain: 'next-ant.herokuapp.com',
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+        })
 
         return user
       }
@@ -71,17 +76,20 @@ const Mutation = {
         }
       )
 
-      ctx.req.session.userToken = token
+      ctx.res.cookie('userToken', token, {
+        domain: 'next-ant.herokuapp.com',
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+      })
 
       return user
     },
 
     logout: async (_, args, ctx) => {
-      const token = ctx.req.session.userToken
-      ctx.req.session.userToken = null
-
+      ctx.res.clearCookie('userToken')
       return {
-        token
+        token: 'null'
       }
     },
 
