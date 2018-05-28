@@ -6,7 +6,7 @@ const FormItem = Form.Item
 
 const FormBlock = props => {
   const { form, handleEvent, record } = props
-  const { getFieldDecorator, resetFields } = form
+  const { getFieldDecorator } = form
 
   return (
     <LogicBlock.Consumer>
