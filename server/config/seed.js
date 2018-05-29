@@ -244,102 +244,142 @@ Product.count({}, (err, count) => {
       {
         title: 'Zap APF',
         content:
-          'parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque'
+          'parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque',
+        price: 129,
+        hide: true
       },
       {
         title: 'Cefdinir',
         content:
-          'in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet'
+          'in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet',
+        price: 99,
+        hide: true
       },
       {
         title: 'Blemish Control Blotting Paper',
         content:
-          'enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin'
+          'enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin',
+        price: 29,
+        hide: true
       },
       {
         title: 'Rough (Redroot) Pigweed',
         content:
-          'nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis'
+          'nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis',
+        price: 49,
+        hide: true
       },
       {
         title: 'SANITAXE',
         content:
-          'turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem'
+          'turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem',
+        price: 399,
+        hide: true
       },
       {
         title: 'Good Neighbor Pharmacy',
         content:
-          'tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo'
+          'tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo',
+        price: 499,
+        hide: true
       },
       {
         title: 'Ferrum sidereum Pancreas 10/4 Special Order',
         content:
-          'id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi'
+          'id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi',
+        price: 19,
+        hide: true
       },
       {
         title: 'ACT Anticavity Fluoride Kids Bubblegum',
         content:
-          'ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere'
+          'ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere',
+        price: 122,
+        hide: true
       },
       {
         title: 'ELF Zit Zapper',
         content:
-          'ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut'
+          'ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut',
+        price: 11,
+        hide: true
       },
       {
         title: 'Clonidine Hydrochloride',
         content:
-          'aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan'
+          'aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan',
+        price: 1299,
+        hide: true
       },
       {
         title:
           'Amazonian Colored Clay Foundation Broad Spectrum SPF 15 Sunscreen',
         content:
-          'pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero'
+          'pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero',
+        price: 190,
+        hide: true
       },
       {
         title: 'Amoebatox',
         content:
-          'mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci'
+          'mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci',
+        price: 100,
+        hide: true
       },
       {
         title: 'Grapefruit',
         content:
-          'luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus'
+          'luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus',
+        price: 55,
+        hide: true
       },
       {
         title: 'Leader nite time',
         content:
-          'sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus'
+          'sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus',
+        price: 39,
+        hide: true
       },
       {
         title: 'butalbital, acetaminophen and caffeine',
         content:
-          'ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel'
+          'ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel',
+        price: 44,
+        hide: true
       },
       {
         title: 'Midazolam hydrochloride',
         content:
-          'velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus'
+          'velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus',
+        price: 77,
+        hide: true
       },
       {
         title: 'Mosquito',
         content:
-          'pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat'
+          'pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat',
+        price: 44,
+        hide: true
       },
       {
         title: 'kirkland signature minoxidil',
         content:
-          'eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed'
+          'eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed',
+        price: 188,
+        hide: true
       },
       {
         title: 'St. Ives',
-        content: 'donec dapibus duis at velit eu est congue elementum in'
+        content: 'donec dapibus duis at velit eu est congue elementum in',
+        price: 122,
+        hide: true
       },
       {
         title: 'Zantac 150',
         content:
-          'quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec'
+          'quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec',
+        price: 9,
+        hide: true
       }
     )
   }
