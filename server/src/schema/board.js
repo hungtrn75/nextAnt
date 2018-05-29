@@ -1,6 +1,6 @@
 const queries = `
-     boardAllQuery:[board],
-     boardOneQuery(_id:String):board
+  boardAllQuery:[board],
+  boardOneQuery(_id:String):board
 `
 const typeDefs = ` type board{
   _id:String,
@@ -8,7 +8,6 @@ const typeDefs = ` type board{
   content:String,
   startDate:String,
   endDate:String  
-  
 }`
 
 const mutations = `
