@@ -32,6 +32,7 @@ const MyLayout = ({ children, loginUser }) => (
       const handleLogout = async () => {
         await logoutAction.mutation()
         loginState.setState({ loginUser: null })
+        goto('/')()
       }
 
       const menu = (
