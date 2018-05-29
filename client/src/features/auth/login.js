@@ -1,11 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { message, Row, Icon, Col, Form, Input, Button } from 'antd'
 
 import { GlobalBlock } from '../../../src/components/layout'
 import { ActionContainer, userAllQuery } from './grapgql'
 import goto from '../../lib/goto'
-
-import PropTypes from 'prop-types'
 
 const FormItem = Form.Item
 const formItemLayout = {
@@ -113,4 +112,5 @@ const LoginForm = props => {
 LoginForm.PropTypes = {
   form: PropTypes.object
 }
+
 export default Form.create()(LoginForm)
