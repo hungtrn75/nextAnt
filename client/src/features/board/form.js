@@ -16,7 +16,7 @@ const FormBlock = props => {
     <LogicBlock.Consumer>
       {({ result: { recordChoose } }) => {
         const { value } = recordChoose
-        console.log('value', value)
+        // console.log('value', value)
         return (
           <Form className="login-form" resetFields={true}>
             <FormItem>
