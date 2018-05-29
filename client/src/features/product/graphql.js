@@ -9,6 +9,8 @@ export const productAllQuery = gql`
       _id
       title
       content
+      price
+      hide
     }
   }
 `
@@ -19,16 +21,32 @@ export const productOneQuery = gql`
       _id
       title
       content
+      price
+      hide
     }
   }
 `
 
 export const productUpdate = gql`
-  mutation productUpdate($title: String, $content: String, $_id: String) {
-    productUpdate(title: $title, content: $content, _id: $_id) {
+  mutation productUpdate(
+    $title: String
+    $content: String
+    $_id: String
+    $price: String
+    $hide: Boolean
+  ) {
+    productUpdate(
+      title: $title
+      content: $content
+      _id: $_id
+      price: $price
+      hide: $hide
+    ) {
       _id
       title
       content
+      price
+      hide
     }
   }
 `
@@ -39,15 +57,28 @@ export const productDelete = gql`
       _id
       title
       content
+      price
+      hide
     }
   }
 `
 
 export const productCreate = gql`
-  mutation productCreate($title: String, $content: String) {
-    productCreate(title: $title, content: $content) {
+  mutation productCreate(
+    $title: String
+    $content: String
+    $price: String
+    $hide: Boolean
+  ) {
+    productCreate(
+      title: $title
+      content: $content
+      price: $price
+      hide: $hide
+    ) {
       title
       content
+      price
       _id
     }
   }
