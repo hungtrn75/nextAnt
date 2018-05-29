@@ -38,11 +38,9 @@ export default () => {
             value: { queryName }
           }
         } = result
-
         if (error) {
           return <div>an error occer</div>
         }
-
         const handleEvent = {
           handleToggleModal: (action, record) => () => {
             toggleModal.toggle()
@@ -76,7 +74,7 @@ export default () => {
                 if (assignForm.value === 'update') {
                   values._id = recordChoose.value._id
 
-                  await result.container.updateCrud.mutation({
+                  await updateCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: boardAllQuery }]
                   })
@@ -84,7 +82,7 @@ export default () => {
                   form.resetFields()
                 }
                 if (assignForm.value === 'create') {
-                  await result.container.createCrud.mutation({
+                  await createCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: boardAllQuery }]
                   })
@@ -130,6 +128,7 @@ export default () => {
                   data: record
                 })}
               >
+                {' '}
                 {text}
               </a>
             )

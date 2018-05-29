@@ -33,10 +33,10 @@ const FormBlock = props => {
                 <Button
                   type="primary"
                   className="login-form-button"
-                  onClick={handleEvent.handleSubmit({ form: props.form })}
-                  loading={props.loading}
+                  onClick={handleEvent.handleSubmit({ form })}
+                  loading={loading}
                 >
-                  {props.actionText}
+                  {actionText}
                 </Button>
               </FormItem>
             ) : (
@@ -51,7 +51,9 @@ const FormBlock = props => {
 FormBlock.PropTypes = {
   form: PropTypes.object,
   handleEvent: PropTypes.object,
-  record: PropTypes.object
+  record: PropTypes.object,
+  actionText: PropTypes.string,
+  loading: PropTypes.bool
 }
 
 export default Form.create()(FormBlock)

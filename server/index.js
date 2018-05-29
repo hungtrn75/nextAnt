@@ -30,7 +30,8 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [config.cookieKey]
+    keys: [config.cookieKey],
+    secure: config.production
   })
 )
 
