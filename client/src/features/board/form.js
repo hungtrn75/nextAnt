@@ -16,7 +16,7 @@ const FormBlock = props => {
     <LogicBlock.Consumer>
       {({ result: { recordChoose } }) => {
         const { value } = recordChoose
-
+        console.log('value', value)
         return (
           <Form className="login-form" resetFields={true}>
             <FormItem>
@@ -32,33 +32,21 @@ const FormBlock = props => {
               })(<Input type="textArea" placeholder="content" />)}
             </FormItem>
             <FormItem>
-              {getFieldDecorator('stateDate', {
-                rules: [{ required: true, message: 'Please input stateDate' }]
-              })(
-                <DatePicker
-                  defaultValue={
-                    value.stateDate
-                      ? value.stateDate
-                      : moment('2018/10/10', dateFormat)
-                  }
-                  format={dateFormat}
-                />
-              )}
+              {getFieldDecorator('startDate', {
+                rules: [{ required: true, message: 'Please input stateDate' }],
+                initialValue: value.startDate
+                  ? moment(value.startDate, dateFormat)
+                  : moment(moment(), dateFormat)
+              })(<DatePicker format={dateFormat} />)}
             </FormItem>
 
             <FormItem>
               {getFieldDecorator('endDate', {
-                rules: [{ required: true, message: 'Please input endDate' }]
-              })(
-                <DatePicker
-                  defaultValue={
-                    value.endDate
-                      ? value.endDate
-                      : moment('2018/10/10', dateFormat)
-                  }
-                  format={dateFormat}
-                />
-              )}
+                rules: [{ required: true, message: 'Please input endDate' }],
+                initialValue: value.endDate
+                  ? moment(value.endDate, dateFormat)
+                  : moment(moment(), dateFormat)
+              })(<DatePicker format={dateFormat} />)}
             </FormItem>
 
             {props.actionText !== 'detail' ? (

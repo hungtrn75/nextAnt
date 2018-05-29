@@ -142,7 +142,7 @@ export default () => {
           {
             title: 'Start Date',
             dataIndex: 'startDate',
-            key: 'startData'
+            key: 'startDate'
           },
           {
             title: 'Action',

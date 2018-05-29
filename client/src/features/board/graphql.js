@@ -9,6 +9,8 @@ export const boardAllQuery = gql`
       _id
       title
       content
+      startDate
+      endDate
     }
   }
 `
@@ -18,6 +20,8 @@ export const boardOneQuery = gql`
       _id
       title
       content
+      startDate
+      endDate
     }
   }
 `
