@@ -1,13 +1,12 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
 import PropTypes from 'prop-types'
-import adopt from 'react-adopt'
 import { LogicBlock } from '../../components/crudTemplate'
 
 const FormItem = Form.Item
 
 const FormBlock = props => {
-  const { form, handleEvent, record, actionText, loading } = props
+  const { form, handleEvent, actionText, loading } = props
   const { getFieldDecorator } = form
 
   return (
