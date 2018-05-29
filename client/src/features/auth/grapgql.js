@@ -48,19 +48,19 @@ export const userPorfile = gql`
   }
 `
 
-const loginAction = ({ render }) => (
+export const loginAction = ({ render }) => (
   <Mutation mutation={login}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
-const signupAction = ({ render }) => (
+export const signupAction = ({ render }) => (
   <Mutation mutation={signup}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
-const logoutAction = ({ render }) => (
+export const logoutAction = ({ render }) => (
   <Mutation mutation={logout}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
