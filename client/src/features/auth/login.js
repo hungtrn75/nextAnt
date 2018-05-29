@@ -5,6 +5,7 @@ import { GlobalBlock } from '../../../src/components/layout'
 import { message, Row, Icon, Col, Form, Input, Button } from 'antd'
 import Link from 'next/link'
 import { ActionContainer } from './grapgql'
+import PropTypes from 'proptypes'
 
 const FormItem = Form.Item
 const formItemLayout = {
@@ -109,4 +110,7 @@ const LoginForm = props => {
   )
 }
 
+FormBlock.PropTypes = {
+  form: PropTypes.object
+}
 export default Form.create()(LoginForm)
