@@ -11,232 +11,271 @@ Board.count({}, (err, count) => {
       {
         title: 'Professor',
         content:
-          'viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris'
+          'viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris',
+        startDate: '2018/5/9',
+        endDate: '2018/5/30'
       },
       {
         title: 'Payment Adjustment Coordinator',
         content:
-          'vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium'
+          'vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium',
+        startDate: '2018/5/10',
+        endDate: '2018/5/30'
       },
       {
         title: 'Dental Hygienist',
         content:
-          'odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique'
+          'odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique',
+        startDate: '2018/5/11',
+        endDate: '2018/5/30'
       },
       {
         title: 'Geological Engineer',
         content:
-          'convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit'
+          'convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit',
+        startDate: '2018/5/12',
+        endDate: '2018/5/30'
       },
       {
         title: 'Graphic Designer',
         content:
-          'in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis'
+          'in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis',
+        startDate: '2018/5/13',
+        endDate: '2018/5/30'
       },
       {
         title: 'Research Nurse',
         content:
-          'rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede'
+          'rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede',
+        startDate: '2018/5/13',
+        endDate: '2018/5/30'
       },
       {
         title: 'Nurse',
         content:
-          'accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris'
+          'accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris',
+        startDate: '2018/5/14',
+        endDate: '2018/5/30'
       },
       {
         title: 'Senior Cost Accountant',
         content:
-          'mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam'
+          'mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam',
+        startDate: '2018/5/14',
+        endDate: '2018/5/30'
       },
       {
         title: 'Geological Engineer',
         content:
-          'viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra'
+          'viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra',
+        startDate: '2018/5/14',
+        endDate: '2018/5/30'
       },
       {
         title: 'Community Outreach Specialist',
         content:
-          'eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum'
+          'eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum',
+        startDate: '2018/5/15',
+        endDate: '2018/5/30'
       },
       {
         title: 'Account Coordinator',
         content:
-          'nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id'
+          'nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id',
+        startDate: '2018/5/16',
+        endDate: '2018/5/30'
       },
       {
         title: 'Systems Administrator II',
-        content: 'vestibulum proin eu mi nulla ac enim in tempor turpis'
+        content: 'vestibulum proin eu mi nulla ac enim in tempor turpis',
+        startDate: '2018/5/17',
+        endDate: '2018/5/30'
       },
       {
         title: 'Systems Administrator III',
         content:
-          'primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices'
+          'primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices',
+        startDate: '2018/5/18',
+        endDate: '2018/5/30'
       },
       {
         title: 'Business Systems Development Analyst',
         content:
-          'nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper'
+          'nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper',
+        startDate: '2018/5/19',
+        endDate: '2018/5/30'
       },
       {
         title: 'Account Representative III',
         content:
-          'neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus'
+          'neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus',
+        startDate: '2018/5/20',
+        endDate: '2018/5/30'
       },
       {
         title: 'Financial Analyst',
         content:
-          'aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu'
+          'aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu',
+        startDate: '2018/5/21',
+        endDate: '2018/5/30'
       },
       {
         title: 'Office Assistant II',
         content:
-          'ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque'
+          'ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque',
+        startDate: '2018/5/22',
+        endDate: '2018/5/30'
       },
       {
         title: 'Professor',
         content:
-          'cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit'
+          'cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit',
+        startDate: '2018/5/22',
+        endDate: '2018/5/30'
       },
       {
         title: 'Quality Control Specialist',
         content:
-          'velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci'
+          'velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci',
+        startDate: '2018/5/29',
+        endDate: '2018/5/30'
       },
       {
         title: 'Media Manager III',
         content:
-          'vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis'
+          'vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis',
+        startDate: '2018/5/29',
+        endDate: '2018/5/30'
       }
     )
   }
-})
-
-Customer.count({}, (err, count) => {
-  if (count === 0) {
-    Customer.create(
-      {
-        name: 'Levin Schollick',
-        tel: '(237) 7118825',
-        cellphone: '+48 475 755 8358',
-        memo: 'system engine'
-      },
-      {
-        name: 'Lucias Huish',
-        tel: '(426) 2407296',
-        cellphone: '+504 195 670 1020',
-        memo: 'pricing structure'
-      },
-      {
-        name: 'Ansley Freen',
-        tel: '(273) 8243550',
-        cellphone: '+250 486 432 2560',
-        memo: 'User-centric'
-      },
-      {
-        name: 'Eduardo Bertenshaw',
-        tel: '(943) 7985212',
-        cellphone: '+30 914 276 3975',
-        memo: 'local'
-      },
-      {
-        name: 'Coreen Emeline',
-        tel: '(344) 6836134',
-        cellphone: '+48 277 775 0528',
-        memo: 'interface'
-      },
-      {
-        name: 'Germain Feary',
-        tel: '(561) 2442022',
-        cellphone: '+420 440 190 1784',
-        memo: 'Configurable'
-      },
-      {
-        name: 'Noella MacMaykin',
-        tel: '(798) 3682262',
-        cellphone: '+86 397 161 9059',
-        memo: 'Face to face'
-      },
-      {
-        name: 'Giorgia Abbots',
-        tel: '(514) 2826060',
-        cellphone: '+380 155 695 7626',
-        memo: 'Universal'
-      },
-      {
-        name: 'Cletis Schechter',
-        tel: '(120) 7375978',
-        cellphone: '+63 890 342 1069',
-        memo: 'algorithm'
-      },
-      {
-        name: 'Consuela Margerison',
-        tel: '(865) 8019772',
-        cellphone: '+86 708 318 1758',
-        memo: 'emulation'
-      },
-      {
-        name: 'Giulio Berg',
-        tel: '(218) 3512242',
-        cellphone: '+1 571 794 7110',
-        memo: 'function'
-      },
-      {
-        name: 'Rene Braham',
-        tel: '(343) 7285813',
-        cellphone: '+48 319 896 0915',
-        memo: 'Visionary'
-      },
-      {
-        name: 'Rodge Viall',
-        tel: '(663) 1546421',
-        cellphone: '+47 817 430 5722',
-        memo: 'benchmark'
-      },
-      {
-        name: 'Wenda Davidowich',
-        tel: '(444) 2884586',
-        cellphone: '+353 987 436 9003',
-        memo: 'national'
-      },
-      {
-        name: 'Marcel Anderson',
-        tel: '(298) 7435794',
-        cellphone: '+86 900 796 1852',
-        memo: 'capability'
-      },
-      {
-        name: 'Eugenie Tansly',
-        tel: '(218) 4136341',
-        cellphone: '+86 341 944 2170',
-        memo: 'Balanced'
-      },
-      {
-        name: 'Hestia Dyter',
-        tel: '(144) 5630592',
-        cellphone: '+81 615 502 6544',
-        memo: 'radical'
-      },
-      {
-        name: 'Roma Gamlyn',
-        tel: '(932) 5594228',
-        cellphone: '+86 410 667 1626',
-        memo: 'incremental'
-      },
-      {
-        name: 'Illa Abramamov',
-        tel: '(408) 5770167',
-        cellphone: '+7 763 149 2997',
-        memo: 'foreground'
-      },
-      {
-        name: 'Nappie Gair',
-        tel: '(743) 6959837',
-        cellphone: '+242 503 735 9904',
-        memo: 'algorithm'
-      }
-    )
-  }
-})
+}),
+  Customer.count({}, (err, count) => {
+    if (count === 0) {
+      Customer.create(
+        {
+          name: 'Levin Schollick',
+          tel: '(237) 7118825',
+          cellphone: '+48 475 755 8358',
+          memo: 'system engine'
+        },
+        {
+          name: 'Lucias Huish',
+          tel: '(426) 2407296',
+          cellphone: '+504 195 670 1020',
+          memo: 'pricing structure'
+        },
+        {
+          name: 'Ansley Freen',
+          tel: '(273) 8243550',
+          cellphone: '+250 486 432 2560',
+          memo: 'User-centric'
+        },
+        {
+          name: 'Eduardo Bertenshaw',
+          tel: '(943) 7985212',
+          cellphone: '+30 914 276 3975',
+          memo: 'local'
+        },
+        {
+          name: 'Coreen Emeline',
+          tel: '(344) 6836134',
+          cellphone: '+48 277 775 0528',
+          memo: 'interface'
+        },
+        {
+          name: 'Germain Feary',
+          tel: '(561) 2442022',
+          cellphone: '+420 440 190 1784',
+          memo: 'Configurable'
+        },
+        {
+          name: 'Noella MacMaykin',
+          tel: '(798) 3682262',
+          cellphone: '+86 397 161 9059',
+          memo: 'Face to face'
+        },
+        {
+          name: 'Giorgia Abbots',
+          tel: '(514) 2826060',
+          cellphone: '+380 155 695 7626',
+          memo: 'Universal'
+        },
+        {
+          name: 'Cletis Schechter',
+          tel: '(120) 7375978',
+          cellphone: '+63 890 342 1069',
+          memo: 'algorithm'
+        },
+        {
+          name: 'Consuela Margerison',
+          tel: '(865) 8019772',
+          cellphone: '+86 708 318 1758',
+          memo: 'emulation'
+        },
+        {
+          name: 'Giulio Berg',
+          tel: '(218) 3512242',
+          cellphone: '+1 571 794 7110',
+          memo: 'function'
+        },
+        {
+          name: 'Rene Braham',
+          tel: '(343) 7285813',
+          cellphone: '+48 319 896 0915',
+          memo: 'Visionary'
+        },
+        {
+          name: 'Rodge Viall',
+          tel: '(663) 1546421',
+          cellphone: '+47 817 430 5722',
+          memo: 'benchmark'
+        },
+        {
+          name: 'Wenda Davidowich',
+          tel: '(444) 2884586',
+          cellphone: '+353 987 436 9003',
+          memo: 'national'
+        },
+        {
+          name: 'Marcel Anderson',
+          tel: '(298) 7435794',
+          cellphone: '+86 900 796 1852',
+          memo: 'capability'
+        },
+        {
+          name: 'Eugenie Tansly',
+          tel: '(218) 4136341',
+          cellphone: '+86 341 944 2170',
+          memo: 'Balanced'
+        },
+        {
+          name: 'Hestia Dyter',
+          tel: '(144) 5630592',
+          cellphone: '+81 615 502 6544',
+          memo: 'radical'
+        },
+        {
+          name: 'Roma Gamlyn',
+          tel: '(932) 5594228',
+          cellphone: '+86 410 667 1626',
+          memo: 'incremental'
+        },
+        {
+          name: 'Illa Abramamov',
+          tel: '(408) 5770167',
+          cellphone: '+7 763 149 2997',
+          memo: 'foreground'
+        },
+        {
+          name: 'Nappie Gair',
+          tel: '(743) 6959837',
+          cellphone: '+242 503 735 9904',
+          memo: 'algorithm'
+        }
+      )
+    }
+  })
 
 Product.count({}, (err, count) => {
   if (count === 0) {
