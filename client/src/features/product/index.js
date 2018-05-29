@@ -118,7 +118,7 @@ export default () => {
 
         const columns = [
           {
-            title: 'title',
+            title: 'Title',
             dataIndex: 'title',
             key: 'title',
             render: (text, record) => (
@@ -131,19 +131,19 @@ export default () => {
             )
           },
           {
-            title: 'content',
+            title: 'Content',
             dataIndex: 'content',
             key: 'content'
           },
           {
-            title: 'StateDate',
-            dataIndex: 'stateDate',
-            key: 'stateData'
+            title: 'Price',
+            dataIndex: 'price',
+            key: 'price'
           },
           {
-            title: 'Function',
-            dataIndex: 'endDate',
-            key: 'endDate',
+            title: 'Action',
+            dataIndex: 'action',
+            key: 'action',
             render: (text, record) => {
               return (
                 <span>
@@ -168,17 +168,18 @@ export default () => {
           return <div>Logining</div>
         }
 
-        const dataSet = data[queryName].map(({ _id, title, content }) => {
-          return {
-            key: _id,
-            title: title,
-            content: content,
-
-            stateDate: 'test',
-            endDate: 'test',
-            _id: _id
+        const dataSet = data[queryName].map(
+          ({ _id, title, content, price, hide }) => {
+            return {
+              key: _id,
+              title: title,
+              content: content,
+              price: price,
+              hide: hide,
+              _id: _id
+            }
           }
-        })
+        )
 
         return (
           <CrudTemplate
