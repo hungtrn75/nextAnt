@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
 import { LogicBlock } from '../../components/crudTemplate'
-import PropTypes from 'proptypes'
+import PropTypes from 'prop-types'
 const FormItem = Form.Item
 
 const FormBlock = props => {
