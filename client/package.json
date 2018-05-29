@@ -26,6 +26,7 @@
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "isomorphic-unfetch": "^2.0.0",
+    "moment": "^2.22.1",
     "next": "^6.0.3",
     "proptypes": "^1.1.0",
     "react": "^16.3.2",

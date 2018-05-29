@@ -32,7 +32,8 @@ export default () => {
           container: {
             query: { error, data, loading },
             createCrud,
-            deleteCrud
+            deleteCrud,
+            updateCrud
           },
           crudInfo: {
             value: { queryName }
@@ -73,7 +74,7 @@ export default () => {
 
                 if (assignForm.value === 'update') {
                   values._id = recordChoose.value._id
-
+                  console.log('values', values)
                   await updateCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: boardAllQuery }]
@@ -118,7 +119,7 @@ export default () => {
 
         const columns = [
           {
-            title: 'tiTle',
+            title: 'Title',
             dataIndex: 'title',
             key: 'title',
             render: (text, record) => (
@@ -134,19 +135,19 @@ export default () => {
             )
           },
           {
-            title: 'content',
+            title: 'Content',
             dataIndex: 'content',
             key: 'content'
           },
           {
-            title: 'StateDate',
-            dataIndex: 'stateDate',
-            key: 'stateData'
+            title: 'Start Date',
+            dataIndex: 'startDate',
+            key: 'startData'
           },
           {
-            title: 'Function',
-            dataIndex: 'endDate',
-            key: 'endDate',
+            title: 'Action',
+            dataIndex: 'action',
+            key: 'action',
             render: (text, record) => {
               return (
                 <span>
@@ -175,8 +176,8 @@ export default () => {
             key: v._id,
             title: v.title,
             content: v.content,
-            stateDate: 'test',
-            endDate: 'test',
+            startDate: v.startDate,
+            endDate: v.endDate,
             _id: v._id
           }
         })

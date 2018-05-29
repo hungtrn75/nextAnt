@@ -141,7 +141,7 @@ export default () => {
             key: 'stateData'
           },
           {
-            title: 'Function',
+            title: 'Action',
             dataIndex: 'endDate',
             key: 'endDate',
             render: (text, record) => {

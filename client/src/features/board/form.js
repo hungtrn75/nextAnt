@@ -1,9 +1,12 @@
 import React from 'react'
-import { Form, Input, Button } from 'antd'
-import { LogicBlock } from '../../components/crudTemplate'
+import { Form, Input, Button, DatePicker } from 'antd'
 import PropTypes from 'prop-types'
+import moment from 'moment'
+
+import { LogicBlock } from '../../components/crudTemplate'
 
 const FormItem = Form.Item
+const dateFormat = 'YYYY/MM/DD'
 
 const FormBlock = props => {
   const { form, handleEvent, record } = props
@@ -27,6 +30,14 @@ const FormBlock = props => {
                 rules: [{ required: true, message: 'Please input content!' }],
                 initialValue: value.content ? value.content : ''
               })(<Input type="textArea" placeholder="content" />)}
+            </FormItem>
+            <FormItem>
+              {getFieldDecorator('stateDate', {
+                rules: [{ required: true, message: 'Please input stateDate' }],
+                defaultValue: value.stateDate
+                  ? value.stateDate
+                  : moment().format(dateFormat)
+              })(<DatePicker format={dateFormat} />)}
             </FormItem>
 
             {props.actionText !== 'detail' ? (
