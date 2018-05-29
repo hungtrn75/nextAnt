@@ -33,11 +33,32 @@ const FormBlock = props => {
             </FormItem>
             <FormItem>
               {getFieldDecorator('stateDate', {
-                rules: [{ required: true, message: 'Please input stateDate' }],
-                defaultValue: value.stateDate
-                  ? value.stateDate
-                  : moment().format(dateFormat)
-              })(<DatePicker format={dateFormat} />)}
+                rules: [{ required: true, message: 'Please input stateDate' }]
+              })(
+                <DatePicker
+                  defaultValue={
+                    value.stateDate
+                      ? value.stateDate
+                      : moment('2018/10/10', dateFormat)
+                  }
+                  format={dateFormat}
+                />
+              )}
+            </FormItem>
+
+            <FormItem>
+              {getFieldDecorator('endDate', {
+                rules: [{ required: true, message: 'Please input endDate' }]
+              })(
+                <DatePicker
+                  defaultValue={
+                    value.endDate
+                      ? value.endDate
+                      : moment('2018/10/10', dateFormat)
+                  }
+                  format={dateFormat}
+                />
+              )}
             </FormItem>
 
             {props.actionText !== 'detail' ? (
