@@ -1,6 +1,6 @@
 import React from 'react'
 import TableBlock from './tableBlock'
-import SearchBlock from './searchBlock'
+// import SearchBlock from './searchBlock'
 import ModalBlock from './modalBlock'
 
 export const CREATE = 'CREATE'
@@ -20,7 +20,7 @@ export const LogicBlock = React.createContext()
 export default props => (
   <LogicBlock.Provider value={props}>
     <ModalBlock />
-    <SearchBlock />
+    {/* <SearchBlock /> */}
     <TableBlock />
   </LogicBlock.Provider>
 )
