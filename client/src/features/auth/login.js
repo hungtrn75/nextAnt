@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { message, Row, Icon, Col, Form, Input, Button } from 'antd'
 
 import { GlobalBlock } from '../../../src/components/layout'
@@ -106,6 +107,10 @@ const LoginForm = props => {
       }}
     </GlobalBlock.Consumer>
   )
+}
+
+LoginForm.propTypes = {
+  form: PropTypes.object
 }
 
 export default Form.create()(LoginForm)

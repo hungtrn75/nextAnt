@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 const FormItem = Form.Item
 
 const FormBlock = props => {
-  const { form, handleEvent, actionText, loading } = props
-  const { getFieldDecorator, resetFields } = form
+  const { form, handleEvent, record } = props
+  const { getFieldDecorator } = form
 
   return (
     <LogicBlock.Consumer>
@@ -48,11 +48,12 @@ const FormBlock = props => {
     </LogicBlock.Consumer>
   )
 }
-
 FormBlock.propTypes = {
-  loading: PropTypes.bool,
-  handleEvent: PropTypes.func,
-  actionText: PropTypes.string
+  form: PropTypes.object,
+  handleEvent: PropTypes.object,
+  record: PropTypes.object,
+  actionText: PropTypes.string,
+  loading: PropTypes.bool
 }
 
 export default Form.create()(FormBlock)
