@@ -12,14 +12,14 @@ const Query = {
 }
 const Mutation = {
   Mutation: {
-    productCreate: async (_, { title, content }) => {
-      const product = new Product({ title, content })
+    productCreate: async (_, { title, content, price, hide }) => {
+      const product = new Product({ title, content, price, hide })
       //console.log('productCreate', product)
       await product.save()
       return product
     },
-    productUpdate: async (_, { _id, title, content }) => {
-      await Product.findOneAndUpdate({ _id }, { title, content })
+    productUpdate: async (_, { _id, title, content, price, hide }) => {
+      await Product.findOneAndUpdate({ _id }, { title, content, price, hide })
       return _id
     },
     productDelete: async (_, { _id }) => {
