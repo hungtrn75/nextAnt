@@ -109,7 +109,7 @@ const LoginForm = props => {
   )
 }
 
-LoginForm.PropTypes = {
+LoginForm.propTypes = {
   form: PropTypes.object
 }
 

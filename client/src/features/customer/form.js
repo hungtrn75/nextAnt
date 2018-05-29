@@ -60,7 +60,7 @@ const FormBlock = props => {
   )
 }
 
-FormBlock.PropTypes = {
+FormBlock.propTypes = {
   form: PropTypes.object,
   handleEvent: PropTypes.object,
   record: PropTypes.object

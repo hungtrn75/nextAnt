@@ -47,7 +47,7 @@ const FormBlock = props => {
     </LogicBlock.Consumer>
   )
 }
-FormBlock.PropTypes = {
+FormBlock.propTypes = {
   form: PropTypes.object,
   handleEvent: PropTypes.object,
   record: PropTypes.object
