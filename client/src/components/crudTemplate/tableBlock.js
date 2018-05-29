@@ -1,6 +1,6 @@
 import React from 'react'
 import { LogicBlock } from './index'
-import { Table, Button, Modal, Row, Col } from 'antd'
+import { Table, Button, Row, Col } from 'antd'
 import { CREATE } from '../../components/crudTemplate'
 export default () => {
   return (

@@ -74,7 +74,7 @@ export default () => {
 
                 if (assignForm.value === 'update') {
                   values._id = recordChoose.value._id
-                  console.log('values', values)
+
                   await updateCrud.mutation({
                     variables: values,
                     refetchQueries: [{ query: boardAllQuery }]
