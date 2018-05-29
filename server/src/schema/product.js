@@ -6,13 +6,13 @@ const typeDefs = ` type product{
   _id:String,
   title:String,
   content:String,
-  startDate:String,
-  endDate:String 
+  price:String,
+  hide:Boolean
 }`
 
 const mutations = `
-  productUpdate(_id:String,title:String,content:String):product,
-  productCreate(title:String,content:String):product,
+  productUpdate(_id:String,title:String,content:String,price:String,hide:Boolean):product,
+  productCreate(title:String,content:String,price:String,hide:Boolean):product,
   productDelete(_id:String):product
 `
 
