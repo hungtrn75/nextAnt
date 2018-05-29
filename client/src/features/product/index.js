@@ -91,6 +91,7 @@ export default () => {
             })
           }
         }
+
         const CreateForm = () => {
           return (
             <Form
@@ -100,9 +101,7 @@ export default () => {
             />
           )
         }
-        const DetailForm = () => {
-          return <Form handleEvent={handleEvent} actionText={'detail'} />
-        }
+
         const UpdateForm = () => {
           return (
             <Form
@@ -111,6 +110,10 @@ export default () => {
               actionText={'update'}
             />
           )
+        }
+
+        const DetailForm = () => {
+          return <Form handleEvent={handleEvent} actionText={'detail'} />
         }
 
         const columns = [

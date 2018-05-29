@@ -1,9 +1,11 @@
 import React from 'react'
-
 import { message, Row, Icon, Col, Form, Input, Button } from 'antd'
-import Link from 'next/link'
-import { ActionContainer } from './grapgql'
-import PropTypes from 'proptypes'
+
+import { GlobalBlock } from '../../../src/components/layout'
+import { ActionContainer, userAllQuery } from './grapgql'
+import goto from '../../lib/goto'
+
+import PropTypes from 'prop-types'
 
 const FormItem = Form.Item
 const formItemLayout = {
@@ -33,39 +35,40 @@ const LoginForm = props => {
                       refetchQueries: [{ query: userAllQuery }]
                     })
                     loginState.setState({ loginUser: result.data.login })
+                    goto('/')()
                   }
                 })
               }
 
               return (
                 <Form className="login-form" resetFields={true}>
-                  <FormItem {...formItemLayout} label="email">
+                  <FormItem {...formItemLayout} label="Email">
                     {getFieldDecorator('email', {
                       rules: [
                         {
                           required: true,
-                          message: 'please input your email'
+                          message: 'please enter your email'
                         }
                       ]
                     })(
                       <Input
-                        placeholder="please input your email"
                         prefix={
                           <Icon
                             type="user"
                             style={{ color: 'rgba(0,0,0,.25)' }}
                           />
                         }
+                        placeholder="email"
                       />
                     )}
                   </FormItem>
 
-                  <FormItem {...formItemLayout} label="password">
+                  <FormItem {...formItemLayout} label="Password">
                     {getFieldDecorator('password', {
                       rules: [
                         {
                           required: true,
-                          message: 'please input your password'
+                          message: 'please enter your password'
                         }
                       ]
                     })(
@@ -77,7 +80,7 @@ const LoginForm = props => {
                             style={{ color: 'rgba(0,0,0,.25)' }}
                           />
                         }
-                        placeholder="please input your password"
+                        placeholder="password"
                       />
                     )}
                   </FormItem>
@@ -93,12 +96,8 @@ const LoginForm = props => {
                         style={{ marginRight: 15 }}
                         onClick={handleLogin({ form: props.form, loginAction })}
                       >
-                        Login{' '}
+                        Log In{' '}
                       </Button>
-
-                      <Link href="/presonal/signup" style={{ marginLeft: 8 }}>
-                        <a>Forward SignUp</a>
-                      </Link>
                     </Col>
                   </Row>
                 </Form>
@@ -111,7 +110,7 @@ const LoginForm = props => {
   )
 }
 
-FormBlock.PropTypes = {
+LoginForm.PropTypes = {
   form: PropTypes.object
 }
 export default Form.create()(LoginForm)

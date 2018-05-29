@@ -1,38 +1,15 @@
 import React from 'react'
 import { Menu, Icon } from 'antd'
-import Router from 'next/router'
 const { SubMenu } = Menu
 
-const goto = url => () => {
-  Router.push(url)
-}
+import goto from '../../lib/goto'
 
 export default () => (
   <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
     <Menu.Item key="home" onClick={goto('/')}>
       <Icon type="home" />
-
       <span> CRM System Demo</span>
     </Menu.Item>
-    <SubMenu
-      key="personal"
-      title={
-        <span>
-          <Icon type="team" />
-          <span>MyAccount</span>
-        </span>
-      }
-    >
-      <Menu.Item key="aa1" onClick={goto('/presonal')}>
-        <Icon type="user" />
-        <span>MyProfile</span>
-      </Menu.Item>
-      <Menu.Item key="aa2" onClick={goto('/presonal/login')}>
-        <Icon type="user" />
-
-        <span>Login</span>
-      </Menu.Item>
-    </SubMenu>
 
     <Menu.Item key="a1" onClick={goto('/customer')}>
       <span>
@@ -41,7 +18,14 @@ export default () => (
       </span>
     </Menu.Item>
 
-    <SubMenu
+    <Menu.Item key="b1" onClick={goto('/product')}>
+      <span>
+        <Icon type="solution" />
+        <span>Product</span>
+      </span>
+    </Menu.Item>
+
+    {/* <SubMenu
       key="product"
       title={
         <span>
@@ -53,7 +37,7 @@ export default () => (
       <Menu.Item key="b1" onClick={goto('/product')}>
         Product(All)
       </Menu.Item>
-    </SubMenu>
+    </SubMenu> */}
 
     <SubMenu
       key="sub6"
@@ -65,13 +49,13 @@ export default () => (
       }
     >
       <Menu.Item key="e4" onClick={goto('/report/demo1')}>
-        ReportDaily
+        Daily Report
       </Menu.Item>
       <Menu.Item key="e5" onClick={goto('/report/demo2')}>
-        TopProducts
+        Top Products
       </Menu.Item>
       <Menu.Item key="e6" onClick={goto('/report/demo3')}>
-        TopSales
+        Top Sales
       </Menu.Item>
     </SubMenu>
 
@@ -80,20 +64,20 @@ export default () => (
       title={
         <span>
           <Icon type="profile" />
-          <span>admin</span>
+          <span>Admin</span>
         </span>
       }
     >
       <Menu.Item key="f1" onClick={goto('/admin/user')}>
         <Icon type="user" />
-        <span>UserList</span>
+        <span>User List</span>
       </Menu.Item>
-      <Menu.Item key="f2">permission-Template</Menu.Item>
+      {/* <Menu.Item key="f2">permission-Template</Menu.Item>
       <Menu.Item key="f3">permission</Menu.Item>
       <Menu.Item key="f4">Board</Menu.Item>
-      <Menu.Item key="f5">BoardManage</Menu.Item>
+      <Menu.Item key="f5">BoardManage</Menu.Item> */}
     </SubMenu>
-    <SubMenu
+    {/* <SubMenu
       key="sub8"
       title={
         <span>
@@ -110,6 +94,6 @@ export default () => (
       <Menu.Item key="z8">Unit</Menu.Item>
       <Menu.Item key="z18">employeeKind</Menu.Item>
       <Menu.Item key="z20">AccountState</Menu.Item>
-    </SubMenu>
+    </SubMenu> */}
   </Menu>
 )
