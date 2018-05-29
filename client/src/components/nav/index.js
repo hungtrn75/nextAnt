@@ -1,36 +1,15 @@
 import React from 'react'
 import { Menu, Icon } from 'antd'
-import Router from 'next/router'
 const { SubMenu } = Menu
 
-const goto = url => () => Router.push(url)
+import goto from '../../lib/goto'
 
 export default () => (
   <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
     <Menu.Item key="home" onClick={goto('/')}>
       <Icon type="home" />
-
       <span> CRM System Demo</span>
     </Menu.Item>
-    <SubMenu
-      key="personal"
-      title={
-        <span>
-          <Icon type="team" />
-          <span>Account</span>
-        </span>
-      }
-    >
-      <Menu.Item key="aa1" onClick={goto('/presonal')}>
-        <Icon type="user" />
-        <span>Profile</span>
-      </Menu.Item>
-      <Menu.Item key="aa2" onClick={goto('/presonal/login')}>
-        <Icon type="user" />
-
-        <span>Login</span>
-      </Menu.Item>
-    </SubMenu>
 
     <Menu.Item key="a1" onClick={goto('/customer')}>
       <span>
