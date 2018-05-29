@@ -58,8 +58,8 @@ const MyLayout = ({ children, loginUser }) => (
                         right: '20px'
                       }}
                     >
-                      <span style={{ marginRight: '20px;' }}>Main</span>
-                      <Icon type="bell" style={{ marginRight: '20px' }} />
+                      {/* <span style={{ marginRight: '20px;' }}>Main</span> */}
+                      {/* <Icon type="bell" style={{ marginRight: '20px' }} /> */}
                       {loginUser ? (
                         <Avatar
                           style={{ backgroundColor: '#87d068' }}
