@@ -23,179 +23,173 @@ const AdoptContainer = adopt({
   formName: <Value initial={'Board'} />
 })
 
-export default () => {
-  return (
-    <AdoptContainer>
-      {result => {
-        const {
-          assignForm,
-          toggleModal,
-          recordChoose,
-          container: {
-            query: { error, data, loading },
-            createCrud,
-            deleteCrud,
-            updateCrud
-          },
-          crudInfo: {
-            value: { queryName }
-          }
-        } = result
-        if (error) {
-          return <div>an error occer</div>
+export default () => (
+  <AdoptContainer>
+    {result => {
+      const {
+        assignForm,
+        toggleModal,
+        recordChoose,
+        container: {
+          query: { error, data, loading },
+          createCrud,
+          deleteCrud,
+          updateCrud
+        },
+        crudInfo: {
+          value: { queryName }
         }
-        const handleEvent = {
-          handleToggleModal: (action, record) => () => {
-            toggleModal.toggle()
-            switch (action) {
-              case DETAIL:
-                recordChoose.setValue(record)
-                assignForm.setValue('detail')
-                break
-              case UPDATE:
-                assignForm.setValue('update')
-                recordChoose.setValue(record)
-                break
-              case CREATE:
-                assignForm.setValue('create')
-                recordChoose.setValue('')
-                break
-            }
-          },
-          handleDelete: record => () => {
-            let values = { _id: record._id }
-            result.container.deleteCrud.mutation({
-              variables: values,
-              refetchQueries: [{ query: boardAllQuery }]
-            })
-          },
-          handleSubmit: form => () => {
-            form.validateFields(async (err, values) => {
-              if (!err) {
-                recordChoose.setValue(values)
+      } = result
 
-                if (assignForm.value === 'update') {
-                  values._id = recordChoose.value._id
+      if (error) return <div>an error occer</div>
 
-                  await updateCrud.mutation({
-                    variables: values,
-                    refetchQueries: [{ query: boardAllQuery }]
-                  })
+      const handleEvent = {
+        handleToggleModal: (action, record) => () => {
+          toggleModal.toggle()
+          switch (action) {
+            case DETAIL:
+              recordChoose.setValue(record)
+              assignForm.setValue('detail')
+              break
+            case UPDATE:
+              assignForm.setValue('update')
+              recordChoose.setValue(record)
+              break
+            case CREATE:
+              assignForm.setValue('create')
+              recordChoose.setValue('')
+              break
+          }
+        },
+        handleDelete: record => () => {
+          let values = { _id: record._id }
+          result.container.deleteCrud.mutation({
+            variables: values,
+            refetchQueries: [{ query: boardAllQuery }]
+          })
+        },
+        handleSubmit: form => () => {
+          form.validateFields(async (err, values) => {
+            if (!err) {
+              recordChoose.setValue(values)
 
-                  form.resetFields()
-                }
-                if (assignForm.value === 'create') {
-                  await createCrud.mutation({
-                    variables: values,
-                    refetchQueries: [{ query: boardAllQuery }]
-                  })
-                  form.resetFields()
-                }
-                toggleModal.toggle()
+              if (assignForm.value === 'update') {
+                values._id = recordChoose.value._id
+
+                await updateCrud.mutation({
+                  variables: values,
+                  refetchQueries: [{ query: boardAllQuery }]
+                })
+
+                form.resetFields()
               }
-            })
-          }
-        }
-
-        const CreateForm = () => {
-          return (
-            <Form
-              handleEvent={handleEvent}
-              loading={createCrud.result.loading}
-              actionText={'create'}
-            />
-          )
-        }
-        const DetailForm = () => {
-          return <Form handleEvent={handleEvent} actionText={'detail'} />
-        }
-        const UpdateForm = () => {
-          return (
-            <Form
-              handleEvent={handleEvent}
-              loading={deleteCrud.result.loading}
-              actionText={'update'}
-            />
-          )
-        }
-
-        const columns = [
-          {
-            title: 'Title',
-            dataIndex: 'title',
-            key: 'title',
-            render: (text, record) => (
-              <a
-                href="#"
-                onClick={handleEvent.handleToggleModal(DETAIL, {
-                  data: record
-                })}
-              >
-                {' '}
-                {text}
-              </a>
-            )
-          },
-          {
-            title: 'Content',
-            dataIndex: 'content',
-            key: 'content'
-          },
-          {
-            title: 'Start Date',
-            dataIndex: 'startDate',
-            key: 'startDate'
-          },
-          {
-            title: 'Action',
-            dataIndex: 'action',
-            key: 'action',
-            render: (text, record) => {
-              return (
-                <span>
-                  <Button
-                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
-                  >
-                    Update
-                  </Button>
-                  <Divider type="vertical" />
-                  <Button
-                    loading={deleteCrud.result.loading}
-                    onClick={handleEvent.handleDelete(record)}
-                  >
-                    Delete
-                  </Button>
-                </span>
-              )
+              if (assignForm.value === 'create') {
+                await createCrud.mutation({
+                  variables: values,
+                  refetchQueries: [{ query: boardAllQuery }]
+                })
+                form.resetFields()
+              }
+              toggleModal.toggle()
             }
-          }
-        ]
-        if (loading) {
-          return <div>Logining</div>
+          })
         }
-        const dataSet = data[queryName].map(v => {
-          return {
-            key: v._id,
-            title: v.title,
-            content: v.content,
-            startDate: moment(v.startDate).format('YYYY/MM/DD'),
-            endDate: moment(v.endDate).format('YYYY/MM/DD'),
-            _id: v._id
-          }
-        })
+      }
 
-        return (
-          <CrudTemplate
-            handleEvent={handleEvent}
-            columns={columns}
-            dataSet={dataSet}
-            result={result}
-            CreateForm={CreateForm}
-            DetailForm={DetailForm}
-            UpdateForm={UpdateForm}
-          />
-        )
-      }}
-    </AdoptContainer>
-  )
-}
+      const CreateForm = () => (
+        <Form
+          handleEvent={handleEvent}
+          loading={createCrud.result.loading}
+          actionText={'create'}
+        />
+      )
+
+      const DetailForm = () => (
+        <Form handleEvent={handleEvent} actionText={'detail'} />
+      )
+
+      const UpdateForm = () => (
+        <Form
+          handleEvent={handleEvent}
+          loading={deleteCrud.result.loading}
+          actionText={'update'}
+        />
+      )
+
+      const columns = [
+        {
+          title: 'Title',
+          dataIndex: 'title',
+          key: 'title',
+          width: 150,
+          render: (text, record) => (
+            <a
+              href="#"
+              onClick={handleEvent.handleToggleModal(DETAIL, {
+                data: record
+              })}
+            >
+              {' '}
+              {text}
+            </a>
+          )
+        },
+        {
+          title: 'Content',
+          dataIndex: 'content',
+          key: 'content'
+        },
+        {
+          title: 'Start Date',
+          dataIndex: 'startDate',
+          key: 'startDate',
+          width: 130,
+          sorter: (a, b) => new Date(a.startDate) - new Date(b.startDate)
+        },
+        {
+          title: 'Actions',
+          dataIndex: 'actions',
+          key: 'actions',
+          width: 250,
+          render: (text, record) => (
+            <span>
+              <Button onClick={handleEvent.handleToggleModal(UPDATE, record)}>
+                Update
+              </Button>
+              <Divider type="vertical" />
+              <Button
+                loading={deleteCrud.result.loading}
+                onClick={handleEvent.handleDelete(record)}
+              >
+                Delete
+              </Button>
+            </span>
+          )
+        }
+      ]
+
+      if (loading) return <div>Logining</div>
+
+      const dataSet = data[queryName].map(v => ({
+        key: v._id,
+        title: v.title,
+        content: v.content,
+        startDate: moment(v.startDate).format('YYYY/MM/DD'),
+        endDate: moment(v.endDate).format('YYYY/MM/DD'),
+        _id: v._id
+      }))
+
+      return (
+        <CrudTemplate
+          handleEvent={handleEvent}
+          columns={columns}
+          dataSet={dataSet}
+          result={result}
+          CreateForm={CreateForm}
+          DetailForm={DetailForm}
+          UpdateForm={UpdateForm}
+        />
+      )
+    }}
+  </AdoptContainer>
+)
