@@ -63,15 +63,11 @@ export default () => (
           title: 'email',
           dataIndex: 'email',
           key: 'email',
-          render: (text, record) => (
-            <a href="#" onClick={handleEvent.handleToggleModal(DETAIL, record)}>
-              {text}
-            </a>
-          )
+          render: (text, record) => <div>{text}</div>
         },
 
         {
-          title: 'Function',
+          title: 'Action',
           dataIndex: 'endDate',
           key: 'endDate',
           render: (text, record) => {
