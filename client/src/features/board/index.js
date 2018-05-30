@@ -19,7 +19,8 @@ const AdoptContainer = adopt({
   crudInfo: <Value initial={{ queryName: 'boardAllQuery' }} />,
   formData: <Value initial={{ formData: {} }} />,
   assignForm: <Value initial={'create'} />,
-  recordChoose: <Value initial={''} />
+  recordChoose: <Value initial={''} />,
+  formName: <Value initial={'Board'} />
 })
 
 export default () => {

@@ -16,7 +16,8 @@ const AdoptContainer = adopt({
   formData: <Value initial={{ formData: {} }} />,
   assignForm: <Value initial={'create'} />,
   recordChoose: <Value initial={''} />,
-  isCreateButton: <Value initial={'false'} />
+  isCreateButton: <Value initial={'false'} />,
+  formName: <Value initial={'User'} />
 })
 
 export default () => (

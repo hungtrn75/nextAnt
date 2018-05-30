@@ -11,7 +11,16 @@ const dateFormat = 'YYYY/MM/DD'
 const FormBlock = props => {
   const { form, handleEvent, record } = props
   const { getFieldDecorator } = form
-
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 5 }
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 12 }
+    }
+  }
   return (
     <LogicBlock.Consumer>
       {({ result: { recordChoose } }) => {
@@ -31,7 +40,7 @@ const FormBlock = props => {
                 initialValue: value.content ? value.content : ''
               })(<Input type="textArea" placeholder="content" />)}
             </FormItem>
-            <FormItem>
+            <FormItem label="Start Date" {...formItemLayout}>
               {getFieldDecorator('startDate', {
                 rules: [{ required: true, message: 'Please input stateDate' }],
                 initialValue: value.startDate
@@ -40,7 +49,7 @@ const FormBlock = props => {
               })(<DatePicker format={dateFormat} />)}
             </FormItem>
 
-            <FormItem>
+            <FormItem label="End Date" {...formItemLayout}>
               {getFieldDecorator('endDate', {
                 rules: [{ required: true, message: 'Please input endDate' }],
                 initialValue: value.endDate
