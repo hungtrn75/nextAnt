@@ -1,16 +1,17 @@
 const typeDefs = `
-type User {
-  _id: ID! @unique
-  email: String! @unique
-  picture: String
-}
+  type User {
+    _id: ID! @unique
+    email: String! @unique
+    picture: String
+  }
 
-type AuthPayload {
-  token: String
-}
+  type AuthPayload {
+    token: String
+  }
 `
 
 const queries = `
+  isUserLoggedIn: Boolean
   userAllQuery: [User]
   profile: User
 `

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { message, Row, Icon, Col, Form, Input, Button } from 'antd'
 
 import { GlobalBlock } from '../../../src/components/layout'
-import { ActionContainer, userAllQuery } from './grapgql'
+import { isUserLoggedIn, ActionContainer, userAllQuery } from './grapgql'
 import goto from '../../lib/goto'
 
 const FormItem = Form.Item
@@ -31,7 +31,10 @@ const LoginForm = props => {
                   if (!err) {
                     const result = await loginAction.mutation({
                       variables: values,
-                      refetchQueries: [{ query: userAllQuery }]
+                      refetchQueries: [
+                        { query: userAllQuery },
+                        { query: isUserLoggedIn }
+                      ]
                     })
                     loginState.setState({ loginUser: result.data.login })
                     goto('/')()

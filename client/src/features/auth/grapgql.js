@@ -1,6 +1,6 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
+import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
 
 export const login = gql`
@@ -47,6 +47,14 @@ export const userPorfile = gql`
     }
   }
 `
+
+export const isUserLoggedIn = gql`
+  query isUserLoggedIn {
+    isUserLoggedIn
+  }
+`
+
+export const checkUser = () => <Query query={isUserLoggedIn} />
 
 export const loginAction = ({ render }) => (
   <Mutation mutation={login}>
