@@ -16,14 +16,17 @@ const Query = {
 
 const Mutation = {
   Mutation: {
-    boardCreate: async (_, { title, content }) => {
+    boardCreate: async (_, { title, content, startDate, endDate }) => {
       //await sleep(3000)
-      const board = new Board({ title, content })
+      const board = new Board({ title, content, startDate, endDate })
       await board.save()
       return board
     },
-    boardUpdate: async (_, { _id, title, content }) => {
-      await Board.findOneAndUpdate({ _id }, { title, content })
+    boardUpdate: async (_, { _id, title, content, startDate, endDate }) => {
+      await Board.findOneAndUpdate(
+        { _id },
+        { title, content, startDate, endDate }
+      )
       return _id
     },
     boardDelete: async (_, { _id }) => {

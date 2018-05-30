@@ -1,22 +1,27 @@
 import React from 'react'
 import { LogicBlock } from './index'
-import { Table, Button, Modal } from 'antd'
+import { Table, Button, Row, Col } from 'antd'
 import { CREATE } from '../../components/crudTemplate'
 export default () => {
   return (
     <LogicBlock.Consumer>
       {({ handleEvent, columns, dataSet, result: { isCreateButton } }) => {
         return (
-          <div>
+          <Row>
+            <Col
+              span={24}
+              style={{ textAlign: 'right', zIndex: 9, marginBottom: '10px' }}
+            >
+              {!isCreateButton ? (
+                <Button onClick={handleEvent.handleToggleModal(CREATE)}>
+                  create
+                </Button>
+              ) : (
+                ''
+              )}
+            </Col>
             <Table columns={columns} dataSource={dataSet} />
-            {!isCreateButton ? (
-              <Button onClick={handleEvent.handleToggleModal(CREATE)}>
-                create
-              </Button>
-            ) : (
-              ''
-            )}
-          </div>
+          </Row>
         )
       }}
     </LogicBlock.Consumer>

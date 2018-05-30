@@ -4,8 +4,8 @@ const { Schema } = mongoose
 const BoardSchema = new Schema({
   title: String,
   content: String,
-  startDate: String,
-  endDate: String,
+  startDate: Date,
+  endDate: Date,
   createdAt: { type: Date, default: Date.now }
 })
 

@@ -8,7 +8,8 @@ export default () => {
         result: {
           modal: { value },
           toggleModal,
-          assignForm
+          assignForm,
+          formName
         },
         handleEvent,
         CreateForm,
@@ -17,7 +18,7 @@ export default () => {
       }) => {
         return (
           <Modal
-            title={value.title}
+            title={`${formName.value} - ${assignForm.value}`}
             visible={toggleModal.on}
             onCancel={toggleModal.toggle}
             footer={[

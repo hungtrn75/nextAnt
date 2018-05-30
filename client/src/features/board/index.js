@@ -2,6 +2,7 @@ import React from 'react'
 import { adopt } from 'react-adopt'
 import { Toggle, Value } from 'react-powerplug'
 import { Button, Divider } from 'antd'
+import moment from 'moment'
 
 import CrudTemplate, {
   CREATE,
@@ -18,7 +19,8 @@ const AdoptContainer = adopt({
   crudInfo: <Value initial={{ queryName: 'boardAllQuery' }} />,
   formData: <Value initial={{ formData: {} }} />,
   assignForm: <Value initial={'create'} />,
-  recordChoose: <Value initial={''} />
+  recordChoose: <Value initial={''} />,
+  formName: <Value initial={'Board'} />
 })
 
 export default () => {
@@ -32,7 +34,8 @@ export default () => {
           container: {
             query: { error, data, loading },
             createCrud,
-            deleteCrud
+            deleteCrud,
+            updateCrud
           },
           crudInfo: {
             value: { queryName }
@@ -118,7 +121,7 @@ export default () => {
 
         const columns = [
           {
-            title: 'tiTle',
+            title: 'Title',
             dataIndex: 'title',
             key: 'title',
             render: (text, record) => (
@@ -134,19 +137,19 @@ export default () => {
             )
           },
           {
-            title: 'content',
+            title: 'Content',
             dataIndex: 'content',
             key: 'content'
           },
           {
-            title: 'StateDate',
-            dataIndex: 'stateDate',
-            key: 'stateData'
+            title: 'Start Date',
+            dataIndex: 'startDate',
+            key: 'startDate'
           },
           {
-            title: 'Function',
-            dataIndex: 'endDate',
-            key: 'endDate',
+            title: 'Action',
+            dataIndex: 'action',
+            key: 'action',
             render: (text, record) => {
               return (
                 <span>
@@ -175,8 +178,8 @@ export default () => {
             key: v._id,
             title: v.title,
             content: v.content,
-            stateDate: 'test',
-            endDate: 'test',
+            startDate: moment(v.startDate).format('YYYY/MM/DD'),
+            endDate: moment(v.endDate).format('YYYY/MM/DD'),
             _id: v._id
           }
         })

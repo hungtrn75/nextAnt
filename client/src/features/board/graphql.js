@@ -9,6 +9,8 @@ export const boardAllQuery = gql`
       _id
       title
       content
+      startDate
+      endDate
     }
   }
 `
@@ -18,16 +20,32 @@ export const boardOneQuery = gql`
       _id
       title
       content
+      startDate
+      endDate
     }
   }
 `
 
 export const boardUpdate = gql`
-  mutation boardUpdate($title: String, $content: String, $_id: String) {
-    boardUpdate(title: $title, content: $content, _id: $_id) {
+  mutation boardUpdate(
+    $title: String
+    $content: String
+    $_id: String
+    $startDate: Date
+    $endDate: Date
+  ) {
+    boardUpdate(
+      title: $title
+      content: $content
+      _id: $_id
+      startDate: $startDate
+      endDate: $endDate
+    ) {
       _id
       title
       content
+      startDate
+      endDate
     }
   }
 `
@@ -38,16 +56,30 @@ export const boardDelete = gql`
       _id
       title
       content
+      startDate
+      endDate
     }
   }
 `
 
 export const boardCreate = gql`
-  mutation boardCreate($title: String, $content: String) {
-    boardCreate(title: $title, content: $content) {
+  mutation boardCreate(
+    $title: String
+    $content: String
+    $startDate: Date
+    $endDate: Date
+  ) {
+    boardCreate(
+      title: $title
+      content: $content
+      startDate: $startDate
+      endDate: $endDate
+    ) {
       title
       content
       _id
+      startDate
+      endDate
     }
   }
 `

@@ -14,25 +14,25 @@ const FormBlock = props => {
         const { value } = recordChoose
         return (
           <Form className="login-form" resetFields={true}>
-            <FormItem>
+            <FormItem label="Name">
               {getFieldDecorator('name', {
                 rules: [{ required: true, message: 'This field is required!' }],
                 initialValue: value ? value.name : ''
               })(<Input placeholder="Name" />)}
             </FormItem>
-            <FormItem>
+            <FormItem label="Tel">
               {getFieldDecorator('tel', {
                 rules: [{ required: true, message: 'This field is required!' }],
                 initialValue: value ? value.tel : ''
               })(<Input placeholder="Tel" />)}
             </FormItem>
-            <FormItem>
+            <FormItem label="Cellphone">
               {getFieldDecorator('cellphone', {
                 rules: [{ required: true, message: 'This field is required!' }],
                 initialValue: value ? value.cellphone : ''
               })(<Input placeholder="Cellphone" />)}
             </FormItem>
-            <FormItem>
+            <FormItem label="Memo">
               {getFieldDecorator('memo', {
                 rules: [{ required: true, message: 'This field is required!' }],
                 initialValue: value ? value.memo : ''
