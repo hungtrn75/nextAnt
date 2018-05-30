@@ -2,6 +2,7 @@ import React from 'react'
 import { adopt } from 'react-adopt'
 import { Toggle, Value } from 'react-powerplug'
 import { Button, Divider } from 'antd'
+import moment from 'moment'
 
 import CrudTemplate, {
   CREATE,
@@ -176,8 +177,8 @@ export default () => {
             key: v._id,
             title: v.title,
             content: v.content,
-            startDate: v.startDate,
-            endDate: v.endDate,
+            startDate: moment(v.startDate).format('YYYY/MM/DD'),
+            endDate: moment(v.endDate).format('YYYY/MM/DD'),
             _id: v._id
           }
         })
