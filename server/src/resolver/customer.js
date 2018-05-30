@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { getUserId } = require('../utils')
+// const { getUserId } = require('../utils')
 
 const Customer = mongoose.model('Customer')
 

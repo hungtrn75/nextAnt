@@ -1,20 +1,17 @@
 const queries = `
-     boardAllQuery:[board],
-     boardOneQuery(_id:String):board
+  boardAllQuery:[board],
+  boardOneQuery(_id:String):board
 `
 
 const typeDefs = ` 
-
 scalar Date
 
-type board{
-  
+type board {
   _id:String,
   title:String,
   content:String,
   startDate:Date,
   endDate:Date  
-  
 }`
 
 const mutations = `

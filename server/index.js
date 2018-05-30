@@ -20,6 +20,8 @@ const {
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongoURI)
 
+require('./config/seed')
+
 const port = process.env.PORT || 8080
 
 const server = express()
