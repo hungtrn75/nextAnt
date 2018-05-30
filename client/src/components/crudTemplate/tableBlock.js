@@ -5,14 +5,14 @@ import { CREATE } from '../../components/crudTemplate'
 export default () => {
   return (
     <LogicBlock.Consumer>
-      {({ handleEvent, columns, dataSet, result: { isCreateButton } }) => {
+      {({ handleEvent, columns, dataSet, isUserLoggedIn }) => {
         return (
           <Row>
             <Col
               span={24}
               style={{ textAlign: 'right', zIndex: 9, marginBottom: '10px' }}
             >
-              {!isCreateButton ? (
+              {isUserLoggedIn ? (
                 <Button onClick={handleEvent.handleToggleModal(CREATE)}>
                   create
                 </Button>

@@ -11,8 +11,10 @@ import CrudTemplate, {
 } from '../../components/crudTemplate'
 import Form from './form'
 import { CrudContainer, boardAllQuery } from './graphql'
+import { checkUser } from '../auth/grapgql'
 
 const AdoptContainer = adopt({
+  checkUser: checkUser(),
   container: <CrudContainer />,
   toggleModal: <Toggle initial={false} />,
   modal: <Value initial={{ title: ' test' }} />,
@@ -27,6 +29,9 @@ export default () => (
   <AdoptContainer>
     {result => {
       const {
+        checkUser: {
+          data: { isUserLoggedIn }
+        },
         assignForm,
         toggleModal,
         recordChoose,
@@ -61,6 +66,7 @@ export default () => (
               break
           }
         },
+
         handleDelete: record => () => {
           let values = { _id: record._id }
           result.container.deleteCrud.mutation({
@@ -68,6 +74,7 @@ export default () => (
             refetchQueries: [{ query: boardAllQuery }]
           })
         },
+
         handleSubmit: form => () => {
           form.validateFields(async (err, values) => {
             if (!err) {
@@ -88,6 +95,7 @@ export default () => (
                   variables: values,
                   refetchQueries: [{ query: boardAllQuery }]
                 })
+
                 form.resetFields()
               }
               toggleModal.toggle()
@@ -146,26 +154,30 @@ export default () => (
           width: 130,
           sorter: (a, b) => new Date(a.startDate) - new Date(b.startDate)
         },
-        {
-          title: 'Actions',
-          dataIndex: 'actions',
-          key: 'actions',
-          width: 250,
-          render: (text, record) => (
-            <span>
-              <Button onClick={handleEvent.handleToggleModal(UPDATE, record)}>
-                Update
-              </Button>
-              <Divider type="vertical" />
-              <Button
-                loading={deleteCrud.result.loading}
-                onClick={handleEvent.handleDelete(record)}
-              >
-                Delete
-              </Button>
-            </span>
-          )
-        }
+        isUserLoggedIn
+          ? {
+              title: 'Actions',
+              dataIndex: 'actions',
+              key: 'actions',
+              width: 250,
+              render: (text, record) => (
+                <span>
+                  <Button
+                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
+                  >
+                    Update
+                  </Button>
+                  <Divider type="vertical" />
+                  <Button
+                    loading={deleteCrud.result.loading}
+                    onClick={handleEvent.handleDelete(record)}
+                  >
+                    Delete
+                  </Button>
+                </span>
+              )
+            }
+          : {}
       ]
 
       if (loading) return <div>Logining</div>
@@ -181,6 +193,7 @@ export default () => (
 
       return (
         <CrudTemplate
+          isUserLoggedIn={isUserLoggedIn}
           handleEvent={handleEvent}
           columns={columns}
           dataSet={dataSet}

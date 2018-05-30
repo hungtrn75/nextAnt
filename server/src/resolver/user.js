@@ -14,7 +14,16 @@ const Query = {
       return user
     },
 
-    userAllQuery: async () => User.find()
+    userAllQuery: async () => User.find(),
+
+    isUserLoggedIn: async (parent, args, ctx) => {
+      try {
+        getUserId(ctx)
+        return true
+      } catch (error) {
+        return false
+      }
+    }
   }
 }
 

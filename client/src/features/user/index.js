@@ -5,10 +5,12 @@ import { Button } from 'antd'
 
 import CrudTemplate, { DETAIL } from '../../components/crudTemplate'
 import { CrudContainer, userAllQuery } from './graphql'
+import { checkUser } from '../auth/grapgql'
 
 import Form from './form'
 
 const AdoptContainer = adopt({
+  checkUser: checkUser(),
   container: <CrudContainer />,
   toggleModal: <Toggle initial={false} />,
   modal: <Value initial={{ title: ' test' }} />,
@@ -16,7 +18,6 @@ const AdoptContainer = adopt({
   formData: <Value initial={{ formData: {} }} />,
   assignForm: <Value initial={'create'} />,
   recordChoose: <Value initial={''} />,
-  isCreateButton: <Value initial={'false'} />,
   formName: <Value initial={'User'} />
 })
 
@@ -24,6 +25,9 @@ export default () => (
   <AdoptContainer>
     {result => {
       const {
+        checkUser: {
+          data: { isUserLoggedIn }
+        },
         assignForm,
         toggleModal,
         recordChoose,
@@ -66,20 +70,22 @@ export default () => (
           render: (text, record) => <div>{text}</div>
         },
 
-        {
-          title: 'Action',
-          dataIndex: 'endDate',
-          key: 'endDate',
-          render: (text, record) => {
-            return (
-              <span>
-                <Button onClick={handleEvent.handleDelete(record)}>
-                  Delete
-                </Button>
-              </span>
-            )
-          }
-        }
+        isUserLoggedIn
+          ? {
+              title: 'Actions',
+              dataIndex: 'actions',
+              key: 'actions',
+              render: (text, record) => {
+                return (
+                  <span>
+                    <Button onClick={handleEvent.handleDelete(record)}>
+                      Delete
+                    </Button>
+                  </span>
+                )
+              }
+            }
+          : {}
       ]
 
       const DetailForm = () => {
@@ -99,6 +105,7 @@ export default () => (
 
       return (
         <CrudTemplate
+          isUserLoggedIn={isUserLoggedIn}
           handleEvent={handleEvent}
           columns={columns}
           dataSet={dataSet}

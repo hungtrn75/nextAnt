@@ -2,7 +2,7 @@ import React from 'react'
 import { message, Row, Col, Form, Input, Button, Icon } from 'antd'
 
 import { GlobalBlock } from '../../../src/components/layout'
-import { ActionContainer, userAllQuery } from './grapgql'
+import { isUserLoggedIn, ActionContainer, userAllQuery } from './grapgql'
 import goto from '../../lib/goto'
 
 const FormItem = Form.Item
@@ -31,7 +31,10 @@ const SignUpForm = props => {
                   if (!err) {
                     const result = await signupAction.mutation({
                       variables: values,
-                      refetchQueries: [{ query: userAllQuery }]
+                      refetchQueries: [
+                        { query: userAllQuery },
+                        { query: isUserLoggedIn }
+                      ]
                     })
                     signupAction.result.data ? form.resetFields() : ''
                     loginState.setState({ loginUser: result.data.signup })
