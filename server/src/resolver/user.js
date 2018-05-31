@@ -9,9 +9,12 @@ const { getUserId } = require('../utils')
 const Query = {
   Query: {
     profile: async (parent, args, ctx) => {
-      const _id = getUserId(ctx)
-      const user = await User.findOne({ _id })
-      return user
+      try {
+        getUserId(ctx)
+        const _id = getUserId(ctx)
+        const user = await User.findOne({ _id })
+        return user
+      } catch (error) {}
     },
 
     userAllQuery: async () => User.find(),
