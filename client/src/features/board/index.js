@@ -180,7 +180,7 @@ export default () => (
           : {}
       ]
 
-      if (loading) return <div>Logining</div>
+      if (loading) return <div>Loading</div>
 
       const dataSet = data[queryName].map(v => ({
         key: v._id,

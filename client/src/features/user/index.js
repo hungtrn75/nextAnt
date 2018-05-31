@@ -91,9 +91,8 @@ export default () => (
       const DetailForm = () => {
         return <Form handleEvent={handleEvent} actionText={'detail'} />
       }
-      if (loading) {
-        return <div>Logining</div>
-      }
+
+      if (loading) return <div>Loading</div>
 
       const dataSet = data[queryName].map(({ _id, email }) => {
         return {
