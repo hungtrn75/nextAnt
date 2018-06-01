@@ -5,7 +5,7 @@ import { adopt } from 'react-adopt'
 import { Toggle, State } from 'react-powerplug'
 import { Avatar, Dropdown, Layout, Icon, Row, Col, Button, Menu } from 'antd'
 
-import { logoutAction } from '../../features/auth/grapgql'
+import { isUserLoggedIn, logoutAction } from '../../features/auth/grapgql'
 import goto from '../../lib/goto'
 
 import Nav from '../nav'
@@ -30,7 +30,9 @@ const MyLayout = ({ children, loginUser }) => (
       } = loginState
 
       const handleLogout = async () => {
-        await logoutAction.mutation()
+        await logoutAction.mutation({
+          refetchQueries: [{ query: isUserLoggedIn }]
+        })
         loginState.setState({ loginUser: null })
         goto('/')()
       }

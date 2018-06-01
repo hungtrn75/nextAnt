@@ -12,7 +12,10 @@ import CrudTemplate, {
 import Form from './form'
 import { CrudContainer, boardQueryPage } from './graphql'
 
+import { checkUser } from '../auth/grapgql'
+
 const AdoptContainer = adopt({
+  checkUser: checkUser(),
   container: <CrudContainer />,
   toggleModal: <Toggle initial={false} />,
   modal: <Value initial={{ title: ' test' }} />,
@@ -30,6 +33,9 @@ export default () => (
   <AdoptContainer>
     {result => {
       const {
+        checkUser: {
+          data: { isUserLoggedIn }
+        },
         assignForm,
         toggleModal,
         recordChoose,
@@ -103,6 +109,7 @@ export default () => (
             pageTotal.setValue(totalCount)
           }
         },
+
         handleSubmit: form => () => {
           form.validateFields(async (err, values) => {
             if (!err) {
@@ -207,24 +214,33 @@ export default () => (
           width: 130,
           sorter: (a, b) => new Date(a.startDate) - new Date(b.startDate)
         },
-        {
-          title: 'Actions',
-          dataIndex: 'actions',
-          key: 'actions',
-          width: 250,
-          render: (text, record) => (
-            <span>
-              <Button onClick={handleEvent.handleToggleModal(UPDATE, record)}>
-                Update
-              </Button>
-              <Divider type="vertical" />
-              <Button onClick={handleEvent.handleDelete(record)}>Delete</Button>
-            </span>
-          )
-        }
+        isUserLoggedIn
+          ? {
+              title: 'Actions',
+              dataIndex: 'actions',
+              key: 'actions',
+              width: 250,
+              render: (text, record) => (
+                <span>
+                  <Button
+                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
+                  >
+                    Update
+                  </Button>
+                  <Divider type="vertical" />
+                  <Button
+                    loading={deleteCrud.result.loading}
+                    onClick={handleEvent.handleDelete(record)}
+                  >
+                    Delete
+                  </Button>
+                </span>
+              )
+            }
+          : {}
       ]
 
-      if (loading) return <div>Logining</div>
+      if (loading) return <div>Loading</div>
 
       let dataSet = data[queryName].map(v => ({
         key: v._id,
@@ -243,6 +259,7 @@ export default () => (
       return (
         <CrudTemplate
           handleChangePage={handleChangePage}
+          isUserLoggedIn={isUserLoggedIn}
           handleEvent={handleEvent}
           nowPage={nowPage}
           pageTotal={pageTotal}
