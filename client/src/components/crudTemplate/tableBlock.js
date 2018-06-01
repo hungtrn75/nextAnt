@@ -7,7 +7,7 @@ import { CREATE } from '../../components/crudTemplate'
 export default () => {
   return (
     <LogicBlock.Consumer>
-      {({ handleEvent, dataSet, columns, isUserLoggedIn }) => {
+      {({ handleEvent, columns, dataSet, isUserLoggedIn }) => {
         return (
           <Row>
             <Col
