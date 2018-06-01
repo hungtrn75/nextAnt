@@ -21,7 +21,9 @@ const AdoptContainer = adopt({
   assignForm: <Value initial={'create'} />,
   recordChoose: <Value initial={''} />,
   formName: <Value initial={'Board'} />,
-  pageInfo: <State initial={{ nowPage: 1, pageTotal: null, pageSize: 10 }} />
+  nowPage: <Value initial={1} />,
+  pageTotal: <Value initial={null} />,
+  pageSize: <Value initial={10} />
 })
 
 export default () => (
@@ -31,7 +33,9 @@ export default () => (
         assignForm,
         toggleModal,
         recordChoose,
-        pageInfo,
+        nowPage,
+        pageTotal,
+        pageSize,
         container: {
           query: { error, data, loading },
           createCrud,
@@ -44,12 +48,13 @@ export default () => (
       } = result
 
       if (error) return <div>an error occer</div>
-      if (pageInfo.state.pageTotal === null) {
-        pageInfo.setState({
-          nowPage: 1,
-          pageTotal: result.container.query.data.boardQueryTotal.totalCount,
-          pageSize: 10
-        })
+      if (pageTotal.value === null) {
+        //console.log(result.container.query.data.boardQueryTotal.totalCount)
+        if (result.container.query.data.boardQueryTotal) {
+          pageTotal.setValue(
+            result.container.query.data.boardQueryTotal.totalCount
+          )
+        }
       }
       const handleEvent = {
         handleToggleModal: (action, record) => () => {
@@ -81,38 +86,21 @@ export default () => (
               {
                 query: boardQueryPage,
                 variables: {
-                  page: pageInfo.state.nowPage,
-                  size: pageInfo.state.pageSize
+                  page: nowPage.value,
+                  size: pageSize.value
                 }
               }
             ]
           })
-          // query.query({
-          //   page: pageInfo.state.nowPage,
-          //   size: pageInfo.state.pageSize
-          // })
-          //  console.log('totalCount', totalCount)
-          // console.log('size', pageInfo.state.nowPage * pageInfo.state.pageSize)
-          if (
-            totalCount <=
-            (pageInfo.state.nowPage - 1) * pageInfo.state.pageSize
-          ) {
-            console.log('small')
+          if (totalCount <= (nowPage.value - 1) * pageSize.value) {
             result.container.query.refetch({
-              page: pageInfo.state.nowPage - 1,
-              size: pageInfo.state.pageSize
+              page: nowPage.value - 1,
+              size: pageSize.value
             })
-            pageInfo.setState({
-              pageTotal: totalCount,
-              nowPage: pageInfo.state.nowPage - 1,
-              pageSize: pageInfo.state.pageSize
-            })
+            pageTotal.setValue(totalCount)
+            nowPage.setValue(nowPage.value - 1)
           } else {
-            pageInfo.setState({
-              pageTotal: totalCount,
-              nowPage: pageInfo.state.nowPage,
-              pageSize: pageInfo.state.pageSize
-            })
+            pageTotal.setValue(totalCount)
           }
         },
         handleSubmit: form => () => {
@@ -129,8 +117,8 @@ export default () => (
                     {
                       query: boardQueryPage,
                       variables: {
-                        page: pageInfo.state.nowPage,
-                        size: pageInfo.state.pageSize
+                        page: nowPage.value,
+                        size: pageSize.value
                       }
                     }
                   ]
@@ -139,8 +127,7 @@ export default () => (
                 form.resetFields()
               }
               if (assignForm.value === 'create') {
-                //    console.log('pageInfo==>', pageInfo)
-
+                nowPage.setValue(1)
                 let {
                   data: {
                     boardCreate: { totalCount }
@@ -150,19 +137,18 @@ export default () => (
                   refetchQueries: [
                     {
                       query: boardQueryPage,
-                      variables: {
-                        page: 1,
-                        size: pageInfo.state.pageSize
-                      }
+                      variables: { page: 1, size: pageSize.value }
                     }
                   ]
                 })
 
-                pageInfo.setState({
-                  pageTotal: totalCount,
-                  nowPage: 1,
-                  pageSize: pageInfo.state.pageSize
+                pageTotal.setValue(totalCount)
+
+                result.container.query.refetch({
+                  page: 1,
+                  size: pageSize.value
                 })
+
                 form.resetFields()
               }
               toggleModal.toggle()
@@ -251,27 +237,16 @@ export default () => (
 
       const handleChangePage = (page, pageSize) => {
         let pageTotal = data['boardQueryTotal']['totalCount']
-        pageInfo.setState({
-          nowPage: page,
-          pageSize: pageSize,
-          pageTotal: pageTotal
-        })
-        console.log(result.container.query)
+        nowPage.setValue(page)
         result.container.query.refetch({ page, size: pageSize })
-        // result.container.query.fetchMore({
-        //   variables: { page, pageSize },
-        //   updateQuery: (prev, { fetchMoreResult }) => {
-        //     if (!fetchMoreResult) return prev;
-        //     return fetchMoreResult
-        //   }
-        // })
       }
-
       return (
         <CrudTemplate
           handleChangePage={handleChangePage}
-          pageInfo={pageInfo}
           handleEvent={handleEvent}
+          nowPage={nowPage}
+          pageTotal={pageTotal}
+          pageSize={pageSize}
           columns={columns}
           dataSet={dataSet}
           result={result}

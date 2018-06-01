@@ -1,6 +1,8 @@
 import React from 'react'
 import { LogicBlock } from './index'
-import { Table, Button, Row, Col, Pagination } from 'antd'
+import { Table, Button, Row, Col } from 'antd'
+
+import Pagination from './pagination'
 import { CREATE } from '../../components/crudTemplate'
 export default () => {
   return (
@@ -9,11 +11,9 @@ export default () => {
         handleEvent,
         columns,
         dataSet,
-        pageInfo,
         handleChangePage,
         result: { isCreateButton }
       }) => {
-        console.log('pageInfoxx', pageInfo)
         return (
           <Row>
             <Col
@@ -29,12 +29,7 @@ export default () => {
               )}
             </Col>
             <Table columns={columns} dataSource={dataSet} />
-            <Pagination
-              pageSize={pageInfo.state.pageSize}
-              defaultCurrent={pageInfo.state.nowPage}
-              total={pageInfo.state.pageTotal}
-              onChange={handleChangePage}
-            />
+            <Pagination />
           </Row>
         )
       }}
