@@ -10,26 +10,37 @@ import CrudTemplate, {
   DETAIL
 } from '../../components/crudTemplate'
 import Form from './form'
-import { CrudContainer, boardAllQuery } from './graphql'
+import { CrudContainer, boardQueryPage } from './graphql'
+import { checkUser } from '../auth/grapgql'
 
 const AdoptContainer = adopt({
+  checkUser: checkUser(),
   container: <CrudContainer />,
   toggleModal: <Toggle initial={false} />,
   modal: <Value initial={{ title: ' test' }} />,
-  crudInfo: <Value initial={{ queryName: 'boardAllQuery' }} />,
+  crudInfo: <Value initial={{ queryName: 'boardQueryPage' }} />,
   formData: <Value initial={{ formData: {} }} />,
   assignForm: <Value initial={'create'} />,
   recordChoose: <Value initial={''} />,
-  formName: <Value initial={'Board'} />
+  formName: <Value initial={'Board'} />,
+  nowPage: <Value initial={1} />,
+  pageTotal: <Value initial={null} />,
+  pageSize: <Value initial={10} />
 })
 
 export default () => (
   <AdoptContainer>
     {result => {
       const {
+        checkUser: {
+          data: { isUserLoggedIn }
+        },
         assignForm,
         toggleModal,
         recordChoose,
+        nowPage,
+        pageTotal,
+        pageSize,
         container: {
           query: { error, data, loading },
           createCrud,
@@ -42,7 +53,14 @@ export default () => (
       } = result
 
       if (error) return <div>an error occer</div>
-
+      if (pageTotal.value === null) {
+        //console.log(result.container.query.data.boardQueryTotal.totalCount)
+        if (result.container.query.data.boardQueryTotal) {
+          pageTotal.setValue(
+            result.container.query.data.boardQueryTotal.totalCount
+          )
+        }
+      }
       const handleEvent = {
         handleToggleModal: (action, record) => () => {
           toggleModal.toggle()
@@ -61,13 +79,36 @@ export default () => (
               break
           }
         },
-        handleDelete: record => () => {
+        handleDelete: record => async () => {
           let values = { _id: record._id }
-          result.container.deleteCrud.mutation({
+          let {
+            data: {
+              boardDelete: { totalCount }
+            }
+          } = await result.container.deleteCrud.mutation({
             variables: values,
-            refetchQueries: [{ query: boardAllQuery }]
+            refetchQueries: [
+              {
+                query: boardQueryPage,
+                variables: {
+                  page: nowPage.value,
+                  size: pageSize.value
+                }
+              }
+            ]
           })
+          if (totalCount <= (nowPage.value - 1) * pageSize.value) {
+            result.container.query.refetch({
+              page: nowPage.value - 1,
+              size: pageSize.value
+            })
+            pageTotal.setValue(totalCount)
+            nowPage.setValue(nowPage.value - 1)
+          } else {
+            pageTotal.setValue(totalCount)
+          }
         },
+
         handleSubmit: form => () => {
           form.validateFields(async (err, values) => {
             if (!err) {
@@ -78,16 +119,42 @@ export default () => (
 
                 await updateCrud.mutation({
                   variables: values,
-                  refetchQueries: [{ query: boardAllQuery }]
+                  refetchQueries: [
+                    {
+                      query: boardQueryPage,
+                      variables: {
+                        page: nowPage.value,
+                        size: pageSize.value
+                      }
+                    }
+                  ]
                 })
 
                 form.resetFields()
               }
               if (assignForm.value === 'create') {
-                await createCrud.mutation({
+                nowPage.setValue(1)
+                let {
+                  data: {
+                    boardCreate: { totalCount }
+                  }
+                } = await createCrud.mutation({
                   variables: values,
-                  refetchQueries: [{ query: boardAllQuery }]
+                  refetchQueries: [
+                    {
+                      query: boardQueryPage,
+                      variables: { page: 1, size: pageSize.value }
+                    }
+                  ]
                 })
+
+                pageTotal.setValue(totalCount)
+
+                result.container.query.refetch({
+                  page: 1,
+                  size: pageSize.value
+                })
+
                 form.resetFields()
               }
               toggleModal.toggle()
@@ -146,31 +213,35 @@ export default () => (
           width: 130,
           sorter: (a, b) => new Date(a.startDate) - new Date(b.startDate)
         },
-        {
-          title: 'Actions',
-          dataIndex: 'actions',
-          key: 'actions',
-          width: 250,
-          render: (text, record) => (
-            <span>
-              <Button onClick={handleEvent.handleToggleModal(UPDATE, record)}>
-                Update
-              </Button>
-              <Divider type="vertical" />
-              <Button
-                loading={deleteCrud.result.loading}
-                onClick={handleEvent.handleDelete(record)}
-              >
-                Delete
-              </Button>
-            </span>
-          )
-        }
+        isUserLoggedIn
+          ? {
+              title: 'Actions',
+              dataIndex: 'actions',
+              key: 'actions',
+              width: 250,
+              render: (text, record) => (
+                <span>
+                  <Button
+                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
+                  >
+                    Update
+                  </Button>
+                  <Divider type="vertical" />
+                  <Button
+                    loading={deleteCrud.result.loading}
+                    onClick={handleEvent.handleDelete(record)}
+                  >
+                    Delete
+                  </Button>
+                </span>
+              )
+            }
+          : {}
       ]
 
-      if (loading) return <div>Logining</div>
+      if (loading) return <div>Loading</div>
 
-      const dataSet = data[queryName].map(v => ({
+      let dataSet = data[queryName].map(v => ({
         key: v._id,
         title: v.title,
         content: v.content,
@@ -179,9 +250,19 @@ export default () => (
         _id: v._id
       }))
 
+      const handleChangePage = (page, pageSize) => {
+        //let pageTotal = data['boardQueryTotal']['totalCount']
+        nowPage.setValue(page)
+        result.container.query.refetch({ page, size: pageSize })
+      }
       return (
         <CrudTemplate
+          handleChangePage={handleChangePage}
+          isUserLoggedIn={isUserLoggedIn}
           handleEvent={handleEvent}
+          nowPage={nowPage}
+          pageTotal={pageTotal}
+          pageSize={pageSize}
           columns={columns}
           dataSet={dataSet}
           result={result}

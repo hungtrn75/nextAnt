@@ -1,18 +1,20 @@
 import React from 'react'
 import { LogicBlock } from './index'
 import { Table, Button, Row, Col } from 'antd'
+
+import Pagination from './pagination'
 import { CREATE } from '../../components/crudTemplate'
 export default () => {
   return (
     <LogicBlock.Consumer>
-      {({ handleEvent, columns, dataSet, result: { isCreateButton } }) => {
+      {({ handleEvent, columns, dataSet, isUserLoggedIn }) => {
         return (
           <Row>
             <Col
               span={24}
-              style={{ textAlign: 'right', zIndex: 9, marginBottom: '10px' }}
+              style={{ textAlign: 'right', zIndex: 8, marginBottom: '10px' }}
             >
-              {!isCreateButton ? (
+              {isUserLoggedIn ? (
                 <Button onClick={handleEvent.handleToggleModal(CREATE)}>
                   create
                 </Button>
@@ -21,6 +23,7 @@ export default () => {
               )}
             </Col>
             <Table columns={columns} dataSource={dataSet} />
+            <Pagination />
           </Row>
         )
       }}
