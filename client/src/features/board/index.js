@@ -1,6 +1,6 @@
 import React from 'react'
 import { adopt } from 'react-adopt'
-import { Toggle, Value, State } from 'react-powerplug'
+import { Toggle, Value } from 'react-powerplug'
 import { Button, Divider } from 'antd'
 import moment from 'moment'
 
@@ -252,7 +252,7 @@ export default () => (
       }))
 
       const handleChangePage = (page, pageSize) => {
-        let pageTotal = data['boardQueryTotal']['totalCount']
+        //let pageTotal = data['boardQueryTotal']['totalCount']
         nowPage.setValue(page)
         result.container.query.refetch({ page, size: pageSize })
       }

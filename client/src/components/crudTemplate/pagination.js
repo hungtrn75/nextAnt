@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Pagination } from 'antd'
 import { LogicBlock } from './index'
 export default () => {
