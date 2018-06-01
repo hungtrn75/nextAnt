@@ -7,12 +7,12 @@ import { CREATE } from '../../components/crudTemplate'
 export default () => {
   return (
     <LogicBlock.Consumer>
-      {({ handleEvent, columns, dataSet, isUserLoggedIn }) => {
+      {({ handleEvent, dataSet, columns, isUserLoggedIn }) => {
         return (
           <Row>
             <Col
               span={24}
-              style={{ textAlign: 'right', zIndex: 9, marginBottom: '10px' }}
+              style={{ textAlign: 'right', zIndex: 8, marginBottom: '10px' }}
             >
               {isUserLoggedIn ? (
                 <Button onClick={handleEvent.handleToggleModal(CREATE)}>
