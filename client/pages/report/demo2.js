@@ -18,7 +18,7 @@ const data = [
   { subject: 'History', A: 65, B: 85, fullMark: 150 }
 ]
 
-export default () => (
+const Demo2 = () => (
   <RadarChart
     cx={300}
     cy={250}
@@ -47,3 +47,5 @@ export default () => (
     <Legend />
   </RadarChart>
 )
+
+export default Demo2

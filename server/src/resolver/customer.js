@@ -6,7 +6,7 @@ const Customer = mongoose.model('Customer')
 
 const Query = {
   Query: {
-    customerAllQuery: async (parent, args, ctx) => {
+    customerAllQuery: async () => {
       const customers = await Customer.find()
       return customers
     }

@@ -119,7 +119,20 @@ export default () => (
           actionText={'update'}
         />
       )
-
+      const ActionLink = (text, record) => (
+        <span>
+          <Button onClick={handleEvent.handleToggleModal(UPDATE, record)}>
+            Update
+          </Button>
+          <Divider type="vertical" />
+          <Button
+            loading={deleteCrud.result.loading}
+            onClick={handleEvent.handleDelete(record)}
+          >
+            Delete
+          </Button>
+        </span>
+      )
       const columns = [
         {
           title: 'Name',
@@ -146,22 +159,7 @@ export default () => (
               title: 'Actions',
               dataIndex: 'actions',
               key: 'actions',
-              render: (text, record) => (
-                <span>
-                  <Button
-                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
-                  >
-                    Update
-                  </Button>
-                  <Divider type="vertical" />
-                  <Button
-                    loading={deleteCrud.result.loading}
-                    onClick={handleEvent.handleDelete(record)}
-                  >
-                    Delete
-                  </Button>
-                </span>
-              )
+              render: ActionLink
             }
           : {}
       ]

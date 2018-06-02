@@ -1,5 +1,6 @@
 import React from 'react'
 import { message, Row, Col, Form, Input, Button, Icon } from 'antd'
+import PropTypes from 'prop-types'
 
 import { GlobalBlock } from '../../../src/components/layout'
 import { isUserLoggedIn, ActionContainer, userAllQuery } from './grapgql'
@@ -111,6 +112,10 @@ const SignUpForm = props => {
       }}
     </GlobalBlock.Consumer>
   )
+}
+
+SignUpForm.propTypes = {
+  form: PropTypes.object
 }
 
 export default Form.create()(SignUpForm)

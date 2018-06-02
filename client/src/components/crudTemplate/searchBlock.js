@@ -1,11 +1,14 @@
+import React from 'react'
 import { LogicBlock } from './index'
 
-export default () => {
+const SearchBlock = () => {
   return (
     <LogicBlock.Consumer>
-      {result => {
+      {() => {
         return <div>search</div>
       }}
     </LogicBlock.Consumer>
   )
 }
+
+export default SearchBlock

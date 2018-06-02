@@ -4,7 +4,7 @@ const { SubMenu } = Menu
 
 import goto from '../../lib/goto'
 
-export default () => (
+const NavBlock = () => (
   <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
     <Menu.Item key="home" onClick={goto('/')}>
       <Icon type="home" />
@@ -97,3 +97,5 @@ export default () => (
     </SubMenu> */}
   </Menu>
 )
+
+export default NavBlock

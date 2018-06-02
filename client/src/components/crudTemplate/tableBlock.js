@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from 'antd'
 
 import Pagination from './pagination'
 import { CREATE } from '../../components/crudTemplate'
-export default () => {
+const TableBlock = () => {
   return (
     <LogicBlock.Consumer>
       {({ handleEvent, columns, dataSet, isUserLoggedIn }) => {
@@ -30,3 +30,5 @@ export default () => {
     </LogicBlock.Consumer>
   )
 }
+
+export default TableBlock
