@@ -7,6 +7,19 @@ const Query = {
     boardAllQuery: async (_, {}) => {
       const boards = await Board.find()
       return boards
+    },
+    boardQueryTotal: async () => {
+      const boards = await Board.find()
+      return { totalCount: boards.length }
+    },
+    boardQueryPage: async (_, { page = 1, size = 10 }) => {
+      const nextStart = (page - 1) * size
+      const boards = await Board.find()
+        .skip(nextStart)
+        .limit(size)
+        .sort({ createdAt: -1 })
+        .exec()
+      return boards
     }
   }
 }
@@ -16,7 +29,8 @@ const Mutation = {
     boardCreate: async (_, { title, content, startDate, endDate }) => {
       const board = new Board({ title, content, startDate, endDate })
       await board.save()
-      return board
+      const boards = await Board.find()
+      return { totalCount: boards.length }
     },
 
     boardUpdate: async (_, { _id, title, content, startDate, endDate }) => {
@@ -29,7 +43,9 @@ const Mutation = {
 
     boardDelete: async (_, { _id }) => {
       await Board.findOneAndRemove({ _id })
-      return { _id }
+      const boards = await Board.find()
+      return { totalCount: boards.length }
+      // return { _id }
     }
   }
 }

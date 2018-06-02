@@ -12,8 +12,26 @@ export const boardAllQuery = gql`
       startDate
       endDate
     }
+    boardQueryTotal {
+      totalCount
+    }
   }
 `
+export const boardQueryPage = gql`
+  query boardQueryPage($page: Int, $size: Int) {
+    boardQueryPage(page: $page, size: $size) {
+      _id
+      title
+      content
+      startDate
+      endDate
+    }
+    boardQueryTotal {
+      totalCount
+    }
+  }
+`
+
 export const boardOneQuery = gql`
   query boardOneQuery($_id: String) {
     boardOneQuery(_id: $_id) {
@@ -53,11 +71,7 @@ export const boardUpdate = gql`
 export const boardDelete = gql`
   mutation boardDelete($_id: String) {
     boardDelete(_id: $_id) {
-      _id
-      title
-      content
-      startDate
-      endDate
+      totalCount
     }
   }
 `
@@ -75,35 +89,47 @@ export const boardCreate = gql`
       startDate: $startDate
       endDate: $endDate
     ) {
-      title
-      content
-      _id
-      startDate
-      endDate
+      totalCount
     }
   }
 `
 
 const createCrud = ({ render }) => (
-  <Mutation mutation={boardCreate}>
+  <Mutation mutation={boardCreate} fetchPolicy="cache-and-network">
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
+// update={(cache, { data: { createTodo } }) => {
+//   const query = ALL_TODOS
+//   const { todos } = cache.readQuery({ query })
+
+//   cache.writeQuery({
+//     query,
+//     data: { todos: R.concat(todos, [createTodo]) },
+//   })
+// }}
+
 const updateCrud = ({ render }) => (
-  <Mutation mutation={boardUpdate}>
+  <Mutation mutation={boardUpdate} fetchPolicy="cache-and-network">
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
 const deleteCrud = ({ render }) => (
-  <Mutation mutation={boardDelete}>
+  <Mutation mutation={boardDelete} fetchPolicy="cache-and-network">
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
 export const CrudContainer = adopt({
-  query: <Query query={boardAllQuery} />,
+  query: (
+    <Query
+      query={boardQueryPage}
+      variables={{ page: 1, size: 10 }}
+      fetchPolicy="network-only"
+    />
+  ),
   createCrud,
   updateCrud,
   deleteCrud
