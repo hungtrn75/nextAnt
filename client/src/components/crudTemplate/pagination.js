@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Pagination } from 'antd'
 import { LogicBlock } from './index'
-export default () => {
+const PaginationBlock = () => {
   return (
     <LogicBlock.Consumer>
       {({ handleChangePage, pageSize, nowPage, pageTotal }) => {
@@ -24,3 +24,5 @@ export default () => {
     </LogicBlock.Consumer>
   )
 }
+
+export default PaginationBlock

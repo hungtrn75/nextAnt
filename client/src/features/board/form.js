@@ -9,7 +9,7 @@ const FormItem = Form.Item
 const dateFormat = 'YYYY/MM/DD'
 
 const FormBlock = props => {
-  const { form, handleEvent, record } = props
+  const { form, handleEvent } = props
   const { getFieldDecorator } = form
   const formItemLayout = {
     labelCol: {
@@ -83,7 +83,8 @@ const FormBlock = props => {
 FormBlock.propTypes = {
   form: PropTypes.object,
   handleEvent: PropTypes.object,
-  record: PropTypes.object
+  actionText: PropTypes.string,
+  loading: PropTypes.bool
 }
 
 export default Form.create()(FormBlock)

@@ -12,12 +12,14 @@ import Nav from '../nav'
 
 const { Header, Content, Sider } = Layout
 
+const loginStateBlock = ({ loginUser, render }) => (
+  <State initial={{ loginUser }}>{render}</State>
+)
+
 const AdoptContainer = adopt({
   logoutAction,
   toggleMenuModal: <Toggle initial={false} />,
-  loginState: ({ loginUser, render }) => (
-    <State initial={{ loginUser }}>{render}</State>
-  )
+  loginState: loginStateBlock
 })
 
 export const GlobalBlock = React.createContext()
@@ -134,6 +136,11 @@ const MyLayout = ({ children, loginUser }) => (
 MyLayout.propTypes = {
   loginUser: PropTypes.object,
   children: PropTypes.object
+}
+
+loginStateBlock.propTypes = {
+  loginUser: PropTypes.object,
+  render: PropTypes.func
 }
 
 export default MyLayout

@@ -19,7 +19,7 @@ const data = [
   { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 }
 ]
 
-export default () => (
+const Demo1 = () => (
   <BarChart
     width={600}
     height={300}
@@ -35,3 +35,4 @@ export default () => (
     <Bar dataKey="uv" fill="#82ca9d" />
   </BarChart>
 )
+export default Demo1

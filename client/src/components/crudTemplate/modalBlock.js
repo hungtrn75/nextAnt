@@ -1,16 +1,12 @@
+import React from 'react'
 import { LogicBlock } from './index'
 import { Button, Modal } from 'antd'
 
-export default () => {
+const ModalBlock = () => {
   return (
     <LogicBlock.Consumer>
       {({
-        result: {
-          modal: { value },
-          toggleModal,
-          assignForm,
-          formName
-        },
+        result: { toggleModal, assignForm, formName },
         handleEvent,
         CreateForm,
         UpdateForm,
@@ -48,3 +44,5 @@ export default () => {
     </LogicBlock.Consumer>
   )
 }
+
+export default ModalBlock

@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
+import PropTypes from 'prop-types'
 
 export const boardAllQuery = gql`
   query boardAllQuery {
@@ -17,6 +18,7 @@ export const boardAllQuery = gql`
     }
   }
 `
+
 export const boardQueryPage = gql`
   query boardQueryPage($page: Int, $size: Int) {
     boardQueryPage(page: $page, size: $size) {
@@ -134,3 +136,14 @@ export const CrudContainer = adopt({
   updateCrud,
   deleteCrud
 })
+
+createCrud.propTypes = {
+  render: PropTypes.func
+}
+updateCrud.propTypes = {
+  render: PropTypes.func
+}
+
+deleteCrud.propTypes = {
+  render: PropTypes.func
+}

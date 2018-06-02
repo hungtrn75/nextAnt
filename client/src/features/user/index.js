@@ -21,7 +21,7 @@ const AdoptContainer = adopt({
   formName: <Value initial={'User'} />
 })
 
-export default () => (
+const UserBlock = () => (
   <AdoptContainer>
     {result => {
       const {
@@ -62,12 +62,21 @@ export default () => (
         }
       }
 
+      const ShowEmail = text => <div>{text}</div>
+      const ShowAction = (text, record) => {
+        return (
+          <span>
+            <Button onClick={handleEvent.handleDelete(record)}>Delete</Button>
+          </span>
+        )
+      }
+
       const columns = [
         {
           title: 'email',
           dataIndex: 'email',
           key: 'email',
-          render: (text, record) => <div>{text}</div>
+          render: ShowEmail
         },
 
         isUserLoggedIn
@@ -75,15 +84,7 @@ export default () => (
               title: 'Actions',
               dataIndex: 'actions',
               key: 'actions',
-              render: (text, record) => {
-                return (
-                  <span>
-                    <Button onClick={handleEvent.handleDelete(record)}>
-                      Delete
-                    </Button>
-                  </span>
-                )
-              }
+              render: ShowAction
             }
           : {}
       ]
@@ -115,3 +116,5 @@ export default () => (
     }}
   </AdoptContainer>
 )
+
+export default UserBlock

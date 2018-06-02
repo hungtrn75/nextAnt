@@ -14,7 +14,9 @@ const Query = {
         const _id = getUserId(ctx)
         const user = await User.findOne({ _id })
         return user
-      } catch (error) {}
+      } catch (error) {
+        return
+      }
     },
 
     userAllQuery: async () => User.find(),
