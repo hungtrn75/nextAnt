@@ -16,7 +16,7 @@
       "cd server && heroku container:push web --app next-ant-server",
     "log-client": "heroku logs --app next-ant",
     "log-server": "heroku logs --app next-ant-server",
-    "test": "jest"
+    "test": "echo 'Test...' && echo 'Test finished.'"
   },
   "dependencies": {
     "babel-eslint": "^8.2.3",
