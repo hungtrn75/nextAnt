@@ -12,6 +12,7 @@ import CrudTemplate, {
 import Form from './form'
 import { CrudContainer, boardQueryPage } from './graphql'
 import { checkUser } from '../auth/grapgql'
+import SearchSet from './search'
 
 const AdoptContainer = adopt({
   checkUser: checkUser(),
@@ -25,7 +26,9 @@ const AdoptContainer = adopt({
   formName: <Value initial={'Board'} />,
   nowPage: <Value initial={1} />,
   pageTotal: <Value initial={null} />,
-  pageSize: <Value initial={10} />
+  pageSize: <Value initial={10} />,
+  title: <Value initial={''} />,
+  content: <Value initial={''} />
 })
 
 export default () => (
@@ -41,6 +44,8 @@ export default () => (
         nowPage,
         pageTotal,
         pageSize,
+        title,
+        content,
         container: {
           query: { error, data, loading },
           createCrud,
@@ -92,7 +97,9 @@ export default () => (
                 query: boardQueryPage,
                 variables: {
                   page: nowPage.value,
-                  size: pageSize.value
+                  size: pageSize.value,
+                  title: title.value,
+                  content: content.value
                 }
               }
             ]
@@ -100,7 +107,9 @@ export default () => (
           if (totalCount <= (nowPage.value - 1) * pageSize.value) {
             result.container.query.refetch({
               page: nowPage.value - 1,
-              size: pageSize.value
+              size: pageSize.value,
+              title: title.value,
+              content: content.value
             })
             pageTotal.setValue(totalCount)
             nowPage.setValue(nowPage.value - 1)
@@ -124,7 +133,9 @@ export default () => (
                       query: boardQueryPage,
                       variables: {
                         page: nowPage.value,
-                        size: pageSize.value
+                        size: pageSize.value,
+                        title: title.value,
+                        content: content.value
                       }
                     }
                   ]
@@ -143,7 +154,12 @@ export default () => (
                   refetchQueries: [
                     {
                       query: boardQueryPage,
-                      variables: { page: 1, size: pageSize.value }
+                      variables: {
+                        page: 1,
+                        size: pageSize.value,
+                        title: title.value,
+                        content: content.value
+                      }
                     }
                   ]
                 })
@@ -152,12 +168,30 @@ export default () => (
 
                 result.container.query.refetch({
                   page: 1,
-                  size: pageSize.value
+                  size: pageSize.value,
+                  title: title.value,
+                  content: content.value
                 })
 
                 form.resetFields()
               }
               toggleModal.toggle()
+            }
+          })
+        },
+        handleSearch: form => {
+          console.log('test', form)
+          form.validateFields(async (err, values) => {
+            if (!err) {
+              console.log('values', values)
+              title.setValue(values.title)
+              content.setValue(values.content)
+              result.container.query.refetch({
+                page: 1,
+                size: pageSize.value,
+                title: title.value,
+                content: content.value
+              })
             }
           })
         }
@@ -253,10 +287,17 @@ export default () => (
       const handleChangePage = (page, pageSize) => {
         //let pageTotal = data['boardQueryTotal']['totalCount']
         nowPage.setValue(page)
-        result.container.query.refetch({ page, size: pageSize })
+        result.container.query.refetch({
+          page,
+          size: pageSize,
+          title: title.value,
+          content: content.value
+        })
       }
+
       return (
         <CrudTemplate
+          SearchSet={SearchSet(handleEvent.handleSearch)}
           handleChangePage={handleChangePage}
           isUserLoggedIn={isUserLoggedIn}
           handleEvent={handleEvent}

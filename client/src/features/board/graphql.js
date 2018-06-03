@@ -18,15 +18,20 @@ export const boardAllQuery = gql`
   }
 `
 export const boardQueryPage = gql`
-  query boardQueryPage($page: Int, $size: Int) {
-    boardQueryPage(page: $page, size: $size) {
+  query boardQueryPage(
+    $page: Int
+    $size: Int
+    $title: String
+    $content: String
+  ) {
+    boardQueryPage(page: $page, size: $size, title: $title, content: $content) {
       _id
       title
       content
       startDate
       endDate
     }
-    boardQueryTotal {
+    boardQueryTotal(title: $title, content: $content) {
       totalCount
     }
   }

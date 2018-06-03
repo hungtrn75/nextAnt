@@ -1,7 +1,7 @@
 const queries = `
   boardAllQuery:[board],
-  boardQueryTotal:Total,
-  boardQueryPage(page:Int,size:Int):[board],
+  boardQueryTotal(title:String,content:String):Total,
+  boardQueryPage(page:Int,size:Int,title:String,content:String):[board],
   boardOneQuery(_id:String):board
 `
 
