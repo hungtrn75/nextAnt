@@ -8,7 +8,7 @@ const NavBlock = () => (
   <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
     <Menu.Item key="home" onClick={goto('/')}>
       <Icon type="home" />
-      <span> CRM System Demo</span>
+      <span className="brand-logo">CRM System Demo</span>
     </Menu.Item>
 
     <Menu.Item key="a1" onClick={goto('/customer')}>
