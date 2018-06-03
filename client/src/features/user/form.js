@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 const FormItem = Form.Item
 
 const FormBlock = props => {
-  const { form, handleEvent, record } = props
+  const { form, handleEvent } = props
   const { getFieldDecorator } = form
 
   return (
@@ -50,7 +50,8 @@ const FormBlock = props => {
 FormBlock.propTypes = {
   form: PropTypes.object,
   handleEvent: PropTypes.object,
-  record: PropTypes.object
+  record: PropTypes.object,
+  actionText: PropTypes.string
 }
 
 export default Form.create()(FormBlock)

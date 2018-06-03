@@ -1,7 +1,7 @@
 import React from 'react'
 import { LogicBlock } from './index'
 
-export default () => {
+const SearchBlock = () => {
   return (
     <LogicBlock.Consumer>
       {({ SearchSet }) => {
@@ -10,3 +10,5 @@ export default () => {
     </LogicBlock.Consumer>
   )
 }
+
+export default SearchBlock

@@ -17,10 +17,12 @@ logic also here
 
 export const LogicBlock = React.createContext()
 
-export default props => (
+const CrudTemplate = props => (
   <LogicBlock.Provider value={props}>
     <ModalBlock />
     {/* <SearchBlock /> */}
     <TableBlock />
   </LogicBlock.Provider>
 )
+
+export default CrudTemplate

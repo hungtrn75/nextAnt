@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
+import PropTypes from 'prop-types'
 
 export const login = gql`
   mutation login($email: String!, $password: String!) {
@@ -73,6 +74,15 @@ export const logoutAction = ({ render }) => (
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
+loginAction.propTypes = {
+  render: PropTypes.func
+}
+signupAction.propTypes = {
+  render: PropTypes.func
+}
+logoutAction.propTypes = {
+  render: PropTypes.func
+}
 
 export const ActionContainer = adopt({
   signupAction,

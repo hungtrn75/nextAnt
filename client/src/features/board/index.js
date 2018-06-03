@@ -216,24 +216,38 @@ export default () => (
           actionText={'update'}
         />
       )
-
+      const DetailLink = (text, record) => (
+        <a
+          href="#"
+          onClick={handleEvent.handleToggleModal(DETAIL, {
+            data: record
+          })}
+        >
+          {' '}
+          {text}
+        </a>
+      )
+      const LoginCheck = (text, record) => (
+        <span>
+          <Button onClick={handleEvent.handleToggleModal(UPDATE, record)}>
+            Update
+          </Button>
+          <Divider type="vertical" />
+          <Button
+            loading={deleteCrud.result.loading}
+            onClick={handleEvent.handleDelete(record)}
+          >
+            Delete
+          </Button>
+        </span>
+      )
       const columns = [
         {
           title: 'Title',
           dataIndex: 'title',
           key: 'title',
           width: 150,
-          render: (text, record) => (
-            <a
-              href="#"
-              onClick={handleEvent.handleToggleModal(DETAIL, {
-                data: record
-              })}
-            >
-              {' '}
-              {text}
-            </a>
-          )
+          render: DetailLink
         },
         {
           title: 'Content',
@@ -253,22 +267,7 @@ export default () => (
               dataIndex: 'actions',
               key: 'actions',
               width: 250,
-              render: (text, record) => (
-                <span>
-                  <Button
-                    onClick={handleEvent.handleToggleModal(UPDATE, record)}
-                  >
-                    Update
-                  </Button>
-                  <Divider type="vertical" />
-                  <Button
-                    loading={deleteCrud.result.loading}
-                    onClick={handleEvent.handleDelete(record)}
-                  >
-                    Delete
-                  </Button>
-                </span>
-              )
+              render: LoginCheck
             }
           : {}
       ]
