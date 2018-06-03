@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "ci": "NODE_ENV=ci PORT=8080 node index.js",
     "start": "NODE_ENV=production node index.js",
     "start-pm2": "NODE_ENV=production pm2-runtime index.js -i 0"
   },
