@@ -49,6 +49,7 @@ export default ComposedComponet => {
             </ApolloProvider>
           )
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.log(err)
         }
 

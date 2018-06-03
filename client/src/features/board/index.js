@@ -4,6 +4,8 @@ import { Toggle, Value } from 'react-powerplug'
 import { Button, Divider } from 'antd'
 import moment from 'moment'
 
+import createSearchSet from '../../components/createSearchSet'
+
 import CrudTemplate, {
   CREATE,
   UPDATE,
@@ -12,7 +14,6 @@ import CrudTemplate, {
 import Form from './form'
 import { CrudContainer, boardQueryPage } from './graphql'
 import { checkUser } from '../auth/grapgql'
-import SearchSet from './search'
 
 const AdoptContainer = adopt({
   checkUser: checkUser(),
@@ -180,18 +181,21 @@ export default () => (
           })
         },
         handleSearch: form => {
-          console.log('test', form)
           form.validateFields(async (err, values) => {
             if (!err) {
-              console.log('values', values)
-              title.setValue(values.title)
-              content.setValue(values.content)
-              result.container.query.refetch({
+              let {
+                data: {
+                  boardQueryTotal: { totalCount }
+                }
+              } = await result.container.query.refetch({
                 page: 1,
                 size: pageSize.value,
-                title: title.value,
-                content: content.value
+                title: values.title,
+                content: values.content
               })
+              title.setValue(values.title)
+              content.setValue(values.content)
+              pageTotal.setValue(totalCount)
             }
           })
         }
@@ -294,9 +298,13 @@ export default () => (
         })
       }
 
+      const SearchSet = createSearchSet({ title, content })(
+        handleEvent.handleSearch
+      )
+
       return (
         <CrudTemplate
-          SearchSet={SearchSet(handleEvent.handleSearch)}
+          SearchSet={SearchSet}
           handleChangePage={handleChangePage}
           isUserLoggedIn={isUserLoggedIn}
           handleEvent={handleEvent}

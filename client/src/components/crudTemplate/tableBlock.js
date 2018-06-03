@@ -1,7 +1,7 @@
 import React from 'react'
 import { LogicBlock } from './index'
 import { Table, Button, Row, Col } from 'antd'
-
+import SearchBlock from './searchBlock'
 import Pagination from './pagination'
 import { CREATE } from '../../components/crudTemplate'
 const TableBlock = () => {
@@ -25,7 +25,11 @@ const TableBlock = () => {
                 ''
               )}
             </Col>
-            <Table columns={columns} dataSource={dataSet} />
+            <Table
+              style={{ whiteSpace: 'nowrap' }}
+              columns={columns}
+              dataSource={dataSet}
+            />
             <Pagination />
           </Row>
         )
