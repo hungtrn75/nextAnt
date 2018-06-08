@@ -8,13 +8,22 @@ const Query = {
       const boards = await Board.find()
       return boards
     },
-    boardQueryTotal: async () => {
-      const boards = await Board.find()
+    boardQueryTotal: async (_, { title = '', content = '' }) => {
+      const boards = await Board.find({
+        title: { $regex: `${title}`, $options: 'i' },
+        content: { $regex: `${content}`, $options: 'i' }
+      })
       return { totalCount: boards.length }
     },
-    boardQueryPage: async (_, { page = 1, size = 10 }) => {
+    boardQueryPage: async (
+      _,
+      { page = 1, size = 10, title = '', content = '' }
+    ) => {
       const nextStart = (page - 1) * size
-      const boards = await Board.find()
+      const boards = await Board.find({
+        title: { $regex: `${title}`, $options: 'i' },
+        content: { $regex: `${content}`, $options: 'i' }
+      })
         .skip(nextStart)
         .limit(size)
         .sort({ createdAt: -1 })

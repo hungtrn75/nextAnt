@@ -4,6 +4,8 @@ import { Toggle, Value } from 'react-powerplug'
 import { Button, Divider } from 'antd'
 import moment from 'moment'
 
+import createSearchSet from '../../components/createSearchSet'
+
 import CrudTemplate, {
   CREATE,
   UPDATE,
@@ -25,7 +27,9 @@ const AdoptContainer = adopt({
   formName: <Value initial={'Board'} />,
   nowPage: <Value initial={1} />,
   pageTotal: <Value initial={null} />,
-  pageSize: <Value initial={10} />
+  pageSize: <Value initial={10} />,
+  title: <Value initial={''} />,
+  content: <Value initial={''} />
 })
 
 export default () => (
@@ -41,6 +45,8 @@ export default () => (
         nowPage,
         pageTotal,
         pageSize,
+        title,
+        content,
         container: {
           query: { error, data, loading },
           createCrud,
@@ -92,7 +98,9 @@ export default () => (
                 query: boardQueryPage,
                 variables: {
                   page: nowPage.value,
-                  size: pageSize.value
+                  size: pageSize.value,
+                  title: title.value,
+                  content: content.value
                 }
               }
             ]
@@ -100,7 +108,9 @@ export default () => (
           if (totalCount <= (nowPage.value - 1) * pageSize.value) {
             result.container.query.refetch({
               page: nowPage.value - 1,
-              size: pageSize.value
+              size: pageSize.value,
+              title: title.value,
+              content: content.value
             })
             pageTotal.setValue(totalCount)
             nowPage.setValue(nowPage.value - 1)
@@ -124,7 +134,9 @@ export default () => (
                       query: boardQueryPage,
                       variables: {
                         page: nowPage.value,
-                        size: pageSize.value
+                        size: pageSize.value,
+                        title: title.value,
+                        content: content.value
                       }
                     }
                   ]
@@ -143,7 +155,12 @@ export default () => (
                   refetchQueries: [
                     {
                       query: boardQueryPage,
-                      variables: { page: 1, size: pageSize.value }
+                      variables: {
+                        page: 1,
+                        size: pageSize.value,
+                        title: title.value,
+                        content: content.value
+                      }
                     }
                   ]
                 })
@@ -152,12 +169,33 @@ export default () => (
 
                 result.container.query.refetch({
                   page: 1,
-                  size: pageSize.value
+                  size: pageSize.value,
+                  title: title.value,
+                  content: content.value
                 })
 
                 form.resetFields()
               }
               toggleModal.toggle()
+            }
+          })
+        },
+        handleSearch: form => {
+          form.validateFields(async (err, values) => {
+            if (!err) {
+              let {
+                data: {
+                  boardQueryTotal: { totalCount }
+                }
+              } = await result.container.query.refetch({
+                page: 1,
+                size: pageSize.value,
+                title: values.title,
+                content: values.content
+              })
+              title.setValue(values.title)
+              content.setValue(values.content)
+              pageTotal.setValue(totalCount)
             }
           })
         }
@@ -252,10 +290,21 @@ export default () => (
       const handleChangePage = (page, pageSize) => {
         //let pageTotal = data['boardQueryTotal']['totalCount']
         nowPage.setValue(page)
-        result.container.query.refetch({ page, size: pageSize })
+        result.container.query.refetch({
+          page,
+          size: pageSize,
+          title: title.value,
+          content: content.value
+        })
       }
+
+      const SearchSet = createSearchSet({ title, content })(
+        handleEvent.handleSearch
+      )
+
       return (
         <CrudTemplate
+          SearchSet={SearchSet}
           handleChangePage={handleChangePage}
           isUserLoggedIn={isUserLoggedIn}
           handleEvent={handleEvent}
