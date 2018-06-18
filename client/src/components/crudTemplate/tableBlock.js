@@ -1,7 +1,7 @@
 import React from 'react'
 import { LogicBlock } from './index'
 import { Table, Button, Row, Col } from 'antd'
-import SearchBlock from './searchBlock'
+// import SearchBlock from './searchBlock'
 import Pagination from './pagination'
 import { CREATE } from '../../components/crudTemplate'
 const TableBlock = () => {
@@ -10,9 +10,7 @@ const TableBlock = () => {
       {({ handleEvent, columns, dataSet, isUserLoggedIn }) => {
         return (
           <Row>
-            <Col>
-              <SearchBlock />
-            </Col>
+            <Col>{/* <SearchBlock /> */}</Col>
             <Col
               span={24}
               style={{ textAlign: 'right', zIndex: 8, marginBottom: '10px' }}
