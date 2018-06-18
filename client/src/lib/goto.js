@@ -1,3 +1,3 @@
-import Router from 'next/router'
+import { Router } from '../routes'
 
-export default url => () => Router.push(url)
+export default url => () => Router.pushRoute(url)
