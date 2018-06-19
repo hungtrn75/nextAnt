@@ -17,6 +17,9 @@
     "deploy": "concurrently \"npm run deploy-client\" \"npm run deploy-server\"",
     "deploy-client": "cd client && heroku container:push web --app next-ant",
     "deploy-server": "cd server && heroku container:push web --app next-ant-server",
+    "release": "concurrently \"npm run release-client\" \"npm run release-server\"",
+    "release-client": "cd client && heroku container:release web --app next-ant",
+    "release-server": "cd server && heroku container:release web --app next-ant-server",
     "log-client": "heroku logs --app next-ant",
     "log-server": "heroku logs --app next-ant-server"
   },
