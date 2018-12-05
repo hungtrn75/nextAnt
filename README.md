@@ -13,16 +13,16 @@ AntDesign CRUD implementation built on Next.
 
 ## Stacks
 
-* [x] [next](https://github.com/zeit/next.js/) for SSR `React`.
-* [x] [apollo](https://github.com/apollographql) for `GraphQL` client.
-* [x] [express](https://github.com/expressjs/express) for web framework.
-* [x] [styled-components](https://github.com/styled-components/styled-components) for styling.
-* [x] [ant design](https://ant.design/docs/react/introduce) for components.
-* [x] [jwt](https://jwt.io/) for authentication.
-* [x] [mongodb](https://www.mongodb.com/) for database.
-* [x] [docker](https://www.docker.com/) for containerization.
-* [x] [pm2](http://pm2.keymetrics.io/) fro clustering.
-* [x] [jest](https://facebook.github.io/jest/) for testing.
+- [x] [next](https://github.com/zeit/next.js/) for SSR `React`.
+- [x] [apollo](https://github.com/apollographql) for `GraphQL` client.
+- [x] [express](https://github.com/expressjs/express) for web framework.
+- [x] [styled-components](https://github.com/styled-components/styled-components) for styling.
+- [x] [ant design](https://ant.design/docs/react/introduce) for components.
+- [x] [jwt](https://jwt.io/) for authentication.
+- [x] [mongodb](https://www.mongodb.com/) for database.
+- [x] [docker](https://www.docker.com/) for containerization.
+- [x] [pm2](http://pm2.keymetrics.io/) fro clustering.
+- [x] [jest](https://facebook.github.io/jest/) for testing.
 
 ## Getting Started
 
@@ -41,7 +41,7 @@ v8.9.1
 
 ### Installing
 
-Run `npm install` to install all project dependencies.
+Run `npm run install-dev` to install all project dependencies.
 
 ### Serve Project
 
@@ -85,6 +85,12 @@ Build the image and push to Container Registry:
 heroku container:push web --app {app_name}
 ```
 
+Then release the image to your app:
+
+```
+heroku container:release web --app {app_name}
+```
+
 Now open the app in your browser:
 
 ```
@@ -97,8 +103,8 @@ heroku open --app {app_name}
 
 ## Authors
 
-* Polo Chi - [polo13999](https://github.com/polo13999)
-* Max Li - [LIYINGZHEN](https://github.com/LIYINGZHEN)
+- Polo Chi - [polo13999](https://github.com/polo13999)
+- Max Li - [LIYINGZHEN](https://github.com/LIYINGZHEN)
 
 ## License
 

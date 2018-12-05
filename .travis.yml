@@ -4,7 +4,7 @@ node_js:
 dist: trusty
 services:
   - docker
-  # - mongodb
+  - mongodb
   # - redis-server
 env:
   matrix:
@@ -18,10 +18,10 @@ cache:
     - server/node_modules
 install:
   - npm install
-  # - npm run build
+  - npm run install-dev
 script:
-  # - nohup npm run start &
-  # - sleep 3
+  - nohup npm run ci &
+  - sleep 10
   - npm run test
 after_success:
   - bash scripts/travis-after-success.sh

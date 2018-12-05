@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
+import PropTypes from 'prop-types'
 
 export const customerAllQuery = gql`
   query customerAllQuery {
@@ -84,3 +85,14 @@ export const CrudContainer = adopt({
   updateCrud,
   deleteCrud
 })
+
+createCrud.propTypes = {
+  render: PropTypes.func
+}
+updateCrud.propTypes = {
+  render: PropTypes.func
+}
+
+deleteCrud.propTypes = {
+  render: PropTypes.func
+}

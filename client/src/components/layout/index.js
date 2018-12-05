@@ -1,28 +1,55 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { adopt } from 'react-adopt'
 import { Toggle, State } from 'react-powerplug'
-import { Avatar, Layout, Icon, Row, Col } from 'antd'
+import { Avatar, Dropdown, Layout, Icon, Row, Col, Button, Menu } from 'antd'
+
+import { isUserLoggedIn, logoutAction } from '../../features/auth/grapgql'
+import goto from '../../lib/goto'
 
 import Nav from '../nav'
 
 const { Header, Content, Sider } = Layout
 
+const loginStateBlock = ({ loginUser, render }) => (
+  <State initial={{ loginUser }}>{render}</State>
+)
+
 const AdoptContainer = adopt({
+  logoutAction,
   toggleMenuModal: <Toggle initial={false} />,
-  loginState: ({ loginUser, render }) => (
-    <State initial={{ loginUser }}>{render}</State>
-  )
+  loginState: loginStateBlock
 })
 
 export const GlobalBlock = React.createContext()
 
 const MyLayout = ({ children, loginUser }) => (
   <AdoptContainer loginUser={loginUser}>
-    {({ toggleMenuModal, loginState }) => {
+    {({ toggleMenuModal, logoutAction, loginState }) => {
       const {
         state: { loginUser }
       } = loginState
+
+      const handleLogout = async () => {
+        await logoutAction.mutation({
+          refetchQueries: [{ query: isUserLoggedIn }]
+        })
+        loginState.setState({ loginUser: null })
+        goto('/')()
+      }
+
+      const menu = (
+        <Menu>
+          <Menu.Item key="0">
+            <div onClick={goto('/presonal')}>Profile</div>
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item key="3" onClick={handleLogout}>
+            Log out
+          </Menu.Item>
+        </Menu>
+      )
 
       return (
         <GlobalBlock.Provider value={{ loginState }}>
@@ -54,22 +81,35 @@ const MyLayout = ({ children, loginUser }) => (
                     <div
                       style={{
                         position: 'absolute',
-                        top: '-5px',
                         right: '20px'
                       }}
                     >
-                      <span style={{ marginRight: '20px;' }}>Main</span>
-                      <Icon type="bell" style={{ marginRight: '20px' }} />
                       {loginUser ? (
-                        <Avatar
-                          style={{ backgroundColor: '#87d068' }}
-                          src={loginUser.picture}
-                        />
+                        <Dropdown overlay={menu} trigger={['click']}>
+                          <Avatar
+                            style={{
+                              backgroundColor: '#87d068',
+                              cursor: 'pointer'
+                            }}
+                            src={loginUser.picture}
+                            size="large"
+                          />
+                        </Dropdown>
                       ) : (
-                        <Avatar
-                          style={{ backgroundColor: '#87d068' }}
-                          icon="user"
-                        />
+                        <div>
+                          <Button
+                            style={{ marginRight: '10px' }}
+                            onClick={goto('/presonal/signup')}
+                          >
+                            Sign Up
+                          </Button>
+                          <Button
+                            type="primary"
+                            onClick={goto('/presonal/login')}
+                          >
+                            Log in
+                          </Button>
+                        </div>
                       )}
                     </div>
                   </Col>
@@ -96,6 +136,11 @@ const MyLayout = ({ children, loginUser }) => (
 MyLayout.propTypes = {
   loginUser: PropTypes.object,
   children: PropTypes.object
+}
+
+loginStateBlock.propTypes = {
+  loginUser: PropTypes.object,
+  render: PropTypes.func
 }
 
 export default MyLayout

@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
+const helmet = require('helmet')
 
 const config = require('./config')
 
@@ -20,10 +21,13 @@ const {
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongoURI)
 
+require('./config/seed')
+
 const port = process.env.PORT || 8080
 
 const server = express()
 
+server.use(helmet())
 server.use(cors({ credentials: true, origin: config.origin }))
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))

@@ -2,12 +2,11 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 import { LogicBlock } from '../../components/crudTemplate'
 import PropTypes from 'prop-types'
-
 const FormItem = Form.Item
 
 const FormBlock = props => {
-  const { form, handleEvent, record } = props
-  const { getFieldDecorator, resetFields } = form
+  const { form, handleEvent } = props
+  const { getFieldDecorator } = form
 
   return (
     <LogicBlock.Consumer>
@@ -15,25 +14,25 @@ const FormBlock = props => {
         const { value } = recordChoose
         return (
           <Form className="login-form" resetFields={true}>
-            <FormItem>
+            <FormItem label="Name">
               {getFieldDecorator('name', {
                 rules: [{ required: true, message: 'This field is required!' }],
                 initialValue: value ? value.name : ''
               })(<Input placeholder="Name" />)}
             </FormItem>
-            <FormItem>
+            <FormItem label="Tel">
               {getFieldDecorator('tel', {
                 rules: [{ required: true, message: 'This field is required!' }],
                 initialValue: value ? value.tel : ''
               })(<Input placeholder="Tel" />)}
             </FormItem>
-            <FormItem>
+            <FormItem label="Cellphone">
               {getFieldDecorator('cellphone', {
                 rules: [{ required: true, message: 'This field is required!' }],
                 initialValue: value ? value.cellphone : ''
               })(<Input placeholder="Cellphone" />)}
             </FormItem>
-            <FormItem>
+            <FormItem label="Memo">
               {getFieldDecorator('memo', {
                 rules: [{ required: true, message: 'This field is required!' }],
                 initialValue: value ? value.memo : ''
@@ -62,6 +61,10 @@ const FormBlock = props => {
 }
 
 FormBlock.propTypes = {
+  form: PropTypes.object,
+  handleEvent: PropTypes.object,
+  record: PropTypes.object,
+  actionText: PropTypes.string,
   loading: PropTypes.bool
 }
 

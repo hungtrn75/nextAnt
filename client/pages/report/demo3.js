@@ -27,7 +27,7 @@ const data02 = [
   { x: 120, y: 190 }
 ]
 
-export default () => (
+const Demo3 = () => (
   <ScatterChart
     width={600}
     height={400}
@@ -49,3 +49,5 @@ export default () => (
     />
   </ScatterChart>
 )
+
+export default Demo3

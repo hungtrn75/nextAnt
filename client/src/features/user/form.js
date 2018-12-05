@@ -1,12 +1,13 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
 import { LogicBlock } from '../../components/crudTemplate'
+import PropTypes from 'prop-types'
 
 const FormItem = Form.Item
 
 const FormBlock = props => {
-  const { form, handleEvent, record } = props
-  const { getFieldDecorator, resetFields } = form
+  const { form, handleEvent } = props
+  const { getFieldDecorator } = form
 
   return (
     <LogicBlock.Consumer>
@@ -45,6 +46,12 @@ const FormBlock = props => {
       }}
     </LogicBlock.Consumer>
   )
+}
+FormBlock.propTypes = {
+  form: PropTypes.object,
+  handleEvent: PropTypes.object,
+  record: PropTypes.object,
+  actionText: PropTypes.string
 }
 
 export default Form.create()(FormBlock)

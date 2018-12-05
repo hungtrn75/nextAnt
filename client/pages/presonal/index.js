@@ -1,3 +1,6 @@
 import React from 'react'
+import Personal from '../../src/features/user/personal'
 
-export default () => <div> Presonal Info </div>
+const PersonalPage = () => <Personal />
+
+export default PersonalPage

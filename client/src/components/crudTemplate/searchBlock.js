@@ -1,11 +1,9 @@
+import React from 'react'
+
 import { LogicBlock } from './index'
 
-export default () => {
-  return (
-    <LogicBlock.Consumer>
-      {result => {
-        return <div>search</div>
-      }}
-    </LogicBlock.Consumer>
-  )
-}
+const SearchBlock = () => (
+  <LogicBlock.Consumer>{({ SearchSet }) => <SearchSet />}</LogicBlock.Consumer>
+)
+
+export default SearchBlock

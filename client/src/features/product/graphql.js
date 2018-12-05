@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
+import PropTypes from 'prop-types'
 
 export const productAllQuery = gql`
   query productAllQuery {
@@ -9,6 +10,8 @@ export const productAllQuery = gql`
       _id
       title
       content
+      price
+      hide
     }
   }
 `
@@ -19,16 +22,32 @@ export const productOneQuery = gql`
       _id
       title
       content
+      price
+      hide
     }
   }
 `
 
 export const productUpdate = gql`
-  mutation productUpdate($title: String, $content: String, $_id: String) {
-    productUpdate(title: $title, content: $content, _id: $_id) {
+  mutation productUpdate(
+    $title: String
+    $content: String
+    $_id: String
+    $price: String
+    $hide: Boolean
+  ) {
+    productUpdate(
+      title: $title
+      content: $content
+      _id: $_id
+      price: $price
+      hide: $hide
+    ) {
       _id
       title
       content
+      price
+      hide
     }
   }
 `
@@ -39,15 +58,28 @@ export const productDelete = gql`
       _id
       title
       content
+      price
+      hide
     }
   }
 `
 
 export const productCreate = gql`
-  mutation productCreate($title: String, $content: String) {
-    productCreate(title: $title, content: $content) {
+  mutation productCreate(
+    $title: String
+    $content: String
+    $price: String
+    $hide: Boolean
+  ) {
+    productCreate(
+      title: $title
+      content: $content
+      price: $price
+      hide: $hide
+    ) {
       title
       content
+      price
       _id
     }
   }
@@ -77,3 +109,13 @@ export const CrudContainer = adopt({
   updateCrud,
   deleteCrud
 })
+createCrud.propTypes = {
+  render: PropTypes.func
+}
+updateCrud.propTypes = {
+  render: PropTypes.func
+}
+
+deleteCrud.propTypes = {
+  render: PropTypes.func
+}

@@ -1,4 +1,6 @@
+import React from 'react'
 import { Form, Select, Input, Button } from 'antd'
+import PropTypes from 'prop-types'
 const FormItem = Form.Item
 const Option = Select.Option
 
@@ -6,6 +8,7 @@ class App extends React.Component {
   handleSubmit = () => {
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        // eslint-disable-next-line no-console
         console.log('Received values of form: ', values)
       }
     })
@@ -81,6 +84,16 @@ class App extends React.Component {
       </Form>
     )
   }
+}
+
+App.propTypes = {
+  form: PropTypes.shape({
+    setFieldsValue: PropTypes.func,
+    validateFields: PropTypes.func,
+    getFieldDecorator: PropTypes.func
+  }),
+  handleEvent: PropTypes.object,
+  record: PropTypes.object
 }
 
 export default Form.create()(App)

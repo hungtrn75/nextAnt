@@ -1,13 +1,13 @@
 import React from 'react'
-import { Form, Input, Button } from 'antd'
-import { LogicBlock } from '../../components/crudTemplate'
+import { Form, Input, Button, Checkbox } from 'antd'
 import PropTypes from 'prop-types'
+import { LogicBlock } from '../../components/crudTemplate'
 
 const FormItem = Form.Item
 
 const FormBlock = props => {
   const { form, handleEvent, actionText, loading } = props
-  const { getFieldDecorator, resetFields } = form
+  const { getFieldDecorator } = form
 
   return (
     <LogicBlock.Consumer>
@@ -15,17 +15,30 @@ const FormBlock = props => {
         const { value } = recordChoose
         return (
           <Form className="login-form" resetFields={true}>
-            <FormItem>
+            <FormItem label="Title">
               {getFieldDecorator('title', {
                 rules: [{ required: true, message: 'Please input title!' }],
                 initialValue: value.title ? value.title : ''
               })(<Input placeholder="title" />)}
             </FormItem>
-            <FormItem>
+            <FormItem label="Content">
               {getFieldDecorator('content', {
                 rules: [{ required: true, message: 'Please input content!' }],
                 initialValue: value.content ? value.content : ''
               })(<Input type="textArea" placeholder="content" />)}
+            </FormItem>
+
+            <FormItem label="Price">
+              {getFieldDecorator('price', {
+                rules: [{ required: true, message: 'Please input price!' }],
+                initialValue: value.price ? value.price : ''
+              })(<Input type="textArea" placeholder="price" />)}
+            </FormItem>
+
+            <FormItem label="Hide">
+              {getFieldDecorator('hide', {})(
+                <Checkbox defaultChecked={value.hide} />
+              )}
             </FormItem>
 
             {props.actionText !== 'detail' ? (
@@ -48,11 +61,12 @@ const FormBlock = props => {
     </LogicBlock.Consumer>
   )
 }
-
 FormBlock.propTypes = {
-  loading: PropTypes.bool,
-  handleEvent: PropTypes.func,
-  actionText: PropTypes.string
+  form: PropTypes.object,
+  handleEvent: PropTypes.object,
+  record: PropTypes.object,
+  actionText: PropTypes.string,
+  loading: PropTypes.bool
 }
 
 export default Form.create()(FormBlock)

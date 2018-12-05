@@ -1,9 +1,10 @@
 import React from 'react'
-import { Row, Col, Form, Input, Button } from 'antd'
-import Link from 'next/link'
+import { message, Row, Col, Form, Input, Button, Icon } from 'antd'
+import PropTypes from 'prop-types'
 
 import { GlobalBlock } from '../../../src/components/layout'
-import { ActionContainer, userAllQuery } from './grapgql'
+import { isUserLoggedIn, ActionContainer, userAllQuery } from './grapgql'
+import goto from '../../lib/goto'
 
 const FormItem = Form.Item
 const formItemLayout = {
@@ -31,67 +32,76 @@ const SignUpForm = props => {
                   if (!err) {
                     const result = await signupAction.mutation({
                       variables: values,
-                      refetchQueries: [{ query: userAllQuery }]
+                      refetchQueries: [
+                        { query: userAllQuery },
+                        { query: isUserLoggedIn }
+                      ]
                     })
                     signupAction.result.data ? form.resetFields() : ''
                     loginState.setState({ loginUser: result.data.signup })
+                    goto('/')()
                   }
                 })
               }
 
               return (
                 <Form className="login-form">
-                  <FormItem {...formItemLayout} label="email">
+                  <FormItem {...formItemLayout} label="Email">
                     {getFieldDecorator('email', {
                       rules: [
                         {
                           required: true,
-                          message: 'please input your email'
+                          message: 'please enter your email'
                         }
                       ]
-                    })(<Input placeholder="please input your email" />)}
+                    })(
+                      <Input
+                        prefix={
+                          <Icon
+                            type="user"
+                            style={{ color: 'rgba(0,0,0,.25)' }}
+                          />
+                        }
+                        placeholder="email"
+                      />
+                    )}
                   </FormItem>
 
-                  <FormItem {...formItemLayout} label="password">
+                  <FormItem {...formItemLayout} label="Password">
                     {getFieldDecorator('password', {
                       rules: [
                         {
                           required: true,
-                          message: 'please input your password'
+                          message: 'please enter your password'
                         }
                       ]
                     })(
                       <Input
                         type="password"
-                        placeholder="please input your password"
+                        prefix={
+                          <Icon
+                            type="lock"
+                            style={{ color: 'rgba(0,0,0,.25)' }}
+                          />
+                        }
+                        placeholder="password"
                       />
                     )}
                   </FormItem>
 
                   <Row>
-                    {signupAction.result.error ? (
-                      <div>
-                        <label style={{ color: 'red' }}>
-                          {signupAction.result.error.message}
-                        </label>
-                      </div>
-                    ) : (
-                      ''
-                    )}
+                    {signupAction.result.error
+                      ? message.error(signupAction.result.error.message, 1)
+                      : ''}
                     {signupAction.result.data ? <div>ok</div> : ''}
-
                     <Col span={14} style={{ textAlign: 'right' }}>
                       <Button
                         type="primary"
                         style={{ marginRight: 15 }}
                         onClick={handleSignup(props.form)}
                       >
-                        Signup{' '}
+                        Sign Up{' '}
                       </Button>
-
-                      <Link href="/presonal/login" style={{ marginLeft: 8 }}>
-                        <a>Forward Login</a>
-                      </Link>
                     </Col>
                   </Row>
                 </Form>
@@ -102,6 +112,10 @@ const SignUpForm = props => {
       }}
     </GlobalBlock.Consumer>
   )
+}
+
+SignUpForm.propTypes = {
+  form: PropTypes.object
 }
 
 export default Form.create()(SignUpForm)

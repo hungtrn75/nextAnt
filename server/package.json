@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "ci": "NODE_ENV=ci PORT=8080 node index.js",
     "start": "NODE_ENV=production node index.js",
     "start-pm2": "NODE_ENV=production pm2-runtime index.js -i 0"
   },
@@ -17,7 +18,9 @@
     "express": "^4.16.3",
     "graphql": "^0.13.2",
     "graphql-tools": "^3.0.1",
+    "helmet": "^3.12.1",
     "jsonwebtoken": "^8.2.1",
+    "moment": "^2.22.1",
     "mongoose": "^5.1.1",
     "shortid": "^2.2.8"
   }

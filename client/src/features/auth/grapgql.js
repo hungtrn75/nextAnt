@@ -1,7 +1,8 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
+import { Query, Mutation } from 'react-apollo'
 import { adopt } from 'react-adopt'
+import PropTypes from 'prop-types'
 
 export const login = gql`
   mutation login($email: String!, $password: String!) {
@@ -48,23 +49,40 @@ export const userPorfile = gql`
   }
 `
 
-const loginAction = ({ render }) => (
+export const isUserLoggedIn = gql`
+  query isUserLoggedIn {
+    isUserLoggedIn
+  }
+`
+
+export const checkUser = () => <Query query={isUserLoggedIn} />
+
+export const loginAction = ({ render }) => (
   <Mutation mutation={login}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
-const signupAction = ({ render }) => (
+export const signupAction = ({ render }) => (
   <Mutation mutation={signup}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
-const logoutAction = ({ render }) => (
+export const logoutAction = ({ render }) => (
   <Mutation mutation={logout}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
+loginAction.propTypes = {
+  render: PropTypes.func
+}
+signupAction.propTypes = {
+  render: PropTypes.func
+}
+logoutAction.propTypes = {
+  render: PropTypes.func
+}
 
 export const ActionContainer = adopt({
   signupAction,
