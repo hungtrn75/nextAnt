@@ -52,7 +52,7 @@
     }
   },
   "dependencies": {
-    "jest": "^23.1.0",
+    "jest": "^24.0.0",
     "puppeteer": "^1.4.0"
   }
 }
